@@ -50,3 +50,6 @@ dt{color:var(--mut);font-size:12px;margin-top:8px}dd{margin:2px 0 0}.hint{line-h
 .node .name{font-size:11.5px;line-height:1.2;max-height:28px;overflow:hidden}.node .cr{font-size:11px;color:var(--mut)}
 .node.pre,.node.cr{background:color-mix(in srgb,var(--lock) 12%,var(--panel));color:var(--mut);cursor:not-allowed}
 .node.cr{border-style:dashed}
+.board .credit{display:none}
+.credit-fixed{position:fixed;right:14px;bottom:8px;z-index:20;font-size:11px;color:var(--mut);opacity:.3;transition:opacity .3s;user-select:none}
+.credit-fixed:hover{opacity:1}
