@@ -1,4 +1,5 @@
 // Edit this file to change courses. Run `tsc subjects.ts --target es2019` to rebuild subjects.js
+(() => {
 type Cat = "H" | "S" | "N" | "M" | "C" | "W" | "G"; // hardware, software, networking, math, sciences, writing, gen-ed/electives
 interface Course {
   id: string; name: string; cr: number; cat: Cat;
@@ -111,4 +112,5 @@ const COE: Program = {
     c("COE497","Professional Training in CE (Summer)",0,"H",6,7,["ENG204"],[],90),
   ],
 };
-const PROGRAMS: { [k: string]: Program } = { CMP, COE };
+(window as any).PROGRAMS = { CMP, COE } as { [k: string]: Program };
+})();

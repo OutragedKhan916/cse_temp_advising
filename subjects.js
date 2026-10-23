@@ -1,4 +1,5 @@
 // Edit this file to change courses. Run `tsc subjects.ts --target es2019` to rebuild subjects.js
+(() => {
                                                     // hardware, software, networking, math, sciences, writing, gen-ed/electives
                   
                                                  
@@ -111,4 +112,5 @@ const COE          = {
     c("COE497","Professional Training in CE (Summer)",0,"H",6,7,["ENG204"],[],90),
   ],
 };
-const PROGRAMS                           = { CMP, COE };
+(window       ).PROGRAMS = { CMP, COE }                            ;
+})();

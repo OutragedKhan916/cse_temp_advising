@@ -1,0 +1,581 @@
+{
+ "name": "BS Computer Engineering (COE)",
+ "total": 130,
+ "years": [
+  "First Year · 32 cr",
+  "Second Year · 33 cr",
+  "Third Year · 33 cr",
+  "Fourth Year · 32 cr"
+ ],
+ "courses": [
+  {
+   "id": "NGN110",
+   "name": "Intro to Engineering & Computing",
+   "cr": 2,
+   "cat": "G",
+   "col": 0,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN112",
+   "name": "Intro to AI & Data Science",
+   "cr": 3,
+   "cat": "S",
+   "col": 0,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH103",
+   "name": "Calculus I + Lab",
+   "cr": 3,
+   "cat": "M",
+   "col": 0,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY101",
+   "name": "General Physics I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "MTH103"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI101",
+   "name": "Academic Writing I",
+   "cr": 3,
+   "cat": "W",
+   "col": 0,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHM101",
+   "name": "General Chemistry I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 1,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GER221",
+   "name": "GER-Core History & Culture of Arab World",
+   "cr": 3,
+   "cat": "G",
+   "col": 1,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH104",
+   "name": "Calculus II",
+   "cr": 3,
+   "cat": "M",
+   "col": 1,
+   "row": 2,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY102",
+   "name": "General Physics II + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 1,
+   "row": 3,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [
+    "MTH104"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI102",
+   "name": "Academic Writing II",
+   "cr": 3,
+   "cat": "W",
+   "col": 1,
+   "row": 4,
+   "pre": [
+    "WRI101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP120",
+   "name": "Programming I",
+   "cr": 3,
+   "cat": "S",
+   "col": 2,
+   "row": 0,
+   "pre": [
+    "NGN110"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE221",
+   "name": "Digital Systems",
+   "cr": 4,
+   "cat": "H",
+   "col": 2,
+   "row": 1,
+   "pre": [
+    "CMP120"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE211",
+   "name": "Electric Circuits I",
+   "cr": 3,
+   "cat": "H",
+   "col": 2,
+   "row": 2,
+   "pre": [
+    "MTH104",
+    "PHY102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP213",
+   "name": "Discrete Structures (CMP213/MTH213)",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 3,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH205",
+   "name": "Differential Equations",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 4,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN211",
+   "name": "Intro to Engineering Probability & Statistics",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 5,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP220",
+   "name": "Programming II",
+   "cr": 3,
+   "cat": "S",
+   "col": 3,
+   "row": 0,
+   "pre": [
+    "CMP120"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE241",
+   "name": "Microcontrollers: Programming & Interfacing",
+   "cr": 4,
+   "cat": "H",
+   "col": 3,
+   "row": 1,
+   "pre": [
+    "COE221",
+    "CMP220"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE241",
+   "name": "Electronics I",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 2,
+   "pre": [
+    "ELE211"
+   ],
+   "co": [
+    "ELE241L"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE241L",
+   "name": "Electronics I Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 3,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "ELE241"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ENG204",
+   "name": "Advanced Academic Writing",
+   "cr": 3,
+   "cat": "W",
+   "col": 3,
+   "row": 4,
+   "pre": [
+    "WRI102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERHI",
+   "name": "GER-Core Human Interaction",
+   "cr": 3,
+   "cat": "G",
+   "col": 4,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE341",
+   "name": "Computer Architecture & Organization",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 1,
+   "pre": [
+    "COE241",
+    "COE221"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP305",
+   "name": "Data Structures & Algorithms",
+   "cr": 3,
+   "cat": "S",
+   "col": 4,
+   "row": 2,
+   "pre": [
+    "CMP220"
+   ],
+   "co": [
+    "CMP213"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE320",
+   "name": "Signal Processing & Communications",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 3,
+   "pre": [
+    "ELE211",
+    "MTH205"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH221",
+   "name": "Linear Algebra",
+   "cr": 3,
+   "cat": "M",
+   "col": 4,
+   "row": 4,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE1",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 4,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP310",
+   "name": "Operating Systems",
+   "cr": 3,
+   "cat": "S",
+   "col": 5,
+   "row": 0,
+   "pre": [
+    "CMP305",
+    "COE241"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE371",
+   "name": "Computer Networks I",
+   "cr": 3,
+   "cat": "N",
+   "col": 5,
+   "row": 1,
+   "pre": [
+    "COE221",
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERART",
+   "name": "GER-Core Arts & Literature",
+   "cr": 3,
+   "cat": "G",
+   "col": 5,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE340",
+   "name": "Digital Electronics",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 3,
+   "pre": [
+    "ELE241",
+    "COE221"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "IEN301",
+   "name": "Innovation & Entrepreneurship Mindset",
+   "cr": 3,
+   "cat": "G",
+   "col": 5,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 45
+  },
+  {
+   "id": "COE411",
+   "name": "Embedded & Cyber Physical Systems",
+   "cr": 4,
+   "cat": "H",
+   "col": 6,
+   "row": 0,
+   "pre": [
+    "COE341",
+    "COE371"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE490",
+   "name": "Design Project I",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 1,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [
+    "COE421L"
+   ],
+   "minCr": 90
+  },
+  {
+   "id": "MJE1",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE424",
+   "name": "Advanced Digital Systems Design",
+   "cr": 3,
+   "cat": "H",
+   "col": 6,
+   "row": 3,
+   "pre": [
+    "COE341",
+    "ELE340"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERSEL",
+   "name": "GER-Core Selected Course",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE421L",
+   "name": "Computer Systems Engineering Lab",
+   "cr": 1,
+   "cat": "S",
+   "col": 6,
+   "row": 5,
+   "pre": [
+    "COE341",
+    "CMP310"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE491",
+   "name": "Design Project II",
+   "cr": 2,
+   "cat": "H",
+   "col": 7,
+   "row": 0,
+   "pre": [
+    "COE490"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE2",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE3",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE4",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERCCP",
+   "name": "GER-Core Culture in a Critical Perspective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE2",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE497",
+   "name": "Professional Training in CE (Summer)",
+   "cr": 0,
+   "cat": "H",
+   "col": 6,
+   "row": 7,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [],
+   "minCr": 90
+  }
+ ]
+}
