@@ -1,6 +1,6 @@
 import type { Course } from "./types";
 
-export const W = 164, H = 68, GX = 96, GY = 34, TOP = 56;
+export const W = 164, H = 68, GX = 96, GY = 34, TOP = 100;
 export const colX = (c: number) => c * (W + GX);
 export const rowY = (r: number) => TOP + r * (H + GY) + (r === 7 ? 12 : 0);
 type Pt = [number, number];
