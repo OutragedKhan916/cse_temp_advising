@@ -109,6 +109,7 @@ export default function Page() {
           <button className="theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
             {theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}
           </button>
+          <div style={{ fontSize: 12, fontStyle: "italic", color: "var(--hot)", opacity: 0.5, transition: "opacity .3s", userSelect: "none" }} onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")} onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.5")}>Done by @OutragedKhan916</div>
         </aside>
         <div className="scroll">
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}
@@ -118,3 +119,6 @@ export default function Page() {
     </div>
   );
 }
+
+
+
