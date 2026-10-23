@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advising Portal</title>
+<style>
+:root{--bg:#f3f5f9;--panel:#fff;--ink:#14213d;--mut:#5b6785;--line:#9aa6c2;
+--done:#2f9e6b;--ok:#2b7de9;--pre:#d9534f;--cr:#e39b1f;
+--H:#4aa8e8;--S:#3cc79a;--N:#e0866b;--M:#b277d8;--C:#e2c63b;--W:#8d8de0;--G:#b8c0d4}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1626;--panel:#16223a;--ink:#e8edf8;--mut:#9aa8c8;--line:#4a5a7c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.35 "Segoe UI",system-ui,sans-serif}
+header{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:14px 20px;background:var(--panel);border-bottom:1px solid var(--line)}
+h1{font-size:18px;margin:0 12px 0 0}select,button{font:inherit;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.bar{flex:1;min-width:200px}.bar i{display:block;height:8px;border-radius:4px;background:var(--done);width:0;transition:width .3s}.bar div{height:8px;border-radius:4px;background:var(--line);opacity:.4;margin-top:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;padding:10px 20px;color:var(--mut);font-size:13px}
+.legend span:before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-2px;background:var(--c);border:2px solid var(--c)}
+.legend .k:before{background:none}.legend .d:before{height:0;width:20px;border:0;border-top:2px dashed var(--line);border-radius:0;background:none}
+.wrap{overflow:auto;padding:0 20px 40px}#board{position:relative}
+svg{position:absolute;inset:0;pointer-events:none}svg path{fill:none;stroke:var(--line);stroke-width:1.5;opacity:.55}
+svg path.co{stroke-dasharray:5 4}svg path.hl{stroke:var(--ok);opacity:1;stroke-width:2.5}svg.dim path:not(.hl){opacity:.12}
+.yr{position:absolute;top:0;font-weight:600;color:var(--mut);border-bottom:2px solid var(--line);padding-bottom:4px}
+.n{position:absolute;width:158px;height:66px;padding:6px 8px 6px 12px;border-radius:8px;background:var(--panel);border:2px solid var(--c);cursor:pointer;overflow:hidden;font-size:12px;transition:transform .12s,opacity .2s;text-align:left;color:var(--ink)}
+.n:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--cat)}
+.n b{display:block;font-size:13px}.n small{color:var(--mut)}
+.n.done{--c:var(--done);background:color-mix(in srgb,var(--done) 22%,var(--panel))}
+.n.ok{--c:var(--ok)}.n.pre{--c:var(--pre);opacity:.7}.n.cr{--c:var(--cr);opacity:.8}
+.n:hover,.n:focus-visible{transform:scale(1.05);z-index:5;opacity:1;outline:none}
+#tip{margin:0 20px;padding:10px 14px;background:var(--panel);border-radius:8px;min-height:44px;border:1px solid var(--line)}
+</style></head><body>
+<header><h1>Advising Portal</h1>
+<select id="prog"></select>
+<div class="bar"><span id="stat"></span><div><i id="fill"></i></div></div>
+<button id="reset">Clear progress</button></header>
+<div class="legend">
+<span style="--c:var(--done)">Completed</span><span style="--c:var(--ok)">Can be taken</span>
+<span style="--c:var(--pre)">Locked by prerequisite</span><span style="--c:var(--cr)">Locked by credits</span>
+<span class="d">Prerequisite / concurrent</span>
+<span class="k" style="--c:var(--H)">■ Hardware</span><span class="k" style="--c:var(--S)">■ Software</span><span class="k" style="--c:var(--N)">■ Networking</span><span class="k" style="--c:var(--M)">■ Math</span><span class="k" style="--c:var(--C)">■ Sciences</span><span class="k" style="--c:var(--W)">■ Writing</span></div>
+<p id="tip">Click a course to mark it completed. Hover to trace its prerequisites. Progress saves in this browser.</p>
+<div class="wrap"><div id="board"></div></div>
+<script src="subjects.js"></script>
+<script>
+const W=158,H=66,GX=84,GY=24,TOP=40,$=s=>document.querySelector(s);
+let key="CMP",done=new Set(),P,byId;
+const store=k=>"advise-"+k;
+function load(){try{done=new Set(JSON.parse(localStorage.getItem(store(key))||"[]"))}catch(e){done=new Set}}
+function save(){try{localStorage.setItem(store(key),JSON.stringify([...done]))}catch(e){}}
+const earned=()=>P.courses.reduce((s,c)=>s+(done.has(c.id)?c.cr:0),0);
+function info(c){
+  const miss=c.pre.filter(p=>!done.has(p));
+  const coMiss=c.co.filter(p=>!done.has(p)&&byId[p].pre.some(q=>!done.has(q)));
+  const need=[...miss,...coMiss];
+  if(done.has(c.id))return{s:"done",why:"Completed"};
+  if(need.length)return{s:"pre",why:"Needs "+need.join(", ")+(coMiss.length?" (concurrent allowed once its prerequisites are done)":"")};
+  if(earned()<c.minCr)return{s:"cr",why:"Needs "+c.minCr+" credits completed ("+earned()+" so far)"};
+  return{s:"ok",why:"You can take this now"+(c.co.filter(p=>!done.has(p)).length?" (with "+c.co.filter(p=>!done.has(p)).join(", ")+")":"")};
+}
+function build(){
+  P=PROGRAMS[key];byId={};P.courses.forEach(c=>byId[c.id]=c);load();
+  const b=$("#board");b.innerHTML='<svg></svg>';
+  b.style.width=8*(W+GX)+"px";b.style.height=TOP+8*(H+GY)+"px";
+  P.years.forEach((y,i)=>{const d=document.createElement("div");d.className="yr";d.textContent=y;d.style.left=i*2*(W+GX)+"px";d.style.width=(2*W+GX)+"px";b.append(d)});
+  const s=document.createElement("div");s.className="yr";s.textContent="Summer · 8 weeks";s.style.cssText=`left:${6*(W+GX)}px;top:${TOP+6.4*(H+GY)}px;width:${W}px`;b.append(s);
+  P.courses.forEach(c=>{const e=document.createElement("button");e.className="n";e.id="n-"+c.id;
+    e.style.left=c.col*(W+GX)+"px";e.style.top=TOP+c.row*(H+GY)+(c.row==7?8:0)+"px";e.style.setProperty("--cat","var(--"+c.cat+")");
+    e.innerHTML=`<b>${c.id.replace(/\d$/,m=>/^(MJE|FRE)/.test(c.id)?"":m)}</b>${c.name}<br><small>${c.cr} cr${c.minCr?" · "+c.minCr+" cr standing":""}</small>`;
+    e.onclick=()=>{done.has(c.id)?done.delete(c.id):done.add(c.id);save();paint()};
+    e.onmouseenter=e.onfocus=()=>{trace(c.id);$("#tip").textContent=c.id+" — "+info(c).why};
+    e.onmouseleave=e.onblur=()=>trace(null);b.append(e)});
+  edges();paint();
+}
+function edges(){
+  const svg=$("svg");svg.setAttribute("width",$("#board").style.width.replace("px",""));svg.setAttribute("height",$("#board").style.height.replace("px",""));
+  let h="";P.courses.forEach(t=>[...t.pre.map(p=>[p,0]),...t.co.map(p=>[p,1])].forEach(([p,co])=>{
+    const a=byId[p];if(!a)return;
+    const x1=a.col*(W+GX)+W,y1=TOP+a.row*(H+GY)+H/2+(a.row==7?8:0),x2=t.col*(W+GX),y2=TOP+t.row*(H+GY)+H/2+(t.row==7?8:0);
+    const f=a.col<t.col,m=f?(x1+x2)/2:x1+30;
+    h+=`<path data-a="${p}" data-b="${t.id}" class="${co?"co":""}" d="M${x1},${y1} C${x1+(f?GX*.6:60)},${y1} ${x2-(f?GX*.6:60)},${y2} ${x2},${y2}"/>`}));
+  svg.innerHTML=h;
+}
+function trace(id){
+  const svg=$("svg");if(!id){svg.classList.remove("dim");svg.querySelectorAll(".hl").forEach(p=>p.classList.remove("hl"));return}
+  const seen=new Set([id]),q=[id];while(q.length){const c=byId[q.pop()];[...c.pre,...c.co].forEach(p=>{if(!seen.has(p)){seen.add(p);q.push(p)}})}
+  svg.classList.add("dim");svg.querySelectorAll("path").forEach(p=>p.classList.toggle("hl",seen.has(p.dataset.b)&&seen.has(p.dataset.a)));
+}
+function paint(){
+  P.courses.forEach(c=>{const i=info(c),e=$("#n-"+c.id);e.className="n "+i.s;e.title=c.name+"\n"+i.why});
+  const e=earned();$("#stat").textContent=`${e} / ${P.total} credits completed`;$("#fill").style.width=Math.min(100,e/P.total*100)+"%";
+}
+const sel=$("#prog");Object.keys(PROGRAMS).forEach(k=>sel.add(new Option(PROGRAMS[k].name,k)));
+sel.onchange=()=>{key=sel.value;build()};
+$("#reset").onclick=()=>{if(confirm("Clear all completed courses for this program?")){done.clear();save();paint()}};
+build();
+</script></body></html>
