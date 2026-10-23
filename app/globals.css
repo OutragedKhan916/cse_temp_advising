@@ -53,3 +53,6 @@ dt{color:var(--mut);font-size:12px;margin-top:8px}dd{margin:2px 0 0}.hint{line-h
 .board .credit{display:none}
 .credit-fixed{position:fixed;right:14px;bottom:8px;z-index:20;font-size:11px;color:var(--mut);opacity:.3;transition:opacity .3s;user-select:none}
 .credit-fixed:hover{opacity:1}
+.board .credit{display:none}
+.credit-fixed{position:fixed;right:14px;bottom:8px;z-index:20;font-size:11px;color:var(--mut);opacity:.3;transition:opacity .3s;user-select:none}
+.credit-fixed:hover{opacity:1}
