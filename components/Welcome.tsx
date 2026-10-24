@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import ger from "@/data/ger.json";
 import { matchTranscript, readPdfLines } from "@/lib/transcript";
 import type { Program } from "@/lib/types";
 
@@ -21,7 +22,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
     setErr(""); setBusy(true);
     try {
       if (!/\.pdf$/i.test(f.name) && f.type !== "application/pdf") throw new Error("Please choose a PDF file.");
-      const r = matchTranscript(await readPdfLines(f), programs, key);
+      const r = matchTranscript(await readPdfLines(f), programs, key, ger);
       if (!r.found) throw new Error("No courses were found in this PDF. Make sure it is your unofficial transcript.");
       setRes(r);
     } catch (e) { setErr(e instanceof Error ? e.message : "Could not read this file."); }
@@ -41,6 +42,9 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           {!res.detected && <p className="warn">Could not detect your program, so {programs[res.key].name} was used.</p>}
           <p><b className="c-done">{res.done.length} completed</b>: {res.done.join(", ") || "none"}</p>
           <p><b className="c-enr">{res.enr.length} in progress</b>: {res.enr.join(", ") || "none"}</p>
+          {res.ger.length > 0 && (
+            <p><b>Counted toward GERs</b>: {res.ger.map((g) => `${g.code} → ${programs[res.key].courses.find((c) => c.id === g.slot)?.name.replace("GER-Core ", "")}`).join(", ")}</p>
+          )}
           {res.unmatched.length > 0 && (
             <p className="warn">Not part of this chart, so skipped: {res.unmatched.join(", ")}. Elective and transfer credits can be added by hand on the chart.</p>
           )}
@@ -75,8 +79,8 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
             <details>
               <summary>How do I get my transcript?</summary>
               <ol>
-                <li>Log in to your university student portal (Banner / Student Self-Service).</li>
-                <li>Open <b>Unofficial Transcript</b> under your student records.</li>
+                <li>Log in to your university student portal (for AUS, Banner / Student Self-Service).</li>
+                <li>Open <b>Unofficial Transcript</b> under your student records. Menu names may differ slightly.</li>
                 <li>Choose <b>Undergraduate</b> level and the unofficial / web transcript type, then submit.</li>
                 <li>Save it as a PDF: press <b>Print</b>, then choose <b>Save as PDF</b>.</li>
                 <li>Upload that PDF here. Do not edit it.</li>
@@ -86,7 +90,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           </div>
         </div>
       )}
-      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @outragedKhan916</a>
+      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @outraged</a>
     </div>
   );
 }

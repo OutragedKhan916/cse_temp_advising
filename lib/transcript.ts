@@ -1,11 +1,14 @@
 import type { Program } from "./types";
 
 type Row = { code: string; section: string; text: string };
-const START = /^([A-Z]{3,4})\s+(\d{3}[A-Z]?)\s+(.*)$/;
+const START = /^([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.*)$/;
 const GRADE = /\s(A[+-]?|B[+-]?|C[+-]?|D[+-]?|F|P|NP|W|WP|WF|I|TR)\s+\d+\.\d{3}/;
 const PASS = /^(A[+-]?|B[+-]?|C[+-]?|D[+-]?|P|TR)$/;
 // transcript code -> catalog id, when they differ
-const ALIAS: Record<string, string> = { MTH213: "CMP213", ARA102: "GER221" };
+const ALIAS: Record<string, string> = { MTH213: "CMP213" };
+// GER category (data/ger.json) -> the GER slot(s) on the chart; any extra core course falls into GERSEL
+const SLOT: Record<string, string[]> = { HCAW: ["GER221"], ART: ["GERART"], HIB: ["GERHIB", "GERHI"], CCP: ["GERCCP"] };
+export type GerData = Record<string, string[]>;
 
 /** Turn the text lines of an AUS unofficial transcript into course rows. */
 export function parseTranscript(lines: string[]) {
@@ -28,25 +31,38 @@ export function parseTranscript(lines: string[]) {
   return { program, rows };
 }
 
-export function matchTranscript(lines: string[], programs: Record<string, Program>, fallback: string) {
+export function matchTranscript(lines: string[], programs: Record<string, Program>, fallback: string, ger: GerData) {
   const { program, rows } = parseTranscript(lines);
   const key = program ?? fallback;
   const ids = new Set(programs[key].courses.map((c) => c.id));
   const done = new Set<string>(), enr = new Set<string>(), unmatched = new Set<string>();
+  const gerUsed: { code: string; slot: string }[] = [];
+  const items: { code: string; kind: "done" | "enr" }[] = [];
   for (const r of rows) {
     let kind: "done" | "enr" | null = null;
     if (r.section === "progress") kind = "enr";
     else { const g = r.text.match(GRADE)?.[1]; if (g && PASS.test(g)) kind = "done"; } // F / W / NP / I do not count
-    if (!kind) continue;
-    const id = ALIAS[r.code] && ids.has(ALIAS[r.code]) ? ALIAS[r.code]
-      : ids.has(r.code) ? r.code
-      : r.code.endsWith("L") && ids.has(r.code.slice(0, -1)) ? r.code.slice(0, -1) // lab folded into its lecture course
+    if (kind) items.push({ code: r.code, kind });
+  }
+  items.sort((a, b) => +(a.kind !== "done") - +(b.kind !== "done")); // completed courses claim slots first
+  const taken = (id: string) => done.has(id) || enr.has(id);
+  for (const { code, kind } of items) {
+    const label = code.replace(/^([A-Z]+)(\d)/, "$1 $2");
+    let id: string | null = ALIAS[code] && ids.has(ALIAS[code]) ? ALIAS[code]
+      : ids.has(code) ? code
+      : code.endsWith("L") && ids.has(code.slice(0, -1)) ? code.slice(0, -1) // lab folded into its lecture course
       : null;
-    if (!id) unmatched.add(r.code.replace(/^([A-Z]+)(\d)/, "$1 $2"));
+    if (!id) { // general education: first free slot of its category, otherwise the "selected GER course" slot
+      const cats = Object.keys(ger).filter((k) => ger[k].includes(code));
+      for (const c of cats) { const slot = (SLOT[c] || []).find((x) => ids.has(x) && !taken(x)); if (slot) { id = slot; break; } }
+      if (!id && cats.length && ids.has("GERSEL") && !taken("GERSEL")) id = "GERSEL";
+      if (id) gerUsed.push({ code: label, slot: id });
+    }
+    if (!id) unmatched.add(label);
     else (kind === "done" ? done : enr).add(id);
   }
   done.forEach((id) => enr.delete(id));
-  return { key, detected: !!program, found: rows.length, done: [...done], enr: [...enr], unmatched: [...unmatched] };
+  return { key, detected: !!program, found: rows.length, done: [...done], enr: [...enr], unmatched: [...unmatched], ger: gerUsed };
 }
 
 /** Read a PDF in the browser (pdf.js from a CDN) and return its text, one string per visual line. */
