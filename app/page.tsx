@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import cmp from "@/data/cmp.json";
 import coe from "@/data/coe.json";
 import Flowchart from "@/components/Flowchart";
+import Welcome from "@/components/Welcome";
 import { earned, infoFor, lockInfo, normalize } from "@/lib/status";
 import type { Course, Program, Sets, Status } from "@/lib/types";
 
@@ -18,6 +19,8 @@ export default function Page() {
   const [hover, setHover] = useState<string | null>(null);
   const [theme, setTheme] = useState("dark");
   const [ready, setReady] = useState(false);
+  const [screen, setScreen] = useState<"loading" | "welcome" | "app">("loading");
+  const pending = useRef<{ key: string; sel: Sets } | null>(null);
   const program = PROGRAMS[key];
   const byId = useMemo(() => Object.fromEntries(program.courses.map((c) => [c.id, c])) as Record<string, Course>, [program]);
 
@@ -26,7 +29,9 @@ export default function Page() {
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem("advising-theme", theme); } catch {}
   }, [theme]);
+  useEffect(() => { try { setScreen(localStorage.getItem("advising-started") ? "app" : "welcome"); } catch { setScreen("welcome"); } }, []);
   useEffect(() => { // load saved progress per program
+    if (pending.current && pending.current.key === key) { setSel(pending.current.sel); pending.current = null; setReady(true); return; }
     try {
       const raw = JSON.parse(localStorage.getItem("advising-" + key) || "{}");
       const d = Array.isArray(raw) ? raw : raw.done || [];
@@ -67,6 +72,17 @@ export default function Page() {
   });
 
   const hc = hover ? byId[hover] : null;
+  const enter = () => { try { localStorage.setItem("advising-started", "1"); } catch {} setScreen("app"); };
+  const switchTo = (k: string) => { setReady(false); setHover(null); setKey(k); };
+  const startManual = (k: string) => { if (k !== key) switchTo(k); enter(); };
+  const applyImport = (r: { key: string; done: string[]; enr: string[] }) => {
+    const s = { done: new Set(r.done), enr: new Set(r.enr) };
+    if (r.key === key) setSel(s); else { pending.current = { key: r.key, sel: s }; switchTo(r.key); }
+    enter();
+  };
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+  if (screen === "loading") return <div className="splash">Loading…</div>;
+  if (screen === "welcome") return <Welcome programs={PROGRAMS} defaultKey={key} theme={theme} onTheme={toggleTheme} onManual={startManual} onApply={applyImport} />;
   return (
     <div className="app">
       <header>
@@ -77,6 +93,7 @@ export default function Page() {
           <span>{cr} / {program.total} credits completed{enrCr ? ` · ${enrCr} enrolled` : ""}</span>
           <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /></div>
         </div>
+        <button className="ghost" onClick={() => setScreen("welcome")}>Import transcript</button>
         <button className="ghost" onClick={() => confirm("Clear all selections for this program?") && setSel({ done: new Set(), enr: new Set() })}>Clear progress</button>
       </header>
       <div className="body">
@@ -106,9 +123,10 @@ export default function Page() {
               </dl>
             </>) : <p className="hint">Hover a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
           </section>
-          <button className="theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+          <button className="theme" onClick={toggleTheme}>
             {theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}
           </button>
+          <div style={{ fontSize: 12, fontStyle: "italic", color: "var(--hot)", opacity: 0.5, transition: "opacity .3s", userSelect: "none" }} onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")} onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.5")}>Done by @OutragedKhan916</div>
         </aside>
         <div className="scroll">
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}
@@ -118,6 +136,3 @@ export default function Page() {
     </div>
   );
 }
-
-
-
