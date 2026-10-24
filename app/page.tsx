@@ -4,7 +4,7 @@ import cmp from "@/data/cmp.json";
 import coe from "@/data/coe.json";
 import Flowchart from "@/components/Flowchart";
 import Welcome from "@/components/Welcome";
-import { earned, infoFor, lockInfo, normalize } from "@/lib/status";
+import { earned, infoFor, lockInfo, normalize, standing } from "@/lib/status";
 import type { Course, Program, Sets, Status } from "@/lib/types";
 
 const PROGRAMS: Record<string, Program> = { CMP: cmp as unknown as Program, COE: coe as unknown as Program };
@@ -44,21 +44,22 @@ export default function Page() {
   }, [sel, key, ready]);
 
   const cr = earned(program, sel.done);
-  const info = useMemo(() => Object.fromEntries(program.courses.map((c) => [c.id, infoFor(c, byId, sel, cr)])), [program, byId, sel, cr]);
+  const st = standing(program, sel);
+  const info = useMemo(() => Object.fromEntries(program.courses.map((c) => [c.id, infoFor(c, byId, sel, st)])), [program, byId, sel, st]);
   const count = (s: Status) => program.courses.filter((c) => info[c.id].status === s).length;
   const enrCr = program.courses.reduce((t, c) => t + (sel.enr.has(c.id) ? c.cr : 0), 0);
   const other = mode === "done" ? "enr" : "done";
 
   const toggle = (id: string) => setSel((prev) => {
     const n = clone(prev), c = byId[id];
-    if (!n.done.has(id) && !n.enr.has(id) && lockInfo(c, byId, n, earned(program, n.done)).status !== "ok") return prev; // locked: cannot be chosen
+    if (!n.done.has(id) && !n.enr.has(id) && lockInfo(c, byId, n, standing(program, n)).status !== "ok") return prev; // locked: cannot be chosen
     if (n[mode].has(id)) n[mode].delete(id); else { n[other].delete(id); n[mode].add(id); }
     normalize(program, byId, n);
     return n;
   });
 
   const yearList = (y: number) => program.courses.filter((c) => c.row !== 7 && c.col >> 1 === y).sort((a, b) => a.col - b.col || a.row - b.row);
-  const isOpen = (c: Course, s: Sets) => s.done.has(c.id) || s.enr.has(c.id) || lockInfo(c, byId, s, earned(program, s.done)).status === "ok";
+  const isOpen = (c: Course, s: Sets) => s.done.has(c.id) || s.enr.has(c.id) || lockInfo(c, byId, s, standing(program, s)).status === "ok";
   const yearOpen = [0, 1, 2, 3].map((y) => yearList(y).some((c) => isOpen(c, sel)));
   const yearAll = [0, 1, 2, 3].map((y) => { const o = yearList(y).filter((c) => isOpen(c, sel)); return o.length > 0 && o.every((c) => sel.done.has(c.id) || sel.enr.has(c.id)); });
 
@@ -66,7 +67,7 @@ export default function Page() {
     const n = clone(prev), l = yearList(y), open = l.filter((c) => isOpen(c, n));
     if (open.length && open.every((c) => n.done.has(c.id) || n.enr.has(c.id))) open.forEach((c) => { n.done.delete(c.id); n.enr.delete(c.id); });
     else for (let pass = 0; pass < 3; pass++) for (const c of l) // in column order so chains inside a year unlock as we go
-      if (!n.done.has(c.id) && !n.enr.has(c.id) && lockInfo(c, byId, n, earned(program, n.done)).status === "ok") n[mode].add(c.id);
+      if (!n.done.has(c.id) && !n.enr.has(c.id) && lockInfo(c, byId, n, standing(program, n)).status === "ok") n[mode].add(c.id);
     normalize(program, byId, n);
     return n;
   });
@@ -86,7 +87,7 @@ export default function Page() {
   return (
     <div className="app">
       <header>
-        <h1>Advising Portal</h1>
+        <h1><button className="brand" onClick={() => { setHover(null); setScreen("welcome"); }}>Advising Portal</button></h1>
         <nav>{Object.entries(PROGRAMS).map(([k, p]) => (
           <button key={k} className={k === key ? "on" : ""} onClick={() => { setReady(false); setHover(null); setKey(k); }}>{p.name}</button>))}</nav>
         <div className="progress">
@@ -104,6 +105,7 @@ export default function Page() {
               <button className={mode === "done" ? "on done" : ""} onClick={() => setMode("done")}>Completed</button>
               <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode("enr")}>Enrolled</button>
             </div>
+            <p className="note">Enrolled courses unlock the next courses just like completed ones, so you can plan next semester.</p>
           </section>
           <section>
             <h3>Legend</h3>
@@ -126,7 +128,6 @@ export default function Page() {
           <button className="theme" onClick={toggleTheme}>
             {theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}
           </button>
-          <div style={{ fontSize: 12, fontStyle: "italic", color: "var(--hot)", opacity: 0.5, transition: "opacity .3s", userSelect: "none" }} onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")} onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.5")}>Done by @OutragedKhan916</div>
         </aside>
         <div className="scroll">
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}

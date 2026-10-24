@@ -2,6 +2,7 @@
 const base = process.env.BASE_PATH || "";
 module.exports = {
   output: "export",
+  env: { NEXT_PUBLIC_BASE_PATH: base },
   basePath: base,
   assetPrefix: base || undefined,
   trailingSlash: true,

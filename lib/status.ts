@@ -3,15 +3,20 @@ import type { Course, Info, Program, Sets } from "./types";
 export const earned = (p: Program, done: Set<string>) =>
   p.courses.reduce((s, c) => s + (done.has(c.id) ? c.cr : 0), 0);
 
+/** credits completed + currently enrolled: used for prerequisite / credit-standing checks (planning next semester) */
+export const standing = (p: Program, s: Sets) =>
+  p.courses.reduce((t, c) => t + (s.done.has(c.id) || s.enr.has(c.id) ? c.cr : 0), 0);
+
 /** Can this course be registered right now? (ignores whether it is already selected) */
 export function lockInfo(c: Course, byId: Record<string, Course>, s: Sets, cr: number): Info {
+  const have = (id: string) => s.done.has(id) || s.enr.has(id); // enrolled counts like completed
   const need = [
-    ...c.pre.filter((p) => !s.done.has(p)),
+    ...c.pre.filter((p) => !have(p)),
     // a concurrent course counts if it is done, enrolled, or itself registrable
-    ...c.co.filter((p) => !s.done.has(p) && !s.enr.has(p) && byId[p].pre.some((q) => !s.done.has(q))),
+    ...c.co.filter((p) => !have(p) && byId[p].pre.some((q) => !have(q))),
   ];
   if (need.length) return { status: "pre", why: "Locked: needs " + need.join(", ") };
-  if (cr < c.minCr) return { status: "cr", why: `Locked: needs ${c.minCr} credits completed (${cr} so far)` };
+  if (cr < c.minCr) return { status: "cr", why: `Locked: needs ${c.minCr} credits completed or in progress (${cr} so far)` };
   return { status: "ok", why: "Open for registration" };
 }
 
@@ -25,7 +30,7 @@ export function infoFor(c: Course, byId: Record<string, Course>, s: Sets, cr: nu
 export function normalize(p: Program, byId: Record<string, Course>, s: Sets) {
   for (let changed = true; changed; ) {
     changed = false;
-    const cr = earned(p, s.done);
+    const cr = standing(p, s);
     for (const c of p.courses)
       if ((s.done.has(c.id) || s.enr.has(c.id)) && lockInfo(c, byId, s, cr).status !== "ok") {
         s.done.delete(c.id); s.enr.delete(c.id); changed = true;
