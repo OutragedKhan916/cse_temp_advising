@@ -75,8 +75,8 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
             <details>
               <summary>How do I get my transcript?</summary>
               <ol>
-                <li>Log in to your university student portal (for AUS, Banner / Student Self-Service).</li>
-                <li>Open <b>Unofficial Transcript</b> under your student records. Menu names may differ slightly.</li>
+                <li>Log in to your university student portal (Banner / Student Self-Service).</li>
+                <li>Open <b>Unofficial Transcript</b> under your student records.</li>
                 <li>Choose <b>Undergraduate</b> level and the unofficial / web transcript type, then submit.</li>
                 <li>Save it as a PDF: press <b>Print</b>, then choose <b>Save as PDF</b>.</li>
                 <li>Upload that PDF here. Do not edit it.</li>
