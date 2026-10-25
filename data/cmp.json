@@ -1,5 +1,5 @@
 {
- "name": "BS Computer Science (CMP)",
+ "name": "BS Computer Science (CMP) · 2026–27 catalog",
  "total": 122,
  "years": [
   "First Year · 31 cr",
@@ -190,14 +190,15 @@
    "minCr": 0
   },
   {
-   "id": "CMP257",
-   "name": "Web Application Programming",
+   "id": "COE251",
+   "name": "Introduction to Computer Systems",
    "cr": 4,
-   "cat": "S",
+   "cat": "H",
    "col": 3,
    "row": 0,
    "pre": [
-    "CMP220"
+    "CMP120",
+    "COE221"
    ],
    "co": [],
    "minCr": 0
@@ -208,7 +209,7 @@
    "cr": 3,
    "cat": "S",
    "col": 3,
-   "row": 1,
+   "row": 2,
    "pre": [
     "CMP220"
    ],
@@ -223,7 +224,7 @@
    "cr": 3,
    "cat": "M",
    "col": 3,
-   "row": 2,
+   "row": 3,
    "pre": [
     "MTH103"
    ],
@@ -236,7 +237,7 @@
    "cr": 3,
    "cat": "G",
    "col": 3,
-   "row": 3,
+   "row": 4,
    "pre": [],
    "co": [],
    "minCr": 45
@@ -247,8 +248,34 @@
    "cr": 3,
    "cat": "G",
    "col": 3,
-   "row": 4,
+   "row": 5,
    "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP357",
+   "name": "Web Development & Programming",
+   "cr": 3,
+   "cat": "S",
+   "col": 4,
+   "row": 0,
+   "pre": [
+    "CMP305"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP358L",
+   "name": "Java Programming Laboratory",
+   "cr": 1,
+   "cat": "S",
+   "col": 4,
+   "row": 1,
+   "pre": [
+    "CMP305"
+   ],
    "co": [],
    "minCr": 0
   },
@@ -258,24 +285,10 @@
    "cr": 3,
    "cat": "S",
    "col": 4,
-   "row": 0,
+   "row": 2,
    "pre": [
     "CMP305",
     "NGN211"
-   ],
-   "co": [],
-   "minCr": 0
-  },
-  {
-   "id": "COE251",
-   "name": "Intro to Computer Systems",
-   "cr": 4,
-   "cat": "H",
-   "col": 4,
-   "row": 1,
-   "pre": [
-    "COE221",
-    "CMP220"
    ],
    "co": [],
    "minCr": 0
@@ -286,11 +299,13 @@
    "cr": 3,
    "cat": "S",
    "col": 4,
-   "row": 2,
+   "row": 3,
    "pre": [
     "CMP305"
    ],
-   "co": [],
+   "co": [
+    "CMP358L"
+   ],
    "minCr": 0
   },
   {
@@ -299,7 +314,7 @@
    "cr": 4,
    "cat": "G",
    "col": 4,
-   "row": 3,
+   "row": 4,
    "pre": [],
    "co": [],
    "minCr": 0
@@ -327,7 +342,8 @@
    "row": 1,
    "pre": [
     "COE221",
-    "MTH104"
+    "MTH104",
+    "CMP305"
    ],
    "co": [],
    "minCr": 0
@@ -351,8 +367,7 @@
    "col": 5,
    "row": 3,
    "pre": [
-    "CMP305",
-    "NGN211"
+    "CMP305"
    ],
    "co": [],
    "minCr": 0
@@ -382,6 +397,7 @@
     "ENG204"
    ],
    "co": [
+    "IEN301",
     "COE420"
    ],
    "minCr": 90
@@ -438,11 +454,23 @@
    "col": 6,
    "row": 5,
    "pre": [
-    "CMP257",
-    "CMP333"
+    "CMP305"
    ],
    "co": [],
    "minCr": 0
+  },
+  {
+   "id": "NGN397",
+   "name": "Professional Training in Computer Science",
+   "cr": 0,
+   "cat": "G",
+   "col": 6,
+   "row": 7,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [],
+   "minCr": 90
   },
   {
    "id": "CMP491",
@@ -500,19 +528,6 @@
    "pre": [],
    "co": [],
    "minCr": 0
-  },
-  {
-   "id": "CMP497",
-   "name": "Professional Training in CS (Summer)",
-   "cr": 0,
-   "cat": "G",
-   "col": 6,
-   "row": 7,
-   "pre": [
-    "ENG204"
-   ],
-   "co": [],
-   "minCr": 90
   }
  ]
 }

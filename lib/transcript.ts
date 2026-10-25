@@ -43,7 +43,7 @@ export function parseTranscript(lines: string[]) {
 
 export function matchTranscript(lines: string[], programs: Record<string, Program>, fallback: string, ger: GerData) {
   const { program, rows } = parseTranscript(lines);
-  const key = program ?? fallback;
+  const key = program && !fallback.startsWith(program) ? program : fallback; // keep the chosen catalog (e.g. CMP_OLD) for a detected CMP transcript
   const ids = new Set(programs[key].courses.map((c) => c.id));
   const done = new Set<string>(), enr = new Set<string>(), unmatched = new Set<string>();
   const gerUsed: { code: string; slot: string }[] = [];
