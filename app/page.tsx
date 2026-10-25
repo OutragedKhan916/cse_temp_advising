@@ -1,14 +1,13 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import cmp from "@/data/cmp.json";
-import cmpOld from "@/data/cmp-old.json";
 import coe from "@/data/coe.json";
 import Flowchart from "@/components/Flowchart";
 import Welcome from "@/components/Welcome";
 import { earned, infoFor, lockInfo, normalize, standing } from "@/lib/status";
 import type { Course, Program, Sets, Status } from "@/lib/types";
 
-const PROGRAMS: Record<string, Program> = { CMP: cmp as unknown as Program, CMP_OLD: cmpOld as unknown as Program, COE: coe as unknown as Program };
+const PROGRAMS: Record<string, Program> = { CMP: cmp as unknown as Program, COE: coe as unknown as Program };
 const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["ok", "Can register"], ["pre", "Locked · prerequisite 🔒"], ["cr", "Locked · credits ⏳"]];
 const CATS = [["H", "Hardware"], ["S", "Software"], ["N", "Networking"], ["M", "Mathematics"], ["C", "Sciences"], ["W", "Academic writing"], ["G", "General / electives"]];
 const clone = (s: Sets): Sets => ({ done: new Set(s.done), enr: new Set(s.enr) });
