@@ -7,7 +7,7 @@ const PASS = /^(A[+-]?|B[+-]?|C[+-]?|D[+-]?|P|TR|EX)$/;
 // "Academic History" (registrar) format: "[n] CMP 120 Programming I 3 NP 0.00 E"  (credits, grade, quality points)
 const HIST = /^(?:\d{1,2}\s+)?([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.+?)\s+\d{1,2}\s+(A[+-]?|B[+-]?|C[+-]?|D[+-]?|F|P|NP|W|WP|WF|I|IP|TR|EX|AUD|ANP|N)\s+\d+\.\d{2}(?:\s|$)/; // anything after the quality points (repeat flag, stray box numbers) is ignored
 // transcript code -> catalog id, when they differ
-const ALIAS: Record<string, string> = { MTH213: "CMP213" };
+const ALIAS: Record<string, string> = { MTH213: "CMP213", COE397: "NGN397", CMP397: "NGN397", COE497: "NGN397", CMP497: "NGN397" };
 // GER category (data/ger.json) -> the GER slot(s) on the chart; any extra core course falls into GERSEL
 const SLOT: Record<string, string[]> = { HCAW: ["GER221"], ART: ["GERART"], HIB: ["GERHIB", "GERHI"], CCP: ["GERCCP"] };
 export type GerData = Record<string, string[]>;
@@ -43,7 +43,7 @@ export function parseTranscript(lines: string[]) {
 
 export function matchTranscript(lines: string[], programs: Record<string, Program>, fallback: string, ger: GerData) {
   const { program, rows } = parseTranscript(lines);
-  const key = program && !fallback.startsWith(program) ? program : fallback; // keep the chosen catalog (e.g. CMP_OLD) for a detected CMP transcript
+  const key = program ?? fallback;
   const ids = new Set(programs[key].courses.map((c) => c.id));
   const done = new Set<string>(), enr = new Set<string>(), unmatched = new Set<string>();
   const gerUsed: { code: string; slot: string }[] = [];
@@ -60,6 +60,7 @@ export function matchTranscript(lines: string[], programs: Record<string, Progra
   for (const { code, kind } of items) {
     const label = code.replace(/^([A-Z]+)(\d)/, "$1 $2");
     let id: string | null = ALIAS[code] && ids.has(ALIAS[code]) ? ALIAS[code]
+      : ["COE397", "CMP397", "COE497", "CMP497", "NGN397"].includes(code) ? ["NGN397", "COE497", "CMP497"].find((x) => ids.has(x)) ?? null
       : ids.has(code) ? code
       : code.endsWith("L") && ids.has(code.slice(0, -1)) ? code.slice(0, -1) // lab folded into its lecture course
       : null;

@@ -7,7 +7,17 @@ import Welcome from "@/components/Welcome";
 import { earned, infoFor, lockInfo, normalize, standing } from "@/lib/status";
 import type { Course, Program, Sets, Status } from "@/lib/types";
 
-const PROGRAMS: Record<string, Program> = { CMP: cmp as unknown as Program, COE: coe as unknown as Program };
+/** Drop prerequisites that point to a missing course or to the course itself, so a typo in the JSON cannot crash the page. */
+function clean(p: Program): Program {
+  const ids = new Set(p.courses.map((c) => c.id));
+  const ok = (x: string, self: string) => {
+    const good = x !== self && ids.has(x);
+    if (!good) console.warn(`${p.name}: ${self} has an invalid prerequisite "${x}" (ignored)`);
+    return good;
+  };
+  return { ...p, courses: p.courses.map((c) => ({ ...c, pre: c.pre.filter((x) => ok(x, c.id)), co: c.co.filter((x) => ok(x, c.id)), any: c.any?.filter((x) => ok(x, c.id)) })) };
+}
+const PROGRAMS: Record<string, Program> = { CMP: clean(cmp as unknown as Program), COE: clean(coe as unknown as Program) };
 const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["ok", "Can register"], ["pre", "Locked · prerequisite 🔒"], ["cr", "Locked · credits ⏳"]];
 const CATS = [["H", "Hardware"], ["S", "Software"], ["N", "Networking"], ["M", "Mathematics"], ["C", "Sciences"], ["W", "Academic writing"], ["G", "General / electives"]];
 const clone = (s: Sets): Sets => ({ done: new Set(s.done), enr: new Set(s.enr) });
@@ -120,6 +130,7 @@ export default function Page() {
               <dl>
                 <dt>Credits</dt><dd>{hc.cr}</dd>
                 <dt>Prerequisites</dt><dd>{hc.pre.join(", ") || "None"}</dd>
+                {hc.any && hc.any.length > 0 && <><dt>Prerequisite (any one)</dt><dd>{hc.any.join(" or ")}</dd></>}
                 {hc.co.length > 0 && <><dt>Prerequisite / concurrent</dt><dd>{hc.co.join(", ")}</dd></>}
                 {hc.minCr > 0 && <><dt>Standing</dt><dd>{hc.minCr} credits completed</dd></>}
               </dl>

@@ -15,6 +15,7 @@ export function lockInfo(c: Course, byId: Record<string, Course>, s: Sets, cr: n
     // a concurrent course counts if it is done, enrolled, or itself registrable
     ...c.co.filter((p) => !have(p) && byId[p].pre.some((q) => !have(q))),
   ];
+  if (c.any?.length && !c.any.some(have)) need.push("one of " + c.any.join(" / "));
   if (need.length) return { status: "pre", why: "Locked: needs " + need.join(", ") };
   if (cr < c.minCr) return { status: "cr", why: `Locked: needs ${c.minCr} credits completed or in progress (${cr} so far)` };
   return { status: "ok", why: "Open for registration" };
@@ -43,7 +44,7 @@ export function chain(id: string, byId: Record<string, Course>): Set<string> {
   const seen = new Set([id]), stack = [id];
   while (stack.length) {
     const c = byId[stack.pop()!];
-    for (const p of [...c.pre, ...c.co]) if (!seen.has(p)) { seen.add(p); stack.push(p); }
+    for (const p of [...c.pre, ...c.co, ...(c.any || [])]) if (!seen.has(p)) { seen.add(p); stack.push(p); }
   }
   return seen;
 }

@@ -16,7 +16,7 @@ export default function Flowchart({ program, byId, info, hover, onHover, onToggl
   const edges = useMemo(() => {
     const lanes: number[] = Array(8).fill(0);
     return program.courses.flatMap((t) =>
-      [...t.pre.map((p) => [p, false] as const), ...t.co.map((p) => [p, true] as const)].map(([p, co]) => ({
+      [...t.pre.map((p) => [p, false] as const), ...(t.any || []).map((p) => [p, false] as const), ...t.co.map((p) => [p, true] as const)].map(([p, co]) => ({
         from: p, to: t.id, co, d: edgePath(byId[p], t, lanes[t.col]++),
       })));
   }, [program, byId]);

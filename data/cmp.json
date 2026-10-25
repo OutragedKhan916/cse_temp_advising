@@ -190,20 +190,6 @@
    "minCr": 0
   },
   {
-   "id": "COE251",
-   "name": "Introduction to Computer Systems",
-   "cr": 4,
-   "cat": "H",
-   "col": 3,
-   "row": 0,
-   "pre": [
-    "CMP120",
-    "COE221"
-   ],
-   "co": [],
-   "minCr": 0
-  },
-  {
    "id": "CMP305",
    "name": "Data Structures & Algorithms",
    "cr": 3,
@@ -250,32 +236,6 @@
    "col": 3,
    "row": 5,
    "pre": [],
-   "co": [],
-   "minCr": 0
-  },
-  {
-   "id": "CMP357",
-   "name": "Web Development & Programming",
-   "cr": 3,
-   "cat": "S",
-   "col": 4,
-   "row": 0,
-   "pre": [
-    "CMP305"
-   ],
-   "co": [],
-   "minCr": 0
-  },
-  {
-   "id": "CMP358L",
-   "name": "Java Programming Laboratory",
-   "cr": 1,
-   "cat": "S",
-   "col": 4,
-   "row": 1,
-   "pre": [
-    "CMP305"
-   ],
    "co": [],
    "minCr": 0
   },
@@ -397,8 +357,8 @@
     "ENG204"
    ],
    "co": [
-    "IEN301",
-    "COE420"
+    "COE420",
+    "IEN301"
    ],
    "minCr": 90
   },
@@ -460,19 +420,6 @@
    "minCr": 0
   },
   {
-   "id": "NGN397",
-   "name": "Professional Training in Computer Science",
-   "cr": 0,
-   "cat": "G",
-   "col": 6,
-   "row": 7,
-   "pre": [
-    "ENG204"
-   ],
-   "co": [],
-   "minCr": 90
-  },
-  {
    "id": "CMP491",
    "name": "Design Project II",
    "cr": 2,
@@ -526,6 +473,59 @@
    "col": 7,
    "row": 4,
    "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN397",
+   "name": "Professional Training in Computer Science (Summer)",
+   "cr": 0,
+   "cat": "G",
+   "col": 6,
+   "row": 7,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [],
+   "minCr": 90
+  },
+  {
+   "id": "COE251",
+   "name": "Intro to Computer Systems",
+   "cr": 4,
+   "cat": "H",
+   "col": 3,
+   "row": 0,
+   "pre": [
+    "COE221",
+    "CMP120"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP357",
+   "name": "Web Development & Programming",
+   "cr": 3,
+   "cat": "S",
+   "col": 4,
+   "row": 0,
+   "pre": [
+    "CMP305"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP358L",
+   "name": "Java Programming Laboratory",
+   "cr": 1,
+   "cat": "S",
+   "col": 4,
+   "row": 1,
+   "pre": [
+    "CMP305"
+   ],
    "co": [],
    "minCr": 0
   }

@@ -69,11 +69,6 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           <div className="card">
             <h2>📄 Upload my transcript</h2>
             <p>Upload your unofficial transcript PDF and your completed and in-progress courses are filled in for you.</p>
-            <label>Program
-              <select value={key} onChange={(e) => setKey(e.target.value)}>
-                {Object.entries(programs).map(([k, p]) => <option key={k} value={k}>{p.name}</option>)}
-              </select>
-            </label>
             <label className={"drop" + (drag ? " on" : "")}
               onDragOver={(e) => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)}
               onDrop={(e) => { e.preventDefault(); setDrag(false); handle(e.dataTransfer.files[0]); }}>
@@ -95,7 +90,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           </div>
         </div>
       )}
-      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @OutragedKhan916</a>
+      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @outraged</a>
     </div>
   );
 }
