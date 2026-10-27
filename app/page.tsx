@@ -6,6 +6,7 @@ import Flowchart from "@/components/Flowchart";
 import Planner from "@/components/Planner";
 import Tracker from "@/components/Tracker";
 import Welcome, { type Applied } from "@/components/Welcome";
+import { LOAD, loadKind, noticeFor, type Notice } from "@/lib/load";
 import { basePriorities } from "@/lib/plan";
 import { earned, infoFor, lockInfo, normalize, standing } from "@/lib/status";
 import type { Course, Meta, Program, Sets, Status } from "@/lib/types";
@@ -35,6 +36,7 @@ export default function Page() {
   const [hover, setHover] = useState<string | null>(null);
   const [theme, setTheme] = useState("dark");
   const [ready, setReady] = useState(false);
+  const [notice, setNotice] = useState<Notice | null>(null);
   const [screen, setScreen] = useState<"loading" | "welcome" | "app">("loading");
   const pending = useRef<{ key: string; sel: Sets; meta: Meta } | null>(null);
   const program = PROGRAMS[key];
@@ -78,33 +80,59 @@ export default function Page() {
   const chosen = program.courses.filter((c) => sel.plan.has(c.id));
 
   const picked = (s: Sets, id: string) => s.done.has(id) || s.enr.has(id) || s.plan.has(id);
-  const toggle = (id: string) => setSel((prev) => {
-    const n = clone(prev), c = byId[id];
-    if (!picked(n, id) && lockInfo(c, byId, n, standing(program, n)).status !== "ok") return prev; // locked: cannot be chosen
-    if (n[mode].has(id)) n[mode].delete(id);
-    else { n.done.delete(id); n.enr.delete(id); n.plan.delete(id); n[mode].add(id); }
+  const planTotal = (s: Sets) => program.courses.reduce((t, c) => t + (s.plan.has(c.id) ? c.cr : 0), 0);
+  /** adds to the green plan unless that would pass the maximum load; false = blocked */
+  const addPlan = (n: Sets, c: Course) => { if (planTotal(n) + c.cr > LOAD.max) return false; n.plan.add(c.id); return true; };
+  /** popups: over the maximum when adding, heavy load when adding, and "too little" ONLY when courses are removed */
+  const announce = (before: number, n: Sets, blocked: Course[]) => {
+    const after = planTotal(n), k = loadKind(after);
+    if (blocked.length) setNotice(noticeFor("over", after, blocked));
+    else if (after > before && k === "high" && loadKind(before) !== "high") setNotice(noticeFor("high", after));
+    else if (after < before && (k === "under" || k === "low")) setNotice(noticeFor(k, after));
+  };
+  const toggle = (id: string) => {
+    const n = clone(sel), c = byId[id], before = planTotal(n);
+    if (mode === "plan") {
+      if (n.done.has(id) || n.enr.has(id)) return; // pink and orange courses stay as they are
+      if (n.plan.has(id)) n.plan.delete(id);
+      else if (lockInfo(c, byId, n, standing(program, n)).status !== "ok") return; // locked: cannot be chosen
+      else if (!addPlan(n, c)) { announce(before, n, [c]); return; }
+    } else {
+      if (!picked(n, id) && lockInfo(c, byId, n, standing(program, n)).status !== "ok") return; // locked: cannot be chosen
+      if (n[mode].has(id)) n[mode].delete(id);
+      else { n.done.delete(id); n.enr.delete(id); n.plan.delete(id); n[mode].add(id); }
+    }
     normalize(program, byId, n);
-    return n;
-  });
-  const plan = (ids: string[]) => setSel((prev) => { // from the "next semester" tab: green pick, unlocks nothing
-    const n = clone(prev);
-    for (const id of ids) if (!picked(n, id) && lockInfo(byId[id], byId, n, standing(program, n)).status === "ok") n.plan.add(id);
-    return n;
-  });
-  const unplan = (id: string) => setSel((prev) => { const n = clone(prev); n.plan.delete(id); return n; });
+    setSel(n);
+    announce(before, n, []);
+  };
+  const plan = (ids: string[]) => { // from the "next semester" tab: green picks, unlock nothing
+    const n = clone(sel), before = planTotal(n), blocked: Course[] = [];
+    for (const id of ids) {
+      const c = byId[id];
+      if (picked(n, id) || lockInfo(c, byId, n, standing(program, n)).status !== "ok") continue;
+      if (!addPlan(n, c)) blocked.push(c);
+    }
+    setSel(n);
+    announce(before, n, blocked);
+  };
+  const unplan = (id: string) => { const n = clone(sel), before = planTotal(n); n.plan.delete(id); setSel(n); announce(before, n, []); };
 
   const yearList = (y: number) => program.courses.filter((c) => c.row !== 7 && c.col >> 1 === y).sort((a, b) => a.col - b.col || a.row - b.row);
   const isOpen = (c: Course, s: Sets) => picked(s, c.id) || lockInfo(c, byId, s, standing(program, s)).status === "ok";
   const yearOpen = [0, 1, 2, 3].map((y) => yearList(y).some((c) => isOpen(c, sel)));
   const yearAll = [0, 1, 2, 3].map((y) => { const o = yearList(y).filter((c) => isOpen(c, sel)); return o.length > 0 && o.every((c) => picked(sel, c.id)); });
-  const pickYear = (y: number) => setSel((prev) => {
-    const n = clone(prev), l = yearList(y), open = l.filter((c) => isOpen(c, n));
+  const pickYear = (y: number) => {
+    const n = clone(sel), l = yearList(y), open = l.filter((c) => isOpen(c, n)), before = planTotal(n), blocked: Course[] = [];
     if (open.length && open.every((c) => picked(n, c.id))) open.forEach((c) => { n.done.delete(c.id); n.enr.delete(c.id); n.plan.delete(c.id); });
-    else for (let pass = 0; pass < 3; pass++) for (const c of l) // in column order so chains inside a year unlock as we go
-      if (!picked(n, c.id) && lockInfo(c, byId, n, standing(program, n)).status === "ok") n[mode].add(c.id);
+    else for (let pass = 0; pass < 3; pass++) for (const c of l) { // in column order so chains inside a year unlock as we go
+      if (picked(n, c.id) || lockInfo(c, byId, n, standing(program, n)).status !== "ok") continue;
+      if (mode === "plan") { if (!addPlan(n, c) && !blocked.includes(c)) blocked.push(c); } else n[mode].add(c.id);
+    }
     normalize(program, byId, n);
-    return n;
-  });
+    setSel(n);
+    announce(before, n, blocked);
+  };
 
   const hc = hover ? byId[hover] : null;
   const enter = () => { try { localStorage.setItem("advising-started", "1"); } catch {} setScreen("app"); };
@@ -173,8 +201,18 @@ export default function Page() {
             yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"}
             extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} />} />
         </div>
-        <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} chosen={chosen} onPlan={plan} onUnplan={unplan} />
+        <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} chosen={chosen} onPlan={plan} onUnplan={unplan}
+          onCheck={() => setNotice(noticeFor(loadKind(planCr), planCr))} />
       </div>
+      {notice && (
+        <div className="modal-back" onClick={() => setNotice(null)}>
+          <div className={"modal " + notice.level} role="alertdialog" onClick={(e) => e.stopPropagation()}>
+            <h3>{notice.level === "error" ? "⛔ " : notice.level === "warn" ? "⚠ " : "✓ "}{notice.title}</h3>
+            <p>{notice.msg}</p>
+            <button className="primary" onClick={() => setNotice(null)}>OK</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
