@@ -24,6 +24,7 @@ export function lockInfo(c: Course, byId: Record<string, Course>, s: Sets, cr: n
 export function infoFor(c: Course, byId: Record<string, Course>, s: Sets, cr: number): Info {
   if (s.done.has(c.id)) return { status: "done", why: "Completed" };
   if (s.enr.has(c.id)) return { status: "enr", why: "Currently enrolled" };
+  if (s.plan.has(c.id)) return { status: "plan", why: "Planned (green): does not unlock other courses until marked Enrolled or Completed" };
   return lockInfo(c, byId, s, cr);
 }
 
@@ -33,8 +34,8 @@ export function normalize(p: Program, byId: Record<string, Course>, s: Sets) {
     changed = false;
     const cr = standing(p, s);
     for (const c of p.courses)
-      if ((s.done.has(c.id) || s.enr.has(c.id)) && lockInfo(c, byId, s, cr).status !== "ok") {
-        s.done.delete(c.id); s.enr.delete(c.id); changed = true;
+      if ((s.done.has(c.id) || s.enr.has(c.id) || s.plan.has(c.id)) && lockInfo(c, byId, s, cr).status !== "ok") {
+        s.done.delete(c.id); s.enr.delete(c.id); s.plan.delete(c.id); changed = true;
       }
   }
 }

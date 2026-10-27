@@ -20,11 +20,11 @@ export default function Tracker({ program, info, placed, extras }: Props) {
             <thead><tr><th colSpan={2}>{title}</th></tr></thead>
             <tbody>
               {program.courses.filter((c) => re.test(c.id)).map((c) => {
-                const st = info[c.id].status, on = st === "done" || st === "enr", p = placed[c.id];
+                const st = info[c.id].status, on = st === "done" || st === "enr" || st === "plan", p = placed[c.id];
                 return (
                   <tr key={c.id} className={on ? st : ""}>
                     <td>{label(c)}</td>
-                    <td>{on ? (p ? p.code : "marked manually") : "—"}{on && p?.confirm ? " ⚠ confirm" : ""}</td>
+                    <td>{on ? (p ? p.code : st === "plan" ? "planned" : "marked manually") : "—"}{on && p?.confirm ? " ⚠ confirm" : ""}</td>
                   </tr>
                 );
               })}

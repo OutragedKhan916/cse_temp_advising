@@ -21,16 +21,17 @@ function clean(p: Program): Program {
   return { ...p, courses: p.courses.map((c) => ({ ...c, pre: c.pre.filter((x) => ok(x, c.id)), co: c.co.filter((x) => ok(x, c.id)), any: c.any?.filter((x) => ok(x, c.id)) })) };
 }
 const PROGRAMS: Record<string, Program> = { CMP: clean(cmp as unknown as Program), COE: clean(coe as unknown as Program) };
-const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["ok", "Can register"], ["pre", "Locked · prerequisite 🔒"], ["cr", "Locked · credits ⏳"]];
+const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["plan", "Planned · unlocks nothing"], ["ok", "Can register"], ["pre", "Locked · prerequisite 🔒"], ["cr", "Locked · credits ⏳"]];
 const CATS = [["H", "Hardware"], ["S", "Software"], ["N", "Networking"], ["M", "Mathematics"], ["C", "Sciences"], ["W", "Academic writing"], ["G", "General / electives"]];
-const clone = (s: Sets): Sets => ({ done: new Set(s.done), enr: new Set(s.enr) });
+const clone = (s: Sets): Sets => ({ done: new Set(s.done), enr: new Set(s.enr), plan: new Set(s.plan) });
 const EMPTY: Meta = { placed: {}, extras: [] };
+const empty = (): Sets => ({ done: new Set(), enr: new Set(), plan: new Set() });
 
 export default function Page() {
   const [key, setKey] = useState("CMP");
-  const [sel, setSel] = useState<Sets>({ done: new Set(), enr: new Set() });
+  const [sel, setSel] = useState<Sets>(empty);
   const [meta, setMeta] = useState<Meta>(EMPTY);
-  const [mode, setMode] = useState<"done" | "enr">("done");
+  const [mode, setMode] = useState<"done" | "enr" | "plan">("done");
   const [hover, setHover] = useState<string | null>(null);
   const [theme, setTheme] = useState("dark");
   const [ready, setReady] = useState(false);
@@ -52,13 +53,13 @@ export default function Page() {
     try {
       const raw = JSON.parse(localStorage.getItem("advising-" + key) || "{}");
       const d = Array.isArray(raw) ? raw : raw.done || [];
-      setSel({ done: new Set(d), enr: new Set(Array.isArray(raw) ? [] : raw.enr || []) });
+      setSel({ done: new Set(d), enr: new Set(Array.isArray(raw) ? [] : raw.enr || []), plan: new Set(Array.isArray(raw) ? [] : raw.plan || []) });
       setMeta({ placed: Array.isArray(raw) ? {} : raw.placed || {}, extras: Array.isArray(raw) ? [] : raw.extras || [] });
-    } catch { setSel({ done: new Set(), enr: new Set() }); setMeta(EMPTY); }
+    } catch { setSel(empty()); setMeta(EMPTY); }
     setReady(true);
   }, [key]);
   useEffect(() => {
-    if (ready) try { localStorage.setItem("advising-" + key, JSON.stringify({ done: [...sel.done], enr: [...sel.enr], placed: meta.placed, extras: meta.extras })); } catch {}
+    if (ready) try { localStorage.setItem("advising-" + key, JSON.stringify({ done: [...sel.done], enr: [...sel.enr], plan: [...sel.plan], placed: meta.placed, extras: meta.extras })); } catch {}
   }, [sel, meta, key, ready]);
   useEffect(() => { // forget transcript labels for boxes that are no longer selected
     if (!ready) return;
@@ -73,31 +74,34 @@ export default function Page() {
   const info = useMemo(() => Object.fromEntries(program.courses.map((c) => [c.id, infoFor(c, byId, sel, st)])), [program, byId, sel, st]);
   const count = (s: Status) => program.courses.filter((c) => info[c.id].status === s).length;
   const enrCr = program.courses.reduce((t, c) => t + (sel.enr.has(c.id) ? c.cr : 0), 0);
-  const other = mode === "done" ? "enr" : "done";
+  const planCr = program.courses.reduce((t, c) => t + (sel.plan.has(c.id) ? c.cr : 0), 0);
+  const chosen = program.courses.filter((c) => sel.plan.has(c.id));
 
+  const picked = (s: Sets, id: string) => s.done.has(id) || s.enr.has(id) || s.plan.has(id);
   const toggle = (id: string) => setSel((prev) => {
     const n = clone(prev), c = byId[id];
-    if (!n.done.has(id) && !n.enr.has(id) && lockInfo(c, byId, n, standing(program, n)).status !== "ok") return prev; // locked: cannot be chosen
-    if (n[mode].has(id)) n[mode].delete(id); else { n[other].delete(id); n[mode].add(id); }
+    if (!picked(n, id) && lockInfo(c, byId, n, standing(program, n)).status !== "ok") return prev; // locked: cannot be chosen
+    if (n[mode].has(id)) n[mode].delete(id);
+    else { n.done.delete(id); n.enr.delete(id); n.plan.delete(id); n[mode].add(id); }
     normalize(program, byId, n);
     return n;
   });
-  const plan = (ids: string[]) => setSel((prev) => { // from the "next semester" tab: mark as enrolled
+  const plan = (ids: string[]) => setSel((prev) => { // from the "next semester" tab: green pick, unlocks nothing
     const n = clone(prev);
-    for (const id of ids) if (!n.done.has(id) && !n.enr.has(id) && lockInfo(byId[id], byId, n, standing(program, n)).status === "ok") n.enr.add(id);
-    normalize(program, byId, n);
+    for (const id of ids) if (!picked(n, id) && lockInfo(byId[id], byId, n, standing(program, n)).status === "ok") n.plan.add(id);
     return n;
   });
+  const unplan = (id: string) => setSel((prev) => { const n = clone(prev); n.plan.delete(id); return n; });
 
   const yearList = (y: number) => program.courses.filter((c) => c.row !== 7 && c.col >> 1 === y).sort((a, b) => a.col - b.col || a.row - b.row);
-  const isOpen = (c: Course, s: Sets) => s.done.has(c.id) || s.enr.has(c.id) || lockInfo(c, byId, s, standing(program, s)).status === "ok";
+  const isOpen = (c: Course, s: Sets) => picked(s, c.id) || lockInfo(c, byId, s, standing(program, s)).status === "ok";
   const yearOpen = [0, 1, 2, 3].map((y) => yearList(y).some((c) => isOpen(c, sel)));
-  const yearAll = [0, 1, 2, 3].map((y) => { const o = yearList(y).filter((c) => isOpen(c, sel)); return o.length > 0 && o.every((c) => sel.done.has(c.id) || sel.enr.has(c.id)); });
+  const yearAll = [0, 1, 2, 3].map((y) => { const o = yearList(y).filter((c) => isOpen(c, sel)); return o.length > 0 && o.every((c) => picked(sel, c.id)); });
   const pickYear = (y: number) => setSel((prev) => {
     const n = clone(prev), l = yearList(y), open = l.filter((c) => isOpen(c, n));
-    if (open.length && open.every((c) => n.done.has(c.id) || n.enr.has(c.id))) open.forEach((c) => { n.done.delete(c.id); n.enr.delete(c.id); });
+    if (open.length && open.every((c) => picked(n, c.id))) open.forEach((c) => { n.done.delete(c.id); n.enr.delete(c.id); n.plan.delete(c.id); });
     else for (let pass = 0; pass < 3; pass++) for (const c of l) // in column order so chains inside a year unlock as we go
-      if (!n.done.has(c.id) && !n.enr.has(c.id) && lockInfo(c, byId, n, standing(program, n)).status === "ok") n[mode].add(c.id);
+      if (!picked(n, c.id) && lockInfo(c, byId, n, standing(program, n)).status === "ok") n[mode].add(c.id);
     normalize(program, byId, n);
     return n;
   });
@@ -107,7 +111,7 @@ export default function Page() {
   const switchTo = (k: string) => { setReady(false); setHover(null); setKey(k); };
   const startManual = (k: string) => { if (k !== key) switchTo(k); enter(); };
   const applyImport = (r: Applied) => {
-    const s = { done: new Set(r.done), enr: new Set(r.enr) }, m = { placed: r.placed, extras: r.extras };
+    const s: Sets = { done: new Set(r.done), enr: new Set(r.enr), plan: new Set() }, m = { placed: r.placed, extras: r.extras };
     if (r.key === key) { setSel(s); setMeta(m); } else { pending.current = { key: r.key, sel: s, meta: m }; switchTo(r.key); }
     enter();
   };
@@ -122,21 +126,23 @@ export default function Page() {
         <nav>{Object.entries(PROGRAMS).map(([k, p]) => (
           <button key={k} className={k === key ? "on" : ""} onClick={() => switchTo(k)}>{p.name}</button>))}</nav>
         <div className="progress">
-          <span>{cr} / {program.total} credits completed{enrCr ? ` · ${enrCr} enrolled` : ""}</span>
-          <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /></div>
+          <span>{cr} / {program.total} credits completed{enrCr ? ` · ${enrCr} enrolled` : ""}{planCr ? ` · ${planCr} planned` : ""}</span>
+          <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /><i className="p" style={{ width: Math.min(100, (planCr / program.total) * 100) + "%" }} /></div>
         </div>
         <button className="ghost" onClick={() => setScreen("welcome")}>Import transcript</button>
-        <button className="ghost" onClick={() => confirm("Clear all selections for this program?") && (setSel({ done: new Set(), enr: new Set() }), setMeta(EMPTY))}>Clear progress</button>
+        <button className="ghost" onClick={() => confirm("Clear all selections for this program?") && (setSel(empty()), setMeta(EMPTY))}>Clear progress</button>
       </header>
       <div className="body">
         <aside>
           <section>
             <h3>Clicking a course marks it as</h3>
             <div className="seg">
-              <button className={mode === "done" ? "on done" : ""} onClick={() => setMode("done")}>Completed</button>
-              <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode("enr")}>Enrolled</button>
+              <button className={mode === "done" ? "on done" : ""} onClick={() => setMode(mode === "done" ? "plan" : "done")}>Completed</button>
+              <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode(mode === "enr" ? "plan" : "enr")}>Enrolled</button>
             </div>
-            <p className="note">Enrolled courses unlock the next courses just like completed ones, so you can plan next semester.</p>
+            <p className="note">{mode === "plan"
+              ? "Nothing selected: clicks now mark courses green (planned). Green courses do not unlock anything."
+              : "Completed (pink) and Enrolled (orange) unlock the next courses. Press the active button again to switch to green planning."}</p>
           </section>
           <section>
             <h3>Legend</h3>
@@ -164,10 +170,10 @@ export default function Page() {
         </aside>
         <div className="scroll">
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}
-            yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : "enrolled"}
+            yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"}
             extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} />} />
         </div>
-        <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} onPlan={plan} />
+        <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} chosen={chosen} onPlan={plan} onUnplan={unplan} />
       </div>
     </div>
   );

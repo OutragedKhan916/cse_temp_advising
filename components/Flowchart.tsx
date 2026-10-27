@@ -9,7 +9,7 @@ interface Props {
   hover: string | null; onHover: (id: string | null) => void; onToggle: (id: string) => void;
   yearAll: boolean[]; yearOpen: boolean[]; onYear: (y: number) => void; modeLabel: string; extra?: React.ReactNode;
 }
-const ICON = { done: "✓", enr: "●", ok: "", pre: "🔒", cr: "⏳" } as const;
+const ICON = { done: "✓", enr: "●", plan: "◆", ok: "", pre: "🔒", cr: "⏳" } as const;
 
 export default function Flowchart({ program, byId, info, hover, onHover, onToggle, yearAll, yearOpen, onYear, modeLabel, extra }: Props) {
   const width = 8 * (W + GX), height = TOP + 8 * (H + GY) + 170; // extra room for the elective table
