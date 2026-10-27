@@ -70,3 +70,23 @@ details{color:var(--mut)}summary{cursor:pointer;color:var(--hot);margin-bottom:8
 .logo{display:block;margin:0 auto 14px;width:170px;height:170px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--line)}
 .by{display:inline-block;margin:0 0 14px;font-size:13px;font-style:italic;color:var(--hot);opacity:.6;text-decoration:none;transition:opacity .3s}.by:hover{opacity:1;text-decoration:underline}
 .by-bottom{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);margin:0}.wl{padding-bottom:70px}.note{margin:8px 0 0;font-size:12px;color:var(--mut)}
+.body{position:relative}
+.tracker{position:absolute;font-size:12px;color:var(--ink)}
+.tr-grid{display:flex;gap:16px;align-items:flex-start}
+.tracker table{border-collapse:collapse;flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.tracker th{text-align:left;padding:6px 10px;background:var(--band2);font-size:12px}
+.tracker td{padding:4px 10px;border-top:1px solid var(--line)}.tracker td:first-child{color:var(--mut)}
+.tracker tr.done td:last-child{color:var(--done);font-weight:600}.tracker tr.enr td:last-child{color:var(--enr);font-weight:600}
+.tr-extra{margin:10px 0 0;color:var(--enr)}.tr-rule{margin:6px 0 0;color:var(--mut)}
+.planner{position:absolute;right:20px;bottom:16px;z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.plan-tab{padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--hot);color:#fff;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.plan-panel{width:380px;max-height:62vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:0 8px 28px rgba(0,0,0,.4)}
+.plan-panel h4{margin:12px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.plan-panel ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.plan-panel li{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--line);border-radius:8px}
+.plan-panel li.star{border-color:var(--enr);background:color-mix(in srgb,var(--enr) 10%,transparent)}
+.plan-panel li .pn{flex:1;min-width:0;font-size:12.5px;line-height:1.25}.plan-panel li small{display:block;color:var(--mut)}
+.plan-panel li button{padding:4px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg)}
+.pr{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:12px;background:var(--ok);color:#222}
+.plan-panel .primary{margin-top:8px;width:100%}.plan-panel .seg{margin-bottom:8px}
+.plan-panel .seg button.on{background:var(--hot);color:#fff;font-weight:600}

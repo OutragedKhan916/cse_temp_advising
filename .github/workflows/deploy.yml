@@ -1,14 +1,16 @@
-name: Deploy to GitHub Pages
+name: Build and deploy
 on:
   push:
+    branches: [main, "feature/**"]   # builds main and any feature/* branch (e.g. feature/planner)
+  pull_request:
     branches: [main]
-  workflow_dispatch:
+  workflow_dispatch:                 # Actions tab -> Run workflow: deploys the chosen branch
 permissions:
   contents: read
   pages: write
   id-token: write
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   build:
@@ -28,6 +30,8 @@ jobs:
         with:
           path: out
   deploy:
+    # live site = main (automatic) or a branch you start by hand with "Run workflow"
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     needs: build
     runs-on: ubuntu-latest
     environment:
