@@ -1,13 +1,15 @@
 "use client";
 import { useState } from "react";
 import ger from "@/data/ger.json";
+import mje from "@/data/mje.json";
 import { matchTranscript, readPdfLines } from "@/lib/transcript";
-import type { Program } from "@/lib/types";
+import type { Extra, Placement, Program } from "@/lib/types";
 
 type Result = ReturnType<typeof matchTranscript>;
+export interface Applied { key: string; done: string[]; enr: string[]; placed: Record<string, Placement>; extras: Extra[]; }
 interface Props {
   programs: Record<string, Program>; defaultKey: string; theme: string; onTheme: () => void;
-  onManual: (key: string) => void; onApply: (r: { key: string; done: string[]; enr: string[] }) => void;
+  onManual: (key: string) => void; onApply: (r: Applied) => void;
 }
 
 export default function Welcome({ programs, defaultKey, theme, onTheme, onManual, onApply }: Props) {
@@ -22,12 +24,13 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
     setErr(""); setBusy(true);
     try {
       if (!/\.pdf$/i.test(f.name) && f.type !== "application/pdf") throw new Error("Please choose a PDF file.");
-      const r = matchTranscript(await readPdfLines(f), programs, key, ger);
+      const r = matchTranscript(await readPdfLines(f), programs, key, ger, mje);
       if (!r.found) throw new Error("No courses were found in this PDF. Make sure it is your unofficial transcript.");
       setRes(r);
     } catch (e) { setErr(e instanceof Error ? e.message : "Could not read this file."); }
     finally { setBusy(false); }
   }
+  const slotName = (r: Result, id: string) => programs[r.key].courses.find((c) => c.id === id)?.name.replace("GER-Core ", "");
 
   return (
     <div className="wl">
@@ -42,12 +45,10 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           {!res.detected && <p className="warn">Could not detect your program, so {programs[res.key].name} was used.</p>}
           <p><b className="c-done">{res.done.length} completed</b>: {res.done.join(", ") || "none"}</p>
           <p><b className="c-enr">{res.enr.length} in progress</b>: {res.enr.join(", ") || "none"}</p>
-          {res.ger.length > 0 && (
-            <p><b>Counted toward GERs</b>: {res.ger.map((g) => `${g.code} → ${programs[res.key].courses.find((c) => c.id === g.slot)?.name.replace("GER-Core ", "")}`).join(", ")}</p>
+          {Object.keys(res.placed).length > 0 && (
+            <p><b>Electives and GERs</b>: {(Object.entries(res.placed) as [string, Placement][]).map(([id, p]) => `${p.code} → ${slotName(res, id)}${p.confirm ? " ⚠" : ""}`).join(", ")}</p>
           )}
-          {res.unmatched.length > 0 && (
-            <p className="warn">Not part of this chart, so skipped: {res.unmatched.join(", ")}. Elective and transfer credits can be added by hand on the chart.</p>
-          )}
+          {res.extras.length > 0 && <p className="warn">Not placed: {res.extras.map((e) => `${e.code} (${e.reason.toLowerCase()})`).join(", ")}</p>}
           <div className="row">
             <button className="primary" onClick={() => onApply(res)}>Open my chart</button>
             <button className="ghost" onClick={() => setRes(null)}>Choose another file</button>
