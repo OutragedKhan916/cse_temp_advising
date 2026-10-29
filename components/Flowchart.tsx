@@ -71,13 +71,13 @@ export default function Flowchart({ program, byId, info, hover, onHover, onToggl
         const slackTxt = rem ? (isCrit ? " · critical" : crit!.slack[c.id] > 0 ? ` · +${crit!.slack[c.id]} sem` : "") : "";
         return (
           <button key={c.id} className={`node ${i.status}${isCrit ? " crit" : ""}${glow}`} data-cat={c.cat} aria-disabled={locked}
-            title={locked ? i.why : undefined}
+            title={[locked ? i.why : "", c.rec ? `Recommended: +${c.rec} credits completed (not required)` : ""].filter(Boolean).join(" · ") || undefined}
             style={{ left: colX(c.col), top: rowY(c.row), width: W, height: H, opacity: focus && !focus.has(c.id) ? 0.3 : 1 }}
             onClick={() => !locked && onToggle(c.id)} onMouseEnter={() => onHover(c.id)} onMouseLeave={() => onHover(null)}
             onFocus={() => onHover(c.id)} onBlur={() => onHover(null)}>
             <span className="code"><span>{code(c)}{filledBy ? ` · ${filledBy}` : ""}</span><em>{ICON[i.status]}</em></span>
             <span className="name">{title(c)}</span>
-            <span className="cr">{c.cr} cr{c.minCr ? ` · ${c.minCr} cr standing` : ""}<b className="slack">{slackTxt}</b></span>
+            <span className="cr">{c.cr} cr{c.minCr ? ` · ${c.minCr} cr standing` : ""}{c.rec ? ` · rec. +${c.rec} cr` : ""}<b className="slack">{slackTxt}</b></span>
           </button>
         );
       })}

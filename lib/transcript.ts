@@ -1,4 +1,4 @@
-import { docxLines, isDegreeEval, parseDegree, SEP, stackLines, type Row } from "./degree";
+import { docxLines, isDegreeEval, parseDegree, SEP, stackLines, textLines, type Row } from "./degree";
 import type { Extra, Placement, Program } from "./types";
 
 const START = /^([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.*)$/;
@@ -159,4 +159,10 @@ export async function readTranscriptLines(file: File): Promise<string[]> {
   }
   if (/\.doc$/i.test(file.name)) throw new Error("Old .doc files are not supported. Save the file as .docx or PDF and upload that.");
   return readPdfLines(file);
+}
+
+/** Text pasted from the evaluation page or a transcript (Ctrl+A, Ctrl+C), in the same line format the file readers give. */
+export function pastedLines(text: string): string[] {
+  const lines = textLines(text);
+  return isDegreeEval(lines) ? lines : lines.map((l) => l.split(SEP).join(" "));
 }

@@ -16,9 +16,9 @@ Degree-plan flowcharts for AUS CSE students (BS Computer Science, BS Computer En
 The file is read inside the browser and is never uploaded anywhere. Courses are sorted into the catalog, natural science, major electives, GER categories and free electives; anything unplaced is listed as extra.
 
 ## Data (edit these)
-- data/cmp.json, data/coe.json: courses (`pre`, `co`, `any`, `minCr`; optional `priority` 0-10 and `terms` ["fall","spring","summer"])
-- data/ger.json: GER lists
-- data/mje.json: major electives
+- data/catalogs/CSE/<major>/<year>/catalog.json: courses (`pre`, `co`, `any`, `minCr`; optional `priority` 0-10 and `terms` ["fall","spring","summer"])
+- data/ger.json: GER lists (same for everyone)
+- data/catalogs/CSE/<major>/mje.json: major electives
 
 ## Deploy (GitHub Pages)
 Settings -> Pages -> Source: GitHub Actions. Every push to `main` builds and deploys.
