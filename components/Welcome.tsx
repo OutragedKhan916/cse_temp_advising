@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ger from "@/data/ger.json";
 import mje from "@/data/mje.json";
-import { matchTranscript, readPdfLines } from "@/lib/transcript";
+import { matchTranscript, readTranscriptLines } from "@/lib/transcript";
 import type { Extra, Placement, Program } from "@/lib/types";
 
 type Result = ReturnType<typeof matchTranscript>;
@@ -23,9 +23,9 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
     if (!f) return;
     setErr(""); setBusy(true);
     try {
-      if (!/\.pdf$/i.test(f.name) && f.type !== "application/pdf") throw new Error("Please choose a PDF file.");
-      const r = matchTranscript(await readPdfLines(f), programs, key, ger, mje);
-      if (!r.found) throw new Error("No courses were found in this PDF. Make sure it is your unofficial transcript.");
+      if (!/\.(pdf|docx?)$/i.test(f.name) && f.type !== "application/pdf") throw new Error("Please choose a PDF or Word (.docx) file.");
+      const r = matchTranscript(await readTranscriptLines(f), programs, key, ger, mje);
+      if (!r.found) throw new Error("No courses were found in this file. Make sure it is your unofficial transcript or degree evaluation.");
       setRes(r);
     } catch (e) { setErr(e instanceof Error ? e.message : "Could not read this file."); }
     finally { setBusy(false); }
@@ -68,12 +68,12 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
 
           <div className="card">
             <h2>📄 Upload my transcript</h2>
-            <p>Upload your unofficial transcript PDF and your completed and in-progress courses are filled in for you.</p>
+            <p>Upload your unofficial transcript or degree evaluation (PDF or Word) and your completed and in-progress courses are filled in for you.</p>
             <label className={"drop" + (drag ? " on" : "")}
               onDragOver={(e) => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)}
               onDrop={(e) => { e.preventDefault(); setDrag(false); handle(e.dataTransfer.files[0]); }}>
-              {busy ? "Reading your transcript…" : "Click to choose a PDF, or drop it here"}
-              <input type="file" accept="application/pdf,.pdf" hidden disabled={busy} onChange={(e) => { handle(e.target.files?.[0]); e.target.value = ""; }} />
+              {busy ? "Reading your transcript…" : "Click to choose a PDF or Word file, or drop it here"}
+              <input type="file" accept="application/pdf,.pdf,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden disabled={busy} onChange={(e) => { handle(e.target.files?.[0]); e.target.value = ""; }} />
             </label>
             {err && <p className="err">{err}</p>}
             <details>
@@ -83,16 +83,18 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
                 <li>Open <b>Unofficial Transcript</b> under your student records. Menu names may differ slightly.</li>
                 <li>Choose <b>Undergraduate</b> level and the unofficial / web transcript type, then submit.</li>
                 <li>Save it as a PDF: press <b>Print</b>, then choose <b>Save as PDF</b>.</li>
-                <li>Upload that PDF here. Do not edit it.</li>
+                <li>Or open <b>Degree Evaluation</b>, generate your evaluation, and save that page as a PDF or a Word (.docx) file.</li>
+                <li>Upload the PDF or Word file here. Do not edit it.</li>
               </ol>
               <p className="priv">🔒 Your file is read inside your browser and is never uploaded to any server. You can still change anything on the chart afterwards.</p>
             </details>
           </div>
         </div>
       )}
-<div className="wl-foot">
-  <a className="by" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @OutragedKhan916</a>
-  <p className="feedback">If you have any suggestions/feedback, please contact me at <a href="mailto:b00107694@aus.edu">b00107694@aus.edu</a></p>
-</div>    </div>
+      <div className="wl-foot">
+        <a className="by" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @OutragedKhan916</a>
+        <span className="feedback">If you have any suggestions/feedback, please contact me at <a href="mailto:b00107694@aus.edu">b00107694@aus.edu</a></span>
+      </div>
+    </div>
   );
 }
