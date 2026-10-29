@@ -1,5 +1,5 @@
 {
- "name": "(CMP) · 2025–26 catalog STILL WIP",
+ "name": "BS Computer Science (CMP) · 2025–26 catalog",
  "total": 122,
  "years": [
   "First Year · 31 cr",
@@ -245,7 +245,7 @@
    "cr": 3,
    "cat": "S",
    "col": 4,
-   "row": 2,
+   "row": 0,
    "pre": [
     "CMP305",
     "NGN211"
@@ -259,13 +259,11 @@
    "cr": 3,
    "cat": "S",
    "col": 4,
-   "row": 3,
+   "row": 2,
    "pre": [
     "CMP305"
    ],
-   "co": [
-    "CMP358L"
-   ],
+   "co": [],
    "minCr": 0
   },
   {
@@ -357,8 +355,7 @@
     "ENG204"
    ],
    "co": [
-    "COE420",
-    "IEN301"
+    "COE420"
    ],
    "minCr": 90
   },
@@ -416,7 +413,9 @@
    "col": 6,
    "row": 5,
    "pre": [
-    "CMP305"
+    "CMP305",
+    "CMP257"
+
    ],
    "co": [],
    "minCr": 0
@@ -498,8 +497,8 @@
    "name": "Intro to Computer Systems",
    "cr": 4,
    "cat": "H",
-   "col": 3,
-   "row": 0,
+   "col": 4,
+   "row": 1,
    "pre": [
     "COE221",
     "CMP120"
@@ -508,27 +507,14 @@
    "minCr": 0
   },
   {
-   "id": "CMP357",
-   "name": "Web Development & Programming",
-   "cr": 3,
+   "id": "CMP257",
+   "name": "Web Application Programming",
+   "cr": 4,
    "cat": "S",
-   "col": 4,
+   "col": 3,
    "row": 0,
    "pre": [
-    "CMP305"
-   ],
-   "co": [],
-   "minCr": 0
-  },
-  {
-   "id": "CMP358L",
-   "name": "Java Programming Laboratory",
-   "cr": 1,
-   "cat": "S",
-   "col": 4,
-   "row": 1,
-   "pre": [
-    "CMP305"
+    "CMP220"
    ],
    "co": [],
    "minCr": 0
