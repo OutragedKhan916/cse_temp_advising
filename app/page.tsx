@@ -146,7 +146,9 @@ export default function Page() {
   const need = crit && hc ? [...crit.needed(hc.id)] : [];
   const mjeInfo = (mje as unknown as MjeData)[key];
   const takenCodes = new Set(Object.values(meta.placed).map((p) => p.code.replace(/\s/g, "")));
-  const mjeLeft = hc && /^MJE/.test(hc.id) && mjeInfo ? mjeInfo.eligible.filter((c) => !takenCodes.has(c)) : null;
+  const doneCodes = new Set(Object.entries(meta.placed).filter(([id]) => info[id]?.status === "done").map(([, p]) => p.code.replace(/\s/g, "")));
+  const mjeAll = hc && /^MJE/.test(hc.id) && mjeInfo ? mjeInfo.eligible.filter((c) => !takenCodes.has(c) || doneCodes.has(c)).sort((a, b) => Number(doneCodes.has(b)) - Number(doneCodes.has(a))) : null; // completed (from transcript) first
+  const mjeLeft = mjeAll ? mjeAll.filter((c) => !takenCodes.has(c)) : null;
   const enter = () => { try { localStorage.setItem("advising-started", "1"); } catch {} setScreen("app"); };
   const switchTo = (k: string) => { setReady(false); setHover(null); setKey(k); };
   const startManual = (k: string) => { if (k !== key) switchTo(k); enter(); };
@@ -240,11 +242,11 @@ export default function Page() {
               </>)}
               {mjeLeft && (<>
                 <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
-                <div>{mjeLeft.map((c) => {
+                <div>{mjeAll!.map((c) => {
                   const warn = mjeInfo.confirm.includes(c);
-                  return <span key={c} className={"ec" + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
+                  return <span key={c} className={"ec" + (doneCodes.has(c) ? " go" : "") + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
                 })}</div>
-                <p className="note">⚠ special topic: needs advisor approval. Courses you already used are hidden.</p>
+                <p className="note">⚠ special topic: needs advisor approval. Green glow = completed (from your transcript). Courses you are taking now are hidden.</p>
               </>)}
             </>) : <p className="hint">Hover or tap a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
           </section>
