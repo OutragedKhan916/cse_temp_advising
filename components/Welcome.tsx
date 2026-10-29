@@ -90,8 +90,9 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           </div>
         </div>
       )}
-      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @OutragedKhan916</a>
-      
-    </div>
+<div className="wl-foot">
+  <a className="by" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @OutragedKhan916</a>
+  <p className="feedback">If you have any suggestions/feedback, please contact me at <a href="mailto:b00107694@aus.edu">b00107694@aus.edu</a></p>
+</div>    </div>
   );
 }
