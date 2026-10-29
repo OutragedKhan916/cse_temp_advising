@@ -99,5 +99,201 @@
    "CMP49412",
    "CMP49413"
   ]
+ },
+ "CHE": {
+  "eligible": [
+   "BME420",
+   "CBE384",
+   "CBE483",
+   "CHE434",
+   "CHE436",
+   "CHE442",
+   "CHE443",
+   "CHE461",
+   "CHE467",
+   "CHE470",
+   "CHE472",
+   "CHE473",
+   "CHE494",
+   "CHM331",
+   "CHM345",
+   "EGM361",
+   "EGM362"
+  ],
+  "confirm": [
+   "CHE494"
+  ]
+ },
+ "CBE": {
+  "eligible": [
+   "BIO335",
+   "CBE441",
+   "CBE445",
+   "CBE446",
+   "CBE448",
+   "CBE494",
+   "CHM394",
+   "CHM494"
+  ],
+  "confirm": [
+   "CBE494",
+   "CHM394",
+   "CHM494"
+  ]
+ },
+ "CVE": {
+  "eligible": [
+   "CVE410",
+   "CVE411",
+   "CVE414",
+   "CVE441",
+   "CVE442",
+   "CVE446",
+   "CVE451",
+   "CVE452",
+   "CVE456",
+   "CVE460",
+   "CVE461",
+   "CVE463",
+   "CVE467",
+   "CVE472",
+   "CVE478",
+   "CVE494",
+   "SFE420"
+  ],
+  "confirm": [
+   "CVE494"
+  ]
+ },
+ "CEM": {
+  "eligible": [
+   "CEM410",
+   "CEM415",
+   "CEM420",
+   "CEM430",
+   "CEM440",
+   "CEM450",
+   "CEM494",
+   "CVE312",
+   "CVE341",
+   "CVE352",
+   "CVE472"
+  ],
+  "confirm": [
+   "CEM494"
+  ]
+ },
+ "ELE": {
+  "eligible": [
+   "BME410",
+   "CBE483",
+   "COE371",
+   "COE411",
+   "COE428",
+   "ELE324",
+   "ELE432",
+   "ELE440",
+   "ELE441",
+   "ELE444",
+   "ELE451",
+   "ELE452",
+   "ELE453",
+   "ELE454",
+   "ELE456",
+   "ELE457",
+   "ELE458",
+   "ELE459",
+   "ELE460",
+   "ELE470",
+   "ELE471",
+   "ELE481",
+   "ELE482",
+   "ELE483",
+   "ELE485",
+   "ELE486",
+   "ELE487",
+   "ELE494",
+   "MCE451",
+   "MCE464"
+  ],
+  "confirm": [
+   "ELE494"
+  ]
+ },
+ "ISM": {
+  "eligible": [
+   "ELE432",
+   "ELE440",
+   "ELE456",
+   "ELE458",
+   "ELE460",
+   "ELE470",
+   "ELE471",
+   "ISM411",
+   "ISM412",
+   "ISM431",
+   "ISM433",
+   "ISM442",
+   "ISM443",
+   "ISM484",
+   "ISM494",
+   "MCE416",
+   "MCE423"
+  ],
+  "confirm": [
+   "ISM494"
+  ]
+ },
+ "INE": {
+  "eligible": [
+   "EGM363",
+   "FIN430",
+   "INE413",
+   "INE415",
+   "INE417",
+   "INE425",
+   "INE431",
+   "INE433",
+   "INE434",
+   "INE450",
+   "INE460",
+   "INE494",
+   "STA401"
+  ],
+  "confirm": [
+   "INE494"
+  ]
+ },
+ "MCE": {
+  "eligible": [
+   "ASE415",
+   "ASE450",
+   "ASE452",
+   "ELE470",
+   "ISM431",
+   "ISM443",
+   "MCE416",
+   "MCE423",
+   "MCE438",
+   "MCE445",
+   "MCE446",
+   "MCE447",
+   "MCE450",
+   "MCE451",
+   "MCE452",
+   "MCE464",
+   "MCE466",
+   "MCE473",
+   "MCE477",
+   "MCE482",
+   "MCE485",
+   "MCE487",
+   "MCE488",
+   "MCE494",
+   "SFE410"
+  ],
+  "confirm": [
+   "MCE494"
+  ]
  }
 }

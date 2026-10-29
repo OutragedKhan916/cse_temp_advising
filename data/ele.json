@@ -1,0 +1,618 @@
+{
+ "name": "BS Electrical Engineering (ELE)",
+ "total": 130,
+ "years": [
+  "First Year · 33 cr",
+  "Second Year · 34 cr",
+  "Third Year · 31 cr",
+  "Fourth Year · 32 cr"
+ ],
+ "courses": [
+  {
+   "id": "NGN110",
+   "name": "Intro to Engineering & Computing",
+   "cr": 2,
+   "cat": "G",
+   "col": 0,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHM101",
+   "name": "General Chemistry I / Biology I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH103",
+   "name": "Calculus I + Lab",
+   "cr": 3,
+   "cat": "M",
+   "col": 0,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY101",
+   "name": "General Physics I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "MTH103"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI101",
+   "name": "Academic Writing I",
+   "cr": 3,
+   "cat": "W",
+   "col": 0,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE101",
+   "name": "Intro to Electrical Engineering",
+   "cr": 1,
+   "cat": "H",
+   "col": 1,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN112",
+   "name": "Intro to AI & Data Science",
+   "cr": 3,
+   "cat": "S",
+   "col": 1,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH104",
+   "name": "Calculus II",
+   "cr": 3,
+   "cat": "M",
+   "col": 1,
+   "row": 2,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY102",
+   "name": "General Physics II + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 1,
+   "row": 3,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [
+    "MTH104"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI102",
+   "name": "Academic Writing II",
+   "cr": 3,
+   "cat": "W",
+   "col": 1,
+   "row": 4,
+   "pre": [
+    "WRI101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GER221",
+   "name": "GER-Core History & Culture of Arab World",
+   "cr": 3,
+   "cat": "G",
+   "col": 1,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CMP120",
+   "name": "Programming I",
+   "cr": 3,
+   "cat": "S",
+   "col": 2,
+   "row": 0,
+   "pre": [
+    "NGN110"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE211",
+   "name": "Electric Circuits I",
+   "cr": 3,
+   "cat": "H",
+   "col": 2,
+   "row": 1,
+   "pre": [
+    "PHY102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH203",
+   "name": "Calculus III",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 2,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH225",
+   "name": "Differential Equations & Linear Algebra",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 3,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN211",
+   "name": "Intro to Engineering Probability & Statistics",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 4,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERCCP",
+   "name": "GER-Core Culture in a Critical Perspective",
+   "cr": 3,
+   "cat": "G",
+   "col": 2,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "COE221",
+   "name": "Digital Systems",
+   "cr": 4,
+   "cat": "H",
+   "col": 3,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0,
+   "any": [
+    "CMP120",
+    "PHY102"
+   ]
+  },
+  {
+   "id": "ELE212",
+   "name": "Electric Circuits II",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 1,
+   "pre": [
+    "ELE211",
+    "MTH225"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE241",
+   "name": "Electronics I",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 2,
+   "pre": [
+    "ELE211"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE311",
+   "name": "Electromagnetics",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 3,
+   "pre": [
+    "MTH203",
+    "MTH225",
+    "PHY102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ENG204",
+   "name": "Advanced Academic Writing",
+   "cr": 3,
+   "cat": "W",
+   "col": 3,
+   "row": 4,
+   "pre": [
+    "WRI102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE321",
+   "name": "Signals & Systems",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 0,
+   "pre": [
+    "ELE212"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE352",
+   "name": "Electric Machines",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 1,
+   "pre": [
+    "ELE212"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE341",
+   "name": "Electronics II",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 2,
+   "pre": [
+    "ELE241"
+   ],
+   "co": [
+    "ELE342L"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE342L",
+   "name": "Analog Electronics Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 4,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "ELE341"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE353",
+   "name": "Control Systems I",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 4,
+   "pre": [
+    "ELE212"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE360",
+   "name": "Probability & Stochastic Processes",
+   "cr": 3,
+   "cat": "M",
+   "col": 4,
+   "row": 5,
+   "pre": [
+    "NGN211"
+   ],
+   "co": [
+    "ELE321"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE361",
+   "name": "Communications",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 0,
+   "pre": [
+    "ELE321"
+   ],
+   "co": [
+    "ELE360"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE371",
+   "name": "Power Systems Analysis",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 1,
+   "pre": [
+    "ELE352"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE372L",
+   "name": "Electric Machines & Power Systems Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 5,
+   "row": 2,
+   "pre": [],
+   "co": [
+    "ELE371"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "COE242",
+   "name": "Microcontrollers & Embedded Systems",
+   "cr": 4,
+   "cat": "H",
+   "col": 5,
+   "row": 3,
+   "pre": [
+    "CMP120",
+    "COE221",
+    "ELE211"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE353L",
+   "name": "Control Systems I Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 5,
+   "row": 4,
+   "pre": [
+    "ELE353"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "IEN301",
+   "name": "Innovation & Entrepreneurship Mindset",
+   "cr": 3,
+   "cat": "G",
+   "col": 5,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 45
+  },
+  {
+   "id": "ELE361L",
+   "name": "Communications Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 0,
+   "pre": [
+    "ELE361"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE490",
+   "name": "Design Project I",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 1,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [
+    "IEN301",
+    "COE242"
+   ],
+   "minCr": 90
+  },
+  {
+   "id": "ELE332L",
+   "name": "Measurements & Instrumentation Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 2,
+   "pre": [
+    "ELE341"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE1",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE2",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERART",
+   "name": "GER-Core Arts & Literature",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERHIB",
+   "name": "GER-Core Human Interaction & Behavior",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 6,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN397",
+   "name": "Professional Training in Engineering & Computing (Summer)",
+   "cr": 0,
+   "cat": "G",
+   "col": 6,
+   "row": 7,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [],
+   "minCr": 90
+  },
+  {
+   "id": "ELE491",
+   "name": "Design Project II",
+   "cr": 2,
+   "cat": "H",
+   "col": 7,
+   "row": 0,
+   "pre": [
+    "ELE490"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE3",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE4",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERSEL",
+   "name": "GER-Core Selected Course",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE1",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE2",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  }
+ ]
+}

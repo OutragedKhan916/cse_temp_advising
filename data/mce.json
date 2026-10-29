@@ -1,0 +1,645 @@
+{
+ "name": "BS Mechanical Engineering (MCE)",
+ "total": 130,
+ "years": [
+  "First Year · 32 cr",
+  "Second Year · 33 cr",
+  "Third Year · 33 cr",
+  "Fourth Year · 32 cr"
+ ],
+ "courses": [
+  {
+   "id": "NGN110",
+   "name": "Intro to Engineering & Computing",
+   "cr": 2,
+   "cat": "G",
+   "col": 0,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHM101",
+   "name": "General Chemistry I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH103",
+   "name": "Calculus I + Lab",
+   "cr": 3,
+   "cat": "M",
+   "col": 0,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY101",
+   "name": "General Physics I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "MTH103"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI101",
+   "name": "Academic Writing I",
+   "cr": 3,
+   "cat": "W",
+   "col": 0,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN112",
+   "name": "Intro to AI & Data Science",
+   "cr": 3,
+   "cat": "S",
+   "col": 1,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH104",
+   "name": "Calculus II",
+   "cr": 3,
+   "cat": "M",
+   "col": 1,
+   "row": 2,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY102",
+   "name": "General Physics II + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 1,
+   "row": 3,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [
+    "MTH104"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI102",
+   "name": "Academic Writing II",
+   "cr": 3,
+   "cat": "W",
+   "col": 1,
+   "row": 4,
+   "pre": [
+    "WRI101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ENG204",
+   "name": "Advanced Academic Writing",
+   "cr": 3,
+   "cat": "W",
+   "col": 2,
+   "row": 4,
+   "pre": [
+    "WRI102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN211",
+   "name": "Intro to Engineering Probability & Statistics",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 3,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERHIB",
+   "name": "GER-Core Human Interaction & Behavior",
+   "cr": 3,
+   "cat": "G",
+   "col": 1,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE216L",
+   "name": "Intro to Engineering Drawing & Workshop",
+   "cr": 1,
+   "cat": "H",
+   "col": 2,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE220",
+   "name": "Statics",
+   "cr": 3,
+   "cat": "H",
+   "col": 2,
+   "row": 1,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE230",
+   "name": "Materials Science",
+   "cr": 3,
+   "cat": "H",
+   "col": 2,
+   "row": 2,
+   "pre": [
+    "CHM101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE241",
+   "name": "Thermodynamics I",
+   "cr": 3,
+   "cat": "H",
+   "col": 2,
+   "row": 5,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE236L",
+   "name": "Solid Modeling",
+   "cr": 1,
+   "cat": "H",
+   "col": 3,
+   "row": 0,
+   "pre": [
+    "MCE216L"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE222",
+   "name": "Dynamics",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 1,
+   "pre": [
+    "MCE220",
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE223",
+   "name": "Mechanics of Materials",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 2,
+   "pre": [
+    "MCE220"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE226L",
+   "name": "Computer Applications in ME I",
+   "cr": 1,
+   "cat": "S",
+   "col": 3,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE240",
+   "name": "Fluid Mechanics",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 4,
+   "pre": [
+    "MCE220",
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH225",
+   "name": "Differential Equations & Linear Algebra",
+   "cr": 3,
+   "cat": "M",
+   "col": 3,
+   "row": 5,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "IEN301",
+   "name": "Innovation & Entrepreneurship Mindset",
+   "cr": 3,
+   "cat": "G",
+   "col": 3,
+   "row": 6,
+   "pre": [],
+   "co": [],
+   "minCr": 45
+  },
+  {
+   "id": "MTH203",
+   "name": "Calculus III",
+   "cr": 3,
+   "cat": "M",
+   "col": 4,
+   "row": 0,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE310",
+   "name": "Fundamentals of Electromechanical Systems",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 1,
+   "pre": [
+    "PHY102",
+    "MCE222"
+   ],
+   "co": [
+    "MCE326L"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MCE323",
+   "name": "Mechanical Design",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 2,
+   "pre": [
+    "MCE223"
+   ],
+   "co": [
+    "MCE331"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MCE326L",
+   "name": "Computer Applications in ME II",
+   "cr": 1,
+   "cat": "S",
+   "col": 4,
+   "row": 3,
+   "pre": [
+    "MCE226L"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE331",
+   "name": "Manufacturing Processes",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 4,
+   "pre": [
+    "MCE216L",
+    "MCE220",
+    "MCE230"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE332L",
+   "name": "Materials & Manufacturing Processes Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 4,
+   "row": 5,
+   "pre": [],
+   "co": [
+    "MCE331"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "FRE1",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 4,
+   "row": 6,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERART",
+   "name": "GER-Core Arts and Literature",
+   "cr": 3,
+   "cat": "G",
+   "col": 5,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE313",
+   "name": "Engineering Measurements",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 1,
+   "pre": [
+    "MCE222"
+   ],
+   "co": [
+    "MCE310"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MCE345L",
+   "name": "Thermofluids Laboratory",
+   "cr": 1,
+   "cat": "H",
+   "col": 5,
+   "row": 2,
+   "pre": [],
+   "co": [
+    "MCE341",
+    "MCE344"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MCE325",
+   "name": "Numerical Methods in Engineering",
+   "cr": 3,
+   "cat": "S",
+   "col": 5,
+   "row": 3,
+   "pre": [
+    "MCE326L",
+    "MTH225"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE341",
+   "name": "Thermodynamics II",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 4,
+   "pre": [
+    "MCE241"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE344",
+   "name": "Heat Transfer",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 5,
+   "pre": [
+    "MCE240",
+    "MCE241"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GER221",
+   "name": "GER-Core History & Culture of Arab World",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE313L",
+   "name": "Engineering Measurements Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 1,
+   "pre": [],
+   "co": [
+    "MCE313"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MCE410",
+   "name": "Control Systems",
+   "cr": 3,
+   "cat": "H",
+   "col": 6,
+   "row": 2,
+   "pre": [
+    "MCE310",
+    "MCE313L"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE490",
+   "name": "Mechanical Engineering Design Project I",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 3,
+   "pre": [
+    "MCE313"
+   ],
+   "co": [
+    "IEN301",
+    "MCE323",
+    "MCE345L"
+   ],
+   "minCr": 90
+  },
+  {
+   "id": "MJE1",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE2",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERSEL",
+   "name": "GER-Core Selected Course",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 6,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN397",
+   "name": "Professional Training in Engineering & Computing (Summer)",
+   "cr": 0,
+   "cat": "H",
+   "col": 6,
+   "row": 7,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [],
+   "minCr": 75
+  },
+  {
+   "id": "GERCCP",
+   "name": "GER-Core Culture in a Critical Perspective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE2",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE415L",
+   "name": "Dynamics & Control Systems Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 7,
+   "row": 2,
+   "pre": [],
+   "co": [
+    "MCE410"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MCE491",
+   "name": "Mechanical Engineering Design Project II",
+   "cr": 2,
+   "cat": "H",
+   "col": 7,
+   "row": 3,
+   "pre": [
+    "MCE490"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE3",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE4",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  }
+ ]
+}

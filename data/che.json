@@ -1,0 +1,635 @@
+{
+ "name": "BS Chemical Engineering (CHE)",
+ "total": 130,
+ "years": [
+  "First Year · 33 cr",
+  "Second Year · 33 cr",
+  "Third Year · 32 cr",
+  "Fourth Year · 32 cr"
+ ],
+ "courses": [
+  {
+   "id": "CHM101",
+   "name": "General Chemistry I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH103",
+   "name": "Calculus I + Lab",
+   "cr": 3,
+   "cat": "M",
+   "col": 0,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN110",
+   "name": "Intro to Engineering & Computing",
+   "cr": 2,
+   "cat": "G",
+   "col": 0,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY101",
+   "name": "General Physics I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "MTH103"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI101",
+   "name": "Academic Writing I",
+   "cr": 3,
+   "cat": "W",
+   "col": 0,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHM102",
+   "name": "General Chemistry II + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 1,
+   "row": 0,
+   "pre": [
+    "CHM101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN112",
+   "name": "Intro to AI & Data Science",
+   "cr": 3,
+   "cat": "S",
+   "col": 1,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH104",
+   "name": "Calculus II",
+   "cr": 3,
+   "cat": "M",
+   "col": 1,
+   "row": 2,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GER221",
+   "name": "GER-Core History & Culture of Arab World",
+   "cr": 3,
+   "cat": "G",
+   "col": 1,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "WRI102",
+   "name": "Academic Writing II",
+   "cr": 3,
+   "cat": "W",
+   "col": 1,
+   "row": 4,
+   "pre": [
+    "WRI101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHE101",
+   "name": "Intro to Chemical & Biological Engineering",
+   "cr": 1,
+   "cat": "H",
+   "col": 1,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHE205",
+   "name": "Principles of Chemical Engineering I",
+   "cr": 2,
+   "cat": "H",
+   "col": 2,
+   "row": 0,
+   "pre": [
+    "CHM101",
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH203",
+   "name": "Calculus III",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 2,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY102",
+   "name": "General Physics II + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 2,
+   "row": 3,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [
+    "MTH104"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ENG204",
+   "name": "Advanced Academic Writing",
+   "cr": 3,
+   "cat": "W",
+   "col": 2,
+   "row": 4,
+   "pre": [
+    "WRI102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN211",
+   "name": "Intro to Engineering Probability & Statistics",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 5,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHE206",
+   "name": "Principles of Chemical Engineering II",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 0,
+   "pre": [
+    "CHE205"
+   ],
+   "co": [
+    "CHM102",
+    "WRI102"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE214",
+   "name": "Chemical Engineering Thermodynamics I",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 1,
+   "pre": [],
+   "co": [
+    "CHE206"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE230",
+   "name": "Materials Science",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 2,
+   "pre": [],
+   "co": [
+    "CHM215"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE240",
+   "name": "Computer Methods in Chemical Engineering",
+   "cr": 3,
+   "cat": "S",
+   "col": 3,
+   "row": 3,
+   "pre": [
+    "CHE205"
+   ],
+   "co": [
+    "MTH225"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHM215",
+   "name": "Organic Chemistry I",
+   "cr": 3,
+   "cat": "C",
+   "col": 3,
+   "row": 4,
+   "pre": [
+    "CHM102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH225",
+   "name": "Differential Equations & Linear Algebra",
+   "cr": 3,
+   "cat": "M",
+   "col": 3,
+   "row": 5,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHE300",
+   "name": "Fluid Mechanics",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 0,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [
+    "CHE214",
+    "MTH225"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE304",
+   "name": "Chemical Engineering Thermodynamics II",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 1,
+   "pre": [
+    "CHE214"
+   ],
+   "co": [
+    "MTH203"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE307",
+   "name": "Heat Transfer",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 2,
+   "pre": [
+    "CHE206",
+    "MTH225"
+   ],
+   "co": [
+    "CHE300"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHM217",
+   "name": "Organic Chemistry Lab I",
+   "cr": 1,
+   "cat": "C",
+   "col": 4,
+   "row": 3,
+   "pre": [
+    "CHM215"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "IEN301",
+   "name": "Innovation & Entrepreneurship Mindset",
+   "cr": 3,
+   "cat": "G",
+   "col": 4,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 45
+  },
+  {
+   "id": "GERHI",
+   "name": "GER-Core Human Interaction",
+   "cr": 3,
+   "cat": "G",
+   "col": 4,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHE321",
+   "name": "Chemical Reaction Engineering",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 0,
+   "pre": [
+    "CHE240"
+   ],
+   "co": [
+    "CHE307"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE329",
+   "name": "Mass Transfer",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 1,
+   "pre": [
+    "CHE307"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHE350",
+   "name": "Chemical Engineering Laboratory I",
+   "cr": 1,
+   "cat": "H",
+   "col": 5,
+   "row": 2,
+   "pre": [
+    "NGN211"
+   ],
+   "co": [
+    "CHE214",
+    "CHE307"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "GERART",
+   "name": "GER-Core Arts & Literature",
+   "cr": 3,
+   "cat": "G",
+   "col": 5,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERCCP",
+   "name": "GER-Core Culture in a Critical Perspective",
+   "cr": 3,
+   "cat": "G",
+   "col": 5,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE1",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 5,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHE412",
+   "name": "Separation Processes",
+   "cr": 3,
+   "cat": "H",
+   "col": 6,
+   "row": 0,
+   "pre": [],
+   "co": [
+    "CHE304",
+    "CHE329",
+    "CHM217"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE421",
+   "name": "Chemical Process Dynamics & Control",
+   "cr": 3,
+   "cat": "H",
+   "col": 6,
+   "row": 1,
+   "pre": [],
+   "co": [
+    "CHE321",
+    "CHE412"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE432",
+   "name": "Process Design & Economics",
+   "cr": 3,
+   "cat": "H",
+   "col": 6,
+   "row": 2,
+   "pre": [
+    "CHE230",
+    "CHE321"
+   ],
+   "co": [
+    "CHE412"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE451",
+   "name": "Chemical Engineering Laboratory II",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 3,
+   "pre": [
+    "CHE321",
+    "CHE350"
+   ],
+   "co": [
+    "CHE412"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE490",
+   "name": "Senior Design Project I",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 4,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [
+    "IEN301",
+    "CHE432"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MJE1",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE2",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 6,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHE433",
+   "name": "Chemical Process Safety",
+   "cr": 3,
+   "cat": "H",
+   "col": 7,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 90
+  },
+  {
+   "id": "CHE452",
+   "name": "Process Dynamics & Control Laboratory",
+   "cr": 1,
+   "cat": "H",
+   "col": 7,
+   "row": 1,
+   "pre": [
+    "CHE350"
+   ],
+   "co": [
+    "CHE421"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "CHE491",
+   "name": "Senior Design Project II",
+   "cr": 2,
+   "cat": "H",
+   "col": 7,
+   "row": 4,
+   "pre": [
+    "CHE490"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE2",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE3",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERSEL",
+   "name": "GER-Core Selected Course",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN397",
+   "name": "Professional Training in Engineering & Computing (Summer)",
+   "cr": 0,
+   "cat": "H",
+   "col": 6,
+   "row": 7,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [],
+   "minCr": 90
+  }
+ ]
+}

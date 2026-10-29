@@ -18,11 +18,11 @@ export const isDegreeEval = (lines: string[]) =>
   lines.some((l) => /Degree\s*evaluation\s*record/i.test(l)) ||
   (lines.some((l) => /Detail\s*Requirements/i.test(l)) && lines.some((l) => /Area\s*Requirements/i.test(l)));
 
-/** CMP or COE, read from "Major Requirements for COE", "BS in Computer Engineering" or the Majors field. */
-export function detectProgram(lines: string[]): "CMP" | "COE" | null {
+/** Program key, read from "Major Requirements for COE", "BS in Computer Engineering" or the Majors field. */
+export function detectProgram(lines: string[]): string | null {
   const t = lines.join("").replace(/[\s|]+/g, "");
-  const a = t.match(/(?:Requirements|Electives)for(COE|CMP)/);
-  if (a) return a[1] as "CMP" | "COE";
+  const a = t.match(/(?:Requirements|Electives)for(CMP|COE|CHE|CBE|CVE|CEM|ELE|ISM|INE|MCE)/);
+  if (a) return a[1];
   const b = t.match(/BSinComputer(Science|Engineering)/) || t.match(/Majors?:?Computer(Science|Engineering)/);
   return b ? (b[1] === "Science" ? "CMP" : "COE") : null;
 }

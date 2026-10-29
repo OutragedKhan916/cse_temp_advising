@@ -10,13 +10,21 @@ const HIST = /^(?:\d{1,2}\s+)?([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.+?)\s+(\d{1,2})
 const ALIAS: Record<string, string> = { MTH213: "CMP213", COE397: "NGN397", CMP397: "NGN397", COE497: "NGN397", CMP497: "NGN397" };
 // GER category (data/ger.json) -> the GER slot(s) on the chart; any extra core course falls into GERSEL
 const SLOT: Record<string, string[]> = { HCAW: ["GER221"], ART: ["GERART"], HIB: ["GERHIB", "GERHI"], CCP: ["GERCCP"] };
+// program line on the transcript -> program key (more specific names first)
+const TRANSCRIPT_PROGRAMS: [RegExp, string][] = [
+  [/BS in Computer Science/, "CMP"], [/BS in Computer Engineering/, "COE"],
+  [/BS in Chemical (and|&) Biological Engineering/, "CBE"], [/BS in Chemical Engineering/, "CHE"],
+  [/BS in Civil Engineering/, "CVE"], [/BS in Digital Construction/, "CEM"],
+  [/BS in Electrical Engineering/, "ELE"], [/BS in Intelligent Systems/, "ISM"],
+  [/BS in Industrial Engineering/, "INE"], [/BS in Mechanical Engineering/, "MCE"],
+];
 export type GerData = Record<string, string[]>;
 
 /** Turn the text lines of an AUS unofficial transcript into course rows. */
 export function parseTranscript(lines: string[]) {
   if (isDegreeEval(lines)) return parseDegree(lines); // "Degree evaluation record" (PDF or Word)
-  const m = lines.join("\n").match(/BS in Computer (Science|Engineering)/);
-  const program = m ? (m[1] === "Science" ? "CMP" : "COE") : null;
+  const text = lines.join("\n");
+  const program = TRANSCRIPT_PROGRAMS.find(([re]) => re.test(text))?.[1] ?? null;
   const rows: Row[] = [];
   const hist = lines.some((l) => l.trim() === "Institution Courses");
   let section = "";

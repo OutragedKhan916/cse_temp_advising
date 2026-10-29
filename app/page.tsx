@@ -2,7 +2,16 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import cmp from "@/data/cmp.json";
 import coe from "@/data/coe.json";
+import che from "@/data/che.json";
+import cbe from "@/data/cbe.json";
+import cve from "@/data/cve.json";
+import cem from "@/data/cem.json";
+import ele from "@/data/ele.json";
+import ism from "@/data/ism.json";
+import ine from "@/data/ine.json";
+import mce from "@/data/mce.json";
 import mje from "@/data/mje.json";
+import CourseList from "@/components/CourseList";
 import Flowchart from "@/components/Flowchart";
 import Planner from "@/components/Planner";
 import Tracker from "@/components/Tracker";
@@ -24,8 +33,10 @@ function clean(p: Program): Program {
   };
   return { ...p, courses: p.courses.map((c) => ({ ...c, pre: c.pre.filter((x) => ok(x, c.id)), co: c.co.filter((x) => ok(x, c.id)), any: c.any?.filter((x) => ok(x, c.id)) })) };
 }
-const PROGRAMS: Record<string, Program> = { CMP: clean(cmp as unknown as Program), COE: clean(coe as unknown as Program) };
-const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["plan", "Planned · unlocks nothing"], ["ok", "Can register"], ["pre", "Locked · prerequisite 🔒"], ["cr", "Locked · credits ⏳"]];
+// keys are the department course prefixes used by the catalog (CVE = Civil, ELE = Electrical, MCE = Mechanical ...)
+const RAW: Record<string, unknown> = { CMP: cmp, COE: coe, CHE: che, CBE: cbe, CVE: cve, CEM: cem, ELE: ele, ISM: ism, INE: ine, MCE: mce };
+const PROGRAMS: Record<string, Program> = Object.fromEntries(Object.entries(RAW).map(([k, p]) => [k, clean(p as Program)]));
+const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["plan", "Planned · unlocks nothing"], ["ok", "Can register"], ["pre", "Locked · prerequisite"], ["cr", "Locked · credits"]];
 const CATS = [["H", "Hardware"], ["S", "Software"], ["N", "Networking"], ["M", "Mathematics"], ["C", "Sciences"], ["W", "Academic writing"], ["G", "General / electives"]];
 const clone = (s: Sets): Sets => ({ done: new Set(s.done), enr: new Set(s.enr), plan: new Set(s.plan) });
 const EMPTY: Meta = { placed: {}, extras: [] };
@@ -37,12 +48,10 @@ export default function Page() {
   const [meta, setMeta] = useState<Meta>(EMPTY);
   const [mode, setMode] = useState<"done" | "enr" | "plan">("done");
   const [hover, setHover] = useState<string | null>(null);
-  const [theme, setTheme] = useState("dark");
-  const [zoom, setZoom] = useState(1);
-  const [sheet, setSheet] = useState(false); // phone: side panel as a bottom sheet
-  useEffect(() => { if (window.innerWidth < 800) setZoom(0.8); }, []);
+  const [theme, setTheme] = useState("light");
   const [ready, setReady] = useState(false);
   const [critical, setCritical] = useState(false);
+  const [menu, setMenu] = useState(false); // legend / details panel on small screens
   const [notice, setNotice] = useState<Notice | null>(null);
   const [screen, setScreen] = useState<"loading" | "welcome" | "app">("loading");
   const pending = useRef<{ key: string; sel: Sets; meta: Meta } | null>(null);
@@ -50,7 +59,7 @@ export default function Page() {
   const byId = useMemo(() => Object.fromEntries(program.courses.map((c) => [c.id, c])) as Record<string, Course>, [program]);
   const prio = useMemo(() => basePriorities(program), [program]);
 
-  useEffect(() => { try { setTheme(localStorage.getItem("advising-theme") || "dark"); } catch {} }, []);
+  useEffect(() => { try { setTheme(localStorage.getItem("advising-theme") || "light"); } catch {} }, []);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem("advising-theme", theme); } catch {}
@@ -89,7 +98,7 @@ export default function Page() {
 
   const picked = (s: Sets, id: string) => s.done.has(id) || s.enr.has(id) || s.plan.has(id);
   const planTotal = (s: Sets) => program.courses.reduce((t, c) => t + (s.plan.has(c.id) ? c.cr : 0), 0);
-  /** adds to the green plan unless that would pass the maximum load; false = blocked */
+  /** adds to the plan unless that would pass the maximum load; false = blocked */
   const addPlan = (n: Sets, c: Course) => { if (planTotal(n) + c.cr > LOAD.max) return false; n.plan.add(c.id); return true; };
   /** popups: over the maximum when adding, heavy load when adding, and "too little" ONLY when courses are removed */
   const announce = (before: number, n: Sets, blocked: Course[]) => {
@@ -101,7 +110,7 @@ export default function Page() {
   const toggle = (id: string) => {
     const n = clone(sel), c = byId[id], before = planTotal(n);
     if (mode === "plan") {
-      if (n.done.has(id) || n.enr.has(id)) return; // pink and orange courses stay as they are
+      if (n.done.has(id) || n.enr.has(id)) return; // completed and enrolled courses stay as they are
       if (n.plan.has(id)) n.plan.delete(id);
       else if (lockInfo(c, byId, n, standing(program, n)).status !== "ok") return; // locked: cannot be chosen
       else if (!addPlan(n, c)) { announce(before, n, [c]); return; }
@@ -114,7 +123,7 @@ export default function Page() {
     setSel(n);
     announce(before, n, []);
   };
-  const plan = (ids: string[]) => { // from the "next semester" tab: green picks, unlock nothing
+  const plan = (ids: string[]) => { // from the "next semester" tab: planned picks, unlock nothing
     const n = clone(sel), before = planTotal(n), blocked: Course[] = [];
     for (const id of ids) {
       const c = byId[id];
@@ -165,37 +174,38 @@ export default function Page() {
     <div className="app">
       <header>
         <h1><button className="brand" onClick={() => { setHover(null); setScreen("welcome"); }}>Advising Portal</button></h1>
-        <nav>{Object.entries(PROGRAMS).map(([k, p]) => (
-          <button key={k} className={k === key ? "on" : ""} onClick={() => switchTo(k)}>{p.name}</button>))}</nav>
+        <select className="prog" value={key} aria-label="Program" onChange={(e) => switchTo(e.target.value)}>
+          {Object.entries(PROGRAMS).map(([k, p]) => <option key={k} value={k}>{p.name}</option>)}
+        </select>
         <div className="progress">
           <span>{cr} / {program.total} credits completed{enrCr ? ` · ${enrCr} enrolled` : ""}{planCr ? ` · ${planCr} planned` : ""}</span>
           <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /><i className="p" style={{ width: Math.min(100, (planCr / program.total) * 100) + "%" }} /></div>
         </div>
         <div className="acts">
         <button className="ghost" onClick={() => setScreen("welcome")}>Import transcript</button>
-        <button className={"ghost" + (critical ? " on" : "")} onClick={() => setCritical(!critical)} title="Show what is needed to graduate and how much delay is possible">Critical pathways</button>
+        <button className={"ghost" + (critical ? " on" : "")} onClick={() => { setCritical(!critical); if (!critical) setMenu(true); }} title="Show what is needed to graduate and how much delay is possible">Critical pathways</button>
         <button className="ghost" onClick={() => confirm("Clear all selections for this program?") && (setSel(empty()), setMeta(EMPTY))}>Clear progress</button>
         </div>
       </header>
-      <div className="modebar">
-        <span>Tap marks:</span>
-        <button className={mode === "done" ? "on done" : ""} onClick={() => setMode("done")}>Completed</button>
-        <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode("enr")}>Enrolled</button>
-        <button className={mode === "plan" ? "on plan" : ""} onClick={() => setMode("plan")}>Plan</button>
-        <span className="zoom"><button onClick={() => setZoom(Math.max(0.4, +(zoom - 0.1).toFixed(2)))} aria-label="Zoom out">−</button><button onClick={() => setZoom(Math.min(1.4, +(zoom + 0.1).toFixed(2)))} aria-label="Zoom in">+</button></span>
+      <div className="mbar">
+        <div className="seg">
+          <button className={mode === "done" ? "on done" : ""} onClick={() => setMode("done")}>Completed</button>
+          <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode("enr")}>Enrolled</button>
+          <button className={mode === "plan" ? "on plan" : ""} onClick={() => setMode("plan")}>Plan</button>
+        </div>
+        <button className="ghost" aria-expanded={menu} onClick={() => { setMenu(!menu); setHover(null); }}>{menu ? "Close" : "Info"}</button>
       </div>
       <div className="body">
-        <aside className={sheet ? "open" : ""}>
-          <button className="sheet-x" onClick={() => setSheet(false)}>✕ Close</button>
-          <section>
+        <aside className={menu ? "open" : ""}>
+          <section className="modesec">
             <h3>Clicking a course marks it as</h3>
             <div className="seg">
               <button className={mode === "done" ? "on done" : ""} onClick={() => setMode(mode === "done" ? "plan" : "done")}>Completed</button>
               <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode(mode === "enr" ? "plan" : "enr")}>Enrolled</button>
             </div>
             <p className="note">{mode === "plan"
-              ? "Nothing selected: clicks now mark courses green (planned). Green courses do not unlock anything."
-              : "Completed (pink) and Enrolled (orange) unlock the next courses. Press the active button again to switch to green planning."}</p>
+              ? "Nothing selected: clicks now mark courses as planned. Planned courses do not unlock anything."
+              : "Completed and Enrolled courses unlock the next courses. Press the active button again to switch to planning."}</p>
           </section>
           {crit && !hc && (
             <section>
@@ -222,7 +232,7 @@ export default function Page() {
             {hc ? (<>
               <h3>{hc.id}</h3><p>{hc.name}</p>
               <p className={"why " + info[hc.id].status}>{info[hc.id].why}</p>
-              {meta.placed[hc.id] && <p className="note">Filled by <b>{meta.placed[hc.id].code}</b> ({info[hc.id].status === "done" ? "completed" : "currently taking"}){meta.placed[hc.id].confirm ? " ⚠ confirm with your advisor" : ""}</p>}
+              {meta.placed[hc.id] && <p className="note">Filled by <b>{meta.placed[hc.id].code}</b> ({info[hc.id].status === "done" ? "completed" : "currently taking"}){meta.placed[hc.id].confirm ? ", confirm with your advisor" : ""}</p>}
               <dl>
                 <dt>Credits</dt><dd>{hc.cr}</dd>
                 <dt>Priority</dt><dd>{hc.priority ?? prio[hc.id]} / 10</dd>
@@ -244,23 +254,27 @@ export default function Page() {
                 <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
                 <div>{mjeAll!.map((c) => {
                   const warn = mjeInfo.confirm.includes(c);
-                  return <span key={c} className={"ec" + (doneCodes.has(c) ? " go" : "") + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
+                  return <span key={c} className={"ec" + (doneCodes.has(c) ? " go" : "") + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " (approval)" : ""}</span>;
                 })}</div>
-                <p className="note">⚠ special topic: needs advisor approval. Green glow = completed (from your transcript). Courses you are taking now are hidden.</p>
+                <p className="note">Marked “approval”: special topic, needs advisor approval. Green = completed (from your transcript). Courses you are taking now are hidden.</p>
               </>)}
             </>) : <p className="hint">Hover or tap a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
           </section>
           <button className="theme" onClick={toggleTheme}>
-            {theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}
+            {theme === "dark" ? "Light mode" : "Dark mode"}
           </button>
         </aside>
-        <button className="fab" onClick={() => setSheet(true)}>ⓘ {hc ? hc.id : "Info"}</button>
+        <div className="clist-wrap">
+          <CourseList program={program} info={info} sel={sel} crit={crit} placed={meta.placed} onToggle={toggle}
+            onInfo={(id) => { setHover(id); setMenu(true); }}
+            yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"}>
+            <Tracker flow program={program} info={info} placed={meta.placed} extras={meta.extras} />
+          </CourseList>
+        </div>
         <div className="scroll" onClick={(e) => { if (!(e.target as HTMLElement).closest(".node")) setHover(null); }}>
-          <div style={{ zoom }}>
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}
             yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"} crit={crit} placed={meta.placed}
             extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} />} />
-          </div>
         </div>
         <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} chosen={chosen} onPlan={plan} onUnplan={unplan}
           onCheck={() => setNotice(noticeFor(loadKind(planCr), planCr))} />
@@ -268,7 +282,7 @@ export default function Page() {
       {notice && (
         <div className="modal-back" onClick={() => setNotice(null)}>
           <div className={"modal " + notice.level} role="alertdialog" onClick={(e) => e.stopPropagation()}>
-            <h3>{notice.level === "error" ? "⛔ " : notice.level === "warn" ? "⚠ " : "✓ "}{notice.title}</h3>
+            <h3>{notice.title}</h3>
             <p>{notice.msg}</p>
             <button className="primary" onClick={() => setNotice(null)}>OK</button>
           </div>

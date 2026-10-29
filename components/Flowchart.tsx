@@ -10,7 +10,7 @@ interface Props {
   hover: string | null; onHover: (id: string | null) => void; onToggle: (id: string) => void;
   yearAll: boolean[]; yearOpen: boolean[]; onYear: (y: number) => void; modeLabel: string; extra?: React.ReactNode; crit?: Crit | null; placed?: Record<string, Placement>;
 }
-const ICON = { done: "✓", enr: "●", plan: "◆", ok: "", pre: "🔒", cr: "⏳" } as const;
+const ICON = { done: "Done", enr: "Enrolled", plan: "Planned", ok: "", pre: "Locked", cr: "Credits" } as const;
 
 export default function Flowchart({ program, byId, info, hover, onHover, onToggle, yearAll, yearOpen, onYear, modeLabel, extra, crit, placed }: Props) {
   const width = 8 * (W + GX), height = TOP + 8 * (H + GY) + 170; // extra room for the elective table
@@ -41,7 +41,7 @@ export default function Flowchart({ program, byId, info, hover, onHover, onToggl
         <div key={y} className={"band " + (i % 2 ? "odd" : "")} style={{ left: i * 2 * (W + GX) - GX / 2, width: 2 * (W + GX) }}>
           <div className="yt">{y}</div>
           <button className="yearbtn" disabled={!yearOpen[i]} onClick={() => onYear(i)}>
-            {yearAll[i] ? "✕ Clear year" : `☑ Select year (${modeLabel})`}
+            {yearAll[i] ? "Clear year" : `Select year (${modeLabel})`}
           </button>
         </div>
       ))}
