@@ -22,6 +22,8 @@ jobs:
           node-version: 20
       - run: npm install
       - name: Build
+        env:
+          NEXT_PUBLIC_CF_TOKEN: ${{ vars.CF_BEACON_TOKEN }}   # Cloudflare Web Analytics token (optional)
         run: |
           REPO="${GITHUB_REPOSITORY#*/}"
           if [[ "$REPO" == *.github.io ]]; then export BASE_PATH=""; else export BASE_PATH="/$REPO"; fi
