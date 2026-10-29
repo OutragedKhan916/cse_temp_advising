@@ -2,12 +2,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import cmp from "@/data/cmp.json";
 import coe from "@/data/coe.json";
+import mje from "@/data/mje.json";
 import Flowchart from "@/components/Flowchart";
 import Planner from "@/components/Planner";
 import Tracker from "@/components/Tracker";
 import Welcome, { type Applied } from "@/components/Welcome";
 import { LOAD, loadKind, noticeFor, type Notice } from "@/lib/load";
 import { basePriorities } from "@/lib/plan";
+import type { MjeData } from "@/lib/transcript";
 import { earned, infoFor, lockInfo, normalize, standing } from "@/lib/status";
 import type { Course, Meta, Program, Sets, Status } from "@/lib/types";
 
@@ -135,6 +137,9 @@ export default function Page() {
   };
 
   const hc = hover ? byId[hover] : null;
+  const mjeInfo = (mje as unknown as MjeData)[key];
+  const takenCodes = new Set(Object.values(meta.placed).map((p) => p.code.replace(/\s/g, "")));
+  const mjeLeft = hc && /^MJE/.test(hc.id) && mjeInfo ? mjeInfo.eligible.filter((c) => !takenCodes.has(c)) : null;
   const enter = () => { try { localStorage.setItem("advising-started", "1"); } catch {} setScreen("app"); };
   const switchTo = (k: string) => { setReady(false); setHover(null); setKey(k); };
   const startManual = (k: string) => { if (k !== key) switchTo(k); enter(); };
@@ -172,12 +177,14 @@ export default function Page() {
               ? "Nothing selected: clicks now mark courses green (planned). Green courses do not unlock anything."
               : "Completed (pink) and Enrolled (orange) unlock the next courses. Press the active button again to switch to green planning."}</p>
           </section>
+          {!hc && (
           <section>
             <h3>Legend</h3>
             {LEGEND.map(([s, l]) => <div key={s} className={"lg " + s}><i />{l}<b>{count(s)}</b></div>)}
             <div className="lg dash"><i />Prerequisite / concurrent</div>
             {CATS.map(([c, l]) => <div key={c} className="lg cat" data-cat={c}><i />{l}</div>)}
           </section>
+          )}
           <section className="detail">
             {hc ? (<>
               <h3>{hc.id}</h3><p>{hc.name}</p>
@@ -190,6 +197,14 @@ export default function Page() {
                 {hc.co.length > 0 && <><dt>Prerequisite / concurrent</dt><dd>{hc.co.join(", ")}</dd></>}
                 {hc.minCr > 0 && <><dt>Standing</dt><dd>{hc.minCr} credits completed</dd></>}
               </dl>
+              {mjeLeft && (<>
+                <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
+                <div>{mjeLeft.map((c) => {
+                  const warn = mjeInfo.confirm.includes(c);
+                  return <span key={c} className={"ec" + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
+                })}</div>
+                <p className="note">⚠ special topic: needs advisor approval. Courses you already used are hidden.</p>
+              </>)}
             </>) : <p className="hint">Hover a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
           </section>
           <button className="theme" onClick={toggleTheme}>

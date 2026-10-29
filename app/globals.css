@@ -101,3 +101,4 @@ details{color:var(--mut)}summary{cursor:pointer;color:var(--hot);margin-bottom:8
 .meter.low,.meter.high{border-color:var(--enr)}.meter.low b,.meter.high b{color:var(--enr)}
 .meter.over{border-color:#f06a6a}.meter.over b{color:#f06a6a}
 .plan-tab.low,.plan-tab.high{background:var(--enr)}.plan-tab.over{background:#d9534f}.plan-tab.ok{background:var(--plan);color:#06241a}
+.avail{margin:14px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}.ec{display:inline-block;margin:2px 3px 2px 0;padding:2px 7px;border:1px solid var(--line);border-radius:6px;font-size:12px}.ec.warn{border-color:var(--enr)}
