@@ -91,7 +91,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           </div>
         </div>
       )}
-      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @OutragedKhan916</a>
+      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @outraged</a>
     </div>
   );
 }
