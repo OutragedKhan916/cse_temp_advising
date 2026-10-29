@@ -461,7 +461,8 @@
    "row": 2,
    "pre": [],
    "co": [],
-   "minCr": 0
+   "minCr": 0,
+   "rec": 75
   },
   {
    "id": "COE424",
@@ -523,7 +524,8 @@
    "row": 1,
    "pre": [],
    "co": [],
-   "minCr": 0
+   "minCr": 0,
+   "rec": 75
   },
   {
    "id": "MJE3",
@@ -534,7 +536,8 @@
    "row": 2,
    "pre": [],
    "co": [],
-   "minCr": 0
+   "minCr": 0,
+   "rec": 75
   },
   {
    "id": "MJE4",
@@ -545,7 +548,8 @@
    "row": 3,
    "pre": [],
    "co": [],
-   "minCr": 0
+   "minCr": 0,
+   "rec": 75
   },
   {
    "id": "GERCCP",

@@ -164,3 +164,36 @@ export function xmlToLines(xml: string): string[] {
 export async function docxLines(buf: ArrayBuffer): Promise<string[]> {
   return xmlToLines(new TextDecoder().decode(await zipEntry(buf, "word/document.xml")));
 }
+
+// ---------------------------------------------------------------- pasted text (Ctrl+A, Ctrl+C on the evaluation page)
+/**
+ * Text copied from the Degree evaluation page. Table cells are separated by tabs, so each line becomes the same
+ * " | " format as the PDF and Word readers. If the tabs were lost (some editors turn them into spaces),
+ * course rows are rebuilt from their shape: term, subject, course number, title, credits, grade, source.
+ */
+export function textLines(text: string): string[] {
+  const out: string[] = [];
+  let ip = false;
+  for (const raw of text.replace(/\r/g, "").split("\n")) {
+    const line = raw.replace(/\u00a0/g, " ");
+    if (!line.trim()) continue;
+    if (line.includes("\t")) {
+      const cells = line.split("\t").map((c) => c.trim()).filter(Boolean);
+      out.push(cells.join(SEP));
+      if (/^In\s*Progress\s*Courses$/i.test(cells[0] ?? "")) ip = true;
+      continue;
+    }
+    const t = line.trim();
+    if (/^In\s*Progress\s*Courses$/i.test(t)) { ip = true; out.push(t); continue; }
+    if (/^Rejected\s*Courses$/i.test(t)) { ip = false; out.push(t); continue; }
+    const d = t.match(/^(\d{4,6})\s+([A-Z]{3,4})\s+(\d{3}[A-Z]?)\s+(.*)$/);
+    const at = d ? d[4].search(/(^|\s)\d{1,2}\.\d{2}(\s|$)/) : -1;
+    if (d && at >= 0) {
+      out.push([d[1], d[2], d[3], d[4].slice(0, at).trim(), ...d[4].slice(at).trim().split(/\s+/)].filter(Boolean).join(SEP));
+      continue;
+    }
+    const p = ip ? t.match(/^(.*?)\s+([A-Z]{3,4})\s+(\d{3}[A-Z]?)\s+(.+?)\s+(\d{1,2}\.\d{2})$/) : null;
+    out.push(p ? [p[1], p[2], p[3], p[4], p[5]].join(SEP) : t);
+  }
+  return out;
+}
