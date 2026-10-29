@@ -1,6 +1,6 @@
+import { docxLines, isDegreeEval, parseDegree, SEP, stackLines, type Row } from "./degree";
 import type { Extra, Placement, Program } from "./types";
 
-type Row = { code: string; section: string; text: string; cr?: number };
 const START = /^([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.*)$/;
 const GRADE = /\s(A[+-]?|B[+-]?|C[+-]?|D[+-]?|F|P|NP|W|WP|WF|I|TR)\s+\d+\.\d{3}/;
 const PASS = /^(A[+-]?|B[+-]?|C[+-]?|D[+-]?|P|TR|EX)$/;
@@ -14,6 +14,7 @@ export type GerData = Record<string, string[]>;
 
 /** Turn the text lines of an AUS unofficial transcript into course rows. */
 export function parseTranscript(lines: string[]) {
+  if (isDegreeEval(lines)) return parseDegree(lines); // "Degree evaluation record" (PDF or Word)
   const m = lines.join("\n").match(/BS in Computer (Science|Engineering)/);
   const program = m ? (m[1] === "Science" ? "CMP" : "COE") : null;
   const rows: Row[] = [];
@@ -103,7 +104,7 @@ export function matchTranscript(lines: string[], programs: Record<string, Progra
   return { key, detected: !!program, found: rows.length, done: [...done], enr: [...enr], placed, extras };
 }
 
-/** Read a PDF in the browser (pdf.js from a CDN) and return its text, one string per visual line. */
+/** Read a PDF in the browser (pdf.js from a CDN) and return its text, one string per visual line. A degree evaluation comes back as one line per table row. */
 const CDN = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
 function loadPdfJs(): Promise<any> {
   const w = window as any;
@@ -130,14 +131,32 @@ export async function readPdfLines(file: File): Promise<string[]> {
     rows.sort((a, b) => b.y - a.y);
     return rows.map((r) => r.items.sort((a, b) => a.x - b.x).map((i) => i.s).join(" ").replace(/\s+/g, " "));
   };
+  const pages: { items: { x: number; y: number; s: string; h: number }[]; width: number }[] = [];
   for (let n = 1; n <= doc.numPages; n++) {
     const page = await doc.getPage(n);
-    const width = page.getViewport({ scale: 1 }).width;
     const items = ((await page.getTextContent()).items as any[])
-      .filter((it) => it.str.trim()).map((it) => ({ x: it.transform[4], y: it.transform[5], s: it.str.trim() }));
+      .filter((it) => it.str.trim()).map((it) => ({ x: it.transform[4], y: it.transform[5], s: it.str.trim(), h: it.height || 11 }));
+    pages.push({ items, width: page.getViewport({ scale: 1 }).width });
+  }
+  if (pages.some((p) => p.items.some((i) => /Degree\s*evaluation\s*record|Detail\s*Requirements/i.test(i.s)))) {
+    for (const p of pages) lines.push(...stackLines(p.items)); // degree evaluation: narrow cells print one character per line
+    return lines;
+  }
+  for (const { items, width } of pages) {
     if (items.some((i) => i.s === "Gdr")) { // registrar layout: terms sit in a left and a right column
       lines.push(...group(items.filter((i) => i.x < width * 0.487)), ...group(items.filter((i) => i.x >= width * 0.487)));
     } else lines.push(...group(items));
   }
   return lines;
+}
+
+/** Read an uploaded transcript: a PDF or a Word (.docx) file. */
+export async function readTranscriptLines(file: File): Promise<string[]> {
+  if (/\.docx$/i.test(file.name) || file.type.includes("wordprocessingml")) {
+    const lines = await docxLines(await file.arrayBuffer());
+    // only a degree evaluation needs its table cells kept apart
+    return isDegreeEval(lines) ? lines : lines.map((l) => l.split(SEP).join(" "));
+  }
+  if (/\.doc$/i.test(file.name)) throw new Error("Old .doc files are not supported. Save the file as .docx or PDF and upload that.");
+  return readPdfLines(file);
 }

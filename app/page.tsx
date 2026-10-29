@@ -38,6 +38,9 @@ export default function Page() {
   const [mode, setMode] = useState<"done" | "enr" | "plan">("done");
   const [hover, setHover] = useState<string | null>(null);
   const [theme, setTheme] = useState("dark");
+  const [zoom, setZoom] = useState(1);
+  const [sheet, setSheet] = useState(false); // phone: side panel as a bottom sheet
+  useEffect(() => { if (window.innerWidth < 800) setZoom(0.8); }, []);
   const [ready, setReady] = useState(false);
   const [critical, setCritical] = useState(false);
   const [notice, setNotice] = useState<Notice | null>(null);
@@ -166,12 +169,22 @@ export default function Page() {
           <span>{cr} / {program.total} credits completed{enrCr ? ` · ${enrCr} enrolled` : ""}{planCr ? ` · ${planCr} planned` : ""}</span>
           <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /><i className="p" style={{ width: Math.min(100, (planCr / program.total) * 100) + "%" }} /></div>
         </div>
+        <div className="acts">
         <button className="ghost" onClick={() => setScreen("welcome")}>Import transcript</button>
         <button className={"ghost" + (critical ? " on" : "")} onClick={() => setCritical(!critical)} title="Show what is needed to graduate and how much delay is possible">Critical pathways</button>
         <button className="ghost" onClick={() => confirm("Clear all selections for this program?") && (setSel(empty()), setMeta(EMPTY))}>Clear progress</button>
+        </div>
       </header>
+      <div className="modebar">
+        <span>Tap marks:</span>
+        <button className={mode === "done" ? "on done" : ""} onClick={() => setMode("done")}>Completed</button>
+        <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode("enr")}>Enrolled</button>
+        <button className={mode === "plan" ? "on plan" : ""} onClick={() => setMode("plan")}>Plan</button>
+        <span className="zoom"><button onClick={() => setZoom(Math.max(0.4, +(zoom - 0.1).toFixed(2)))} aria-label="Zoom out">−</button><button onClick={() => setZoom(Math.min(1.4, +(zoom + 0.1).toFixed(2)))} aria-label="Zoom in">+</button></span>
+      </div>
       <div className="body">
-        <aside>
+        <aside className={sheet ? "open" : ""}>
+          <button className="sheet-x" onClick={() => setSheet(false)}>✕ Close</button>
           <section>
             <h3>Clicking a course marks it as</h3>
             <div className="seg">
@@ -191,7 +204,7 @@ export default function Page() {
                 {crit.chain.length > 0 && (<><p className="note">Critical chain (red arrows):</p>
                   <div>{crit.chain.map((c) => <span key={c} className="ec crit">{c}</span>)}</div></>)}
                 {crit.chain[0] && crit.gated.has(crit.chain[0]) && <p className="note">{crit.chain[0]} is held back by its {byId[crit.chain[0]].minCr}-credit requirement, not by prerequisites: you reach that many credits in semester {crit.L[crit.chain[0]] - (byId[crit.chain[0]].row === 7 ? 0 : 1)} at {PER_SEM} credits a semester.</p>}
-                <p className="note">Delaying a red course delays graduation by the same amount. Every other box shows how many semesters it can slip (+N). Hover a course to see what it still needs. Enrolled courses count as finished.</p>
+                <p className="note">Delaying a red course delays graduation by the same amount. Every other box shows how many semesters it can slip (+N). Hover or tap a course to see what it still needs. Enrolled courses count as finished.</p>
               </>)}
             </section>
           )}
@@ -233,16 +246,19 @@ export default function Page() {
                 })}</div>
                 <p className="note">⚠ special topic: needs advisor approval. Courses you already used are hidden.</p>
               </>)}
-            </>) : <p className="hint">Hover a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
+            </>) : <p className="hint">Hover or tap a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
           </section>
           <button className="theme" onClick={toggleTheme}>
             {theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}
           </button>
         </aside>
-        <div className="scroll">
+        <button className="fab" onClick={() => setSheet(true)}>ⓘ {hc ? hc.id : "Info"}</button>
+        <div className="scroll" onClick={(e) => { if (!(e.target as HTMLElement).closest(".node")) setHover(null); }}>
+          <div style={{ zoom }}>
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}
             yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"} crit={crit} placed={meta.placed}
             extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} />} />
+          </div>
         </div>
         <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} chosen={chosen} onPlan={plan} onUnplan={unplan}
           onCheck={() => setNotice(noticeFor(loadKind(planCr), planCr))} />
