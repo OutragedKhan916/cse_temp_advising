@@ -9,6 +9,7 @@
    "CMP418",
    "CMP430",
    "CMP445",
+   "CMP454",
    "CMP450",
    "CMP456",
    "CMP461",
@@ -49,6 +50,7 @@
  "COE": {
   "eligible": [
    "COE312",
+   "COE341",
    "COE375",
    "COE394",
    "COE494",
