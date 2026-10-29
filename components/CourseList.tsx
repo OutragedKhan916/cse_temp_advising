@@ -9,7 +9,7 @@ interface Props {
   onToggle: (id: string) => void; onInfo: (id: string) => void;
   yearAll: boolean[]; yearOpen: boolean[]; onYear: (y: number) => void; modeLabel: string; children?: React.ReactNode;
 }
-const ICON = { done: "✓", enr: "●", plan: "◆", ok: "", pre: "🔒", cr: "⏳" } as const;
+const ICON = { done: "Done", enr: "Enrolled", plan: "Planned", ok: "", pre: "Locked", cr: "Credits" } as const;
 const FILTERS = [["all", "All"], ["ok", "Available now"], ["left", "Not completed"]] as const;
 
 /** Phone layout: the same courses as the flowchart, one semester per section. */
@@ -42,7 +42,7 @@ export default function CourseList({ program, info, sel, crit, placed, onToggle,
       {program.years.map((y, yi) => (
         <section key={y} className="cyear">
           <div className="cyh"><h2>{y}</h2>
-            <button className="yearbtn" disabled={!yearOpen[yi]} onClick={() => onYear(yi)}>{yearAll[yi] ? "✕ Clear year" : `☑ Select year (${modeLabel})`}</button>
+            <button className="yearbtn" disabled={!yearOpen[yi]} onClick={() => onYear(yi)}>{yearAll[yi] ? "Clear year" : `Select year (${modeLabel})`}</button>
           </div>
           {[terms[yi * 2], terms[yi * 2 + 1]].map((t) => {
             const l = t.list.filter(show), extra = t.col === 5 ? summer.filter(show) : [];

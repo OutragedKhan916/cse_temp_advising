@@ -24,7 +24,7 @@ export default function Tracker({ flow, program, info, placed, extras }: Props) 
                 return (
                   <tr key={c.id} className={on ? st : ""}>
                     <td>{label(c)}</td>
-                    <td>{on ? (p ? p.code : st === "plan" ? "planned" : "marked manually") : "—"}{on && p?.confirm ? " ⚠ confirm" : ""}</td>
+                    <td>{on ? (p ? p.code : st === "plan" ? "planned" : "marked manually") : "—"}{on && p?.confirm ? " (confirm with advisor)" : ""}</td>
                   </tr>
                 );
               })}
@@ -35,7 +35,7 @@ export default function Tracker({ flow, program, info, placed, extras }: Props) 
       {extras.length > 0 && (
         <p className="tr-extra"><b>Not placed:</b> {extras.map((e) => `${e.code} (${e.reason.toLowerCase()})`).join(" · ")}</p>
       )}
-      <p className="tr-rule">One GER course per category, then one more fills “Selected GER”. Anything beyond that, or not on the GER or major-elective lists, goes to a free elective. ⚠ = special topic, confirm with your advisor.</p>
+      <p className="tr-rule">One GER course per category, then one more fills “Selected GER”. Anything beyond that, or not on the GER or major-elective lists, goes to a free elective. “confirm” = special topic, confirm with your advisor.</p>
     </div>
   );
 }

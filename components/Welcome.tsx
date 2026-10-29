@@ -34,7 +34,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
 
   return (
     <div className="wl">
-      <button className="theme wl-theme" onClick={onTheme}>{theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}</button>
+      <button className="theme wl-theme" onClick={onTheme}>{theme === "dark" ? "Light mode" : "Dark mode"}</button>
       <h1>Advising Portal</h1>
       <p className="sub">How would you like to fill in your courses?</p>
 
@@ -45,7 +45,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           <p><b className="c-done">{res.done.length} completed</b>: {res.done.join(", ") || "none"}</p>
           <p><b className="c-enr">{res.enr.length} in progress</b>: {res.enr.join(", ") || "none"}</p>
           {Object.keys(res.placed).length > 0 && (
-            <p><b>Electives and GERs</b>: {(Object.entries(res.placed) as [string, Placement][]).map(([id, p]) => `${p.code} → ${slotName(res, id)}${p.confirm ? " ⚠" : ""}`).join(", ")}</p>
+            <p><b>Electives and GERs</b>: {(Object.entries(res.placed) as [string, Placement][]).map(([id, p]) => `${p.code} → ${slotName(res, id)}${p.confirm ? " (confirm)" : ""}`).join(", ")}</p>
           )}
           {res.extras.length > 0 && <p className="warn">Not placed: {res.extras.map((e) => `${e.code} (${e.reason.toLowerCase()})`).join(", ")}</p>}
           <div className="row">
@@ -56,7 +56,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
       ) : (
         <div className="cards">
           <div className="card">
-            <h2>✍ Fill in manually</h2>
+            <h2>Fill in manually</h2>
             <p>Pick your program and mark completed and enrolled courses yourself.</p>
             <label>Program
               <select value={key} onChange={(e) => setKey(e.target.value)}>
@@ -67,7 +67,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           </div>
 
           <div className="card">
-            <h2>📄 Upload my transcript</h2>
+            <h2>Upload my transcript</h2>
             <p>Upload your unofficial transcript PDF and your completed and in-progress courses are filled in for you.</p>
             <label className={"drop" + (drag ? " on" : "")}
               onDragOver={(e) => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)}
@@ -85,7 +85,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
                 <li>Save it as a PDF: press <b>Print</b>, then choose <b>Save as PDF</b>.</li>
                 <li>Upload that PDF here. Do not edit it.</li>
               </ol>
-              <p className="priv">🔒 Your file is read inside your browser and is never uploaded to any server. You can still change anything on the chart afterwards.</p>
+              <p className="priv">Your file is read inside your browser and is never uploaded to any server. You can still change anything on the chart afterwards.</p>
             </details>
           </div>
         </div>

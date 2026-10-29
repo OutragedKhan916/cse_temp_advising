@@ -36,7 +36,7 @@ function clean(p: Program): Program {
 // keys are the department course prefixes used by the catalog (CVE = Civil, ELE = Electrical, MCE = Mechanical ...)
 const RAW: Record<string, unknown> = { CMP: cmp, COE: coe, CHE: che, CBE: cbe, CVE: cve, CEM: cem, ELE: ele, ISM: ism, INE: ine, MCE: mce };
 const PROGRAMS: Record<string, Program> = Object.fromEntries(Object.entries(RAW).map(([k, p]) => [k, clean(p as Program)]));
-const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["plan", "Planned · unlocks nothing"], ["ok", "Can register"], ["pre", "Locked · prerequisite 🔒"], ["cr", "Locked · credits ⏳"]];
+const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["plan", "Planned · unlocks nothing"], ["ok", "Can register"], ["pre", "Locked · prerequisite"], ["cr", "Locked · credits"]];
 const CATS = [["H", "Hardware"], ["S", "Software"], ["N", "Networking"], ["M", "Mathematics"], ["C", "Sciences"], ["W", "Academic writing"], ["G", "General / electives"]];
 const clone = (s: Sets): Sets => ({ done: new Set(s.done), enr: new Set(s.enr), plan: new Set(s.plan) });
 const EMPTY: Meta = { placed: {}, extras: [] };
@@ -48,7 +48,7 @@ export default function Page() {
   const [meta, setMeta] = useState<Meta>(EMPTY);
   const [mode, setMode] = useState<"done" | "enr" | "plan">("done");
   const [hover, setHover] = useState<string | null>(null);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   const [ready, setReady] = useState(false);
   const [critical, setCritical] = useState(false);
   const [menu, setMenu] = useState(false); // legend / details panel on small screens
@@ -59,7 +59,7 @@ export default function Page() {
   const byId = useMemo(() => Object.fromEntries(program.courses.map((c) => [c.id, c])) as Record<string, Course>, [program]);
   const prio = useMemo(() => basePriorities(program), [program]);
 
-  useEffect(() => { try { setTheme(localStorage.getItem("advising-theme") || "dark"); } catch {} }, []);
+  useEffect(() => { try { setTheme(localStorage.getItem("advising-theme") || "light"); } catch {} }, []);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem("advising-theme", theme); } catch {}
@@ -98,7 +98,7 @@ export default function Page() {
 
   const picked = (s: Sets, id: string) => s.done.has(id) || s.enr.has(id) || s.plan.has(id);
   const planTotal = (s: Sets) => program.courses.reduce((t, c) => t + (s.plan.has(c.id) ? c.cr : 0), 0);
-  /** adds to the green plan unless that would pass the maximum load; false = blocked */
+  /** adds to the plan unless that would pass the maximum load; false = blocked */
   const addPlan = (n: Sets, c: Course) => { if (planTotal(n) + c.cr > LOAD.max) return false; n.plan.add(c.id); return true; };
   /** popups: over the maximum when adding, heavy load when adding, and "too little" ONLY when courses are removed */
   const announce = (before: number, n: Sets, blocked: Course[]) => {
@@ -110,7 +110,7 @@ export default function Page() {
   const toggle = (id: string) => {
     const n = clone(sel), c = byId[id], before = planTotal(n);
     if (mode === "plan") {
-      if (n.done.has(id) || n.enr.has(id)) return; // pink and orange courses stay as they are
+      if (n.done.has(id) || n.enr.has(id)) return; // completed and enrolled courses stay as they are
       if (n.plan.has(id)) n.plan.delete(id);
       else if (lockInfo(c, byId, n, standing(program, n)).status !== "ok") return; // locked: cannot be chosen
       else if (!addPlan(n, c)) { announce(before, n, [c]); return; }
@@ -123,7 +123,7 @@ export default function Page() {
     setSel(n);
     announce(before, n, []);
   };
-  const plan = (ids: string[]) => { // from the "next semester" tab: green picks, unlock nothing
+  const plan = (ids: string[]) => { // from the "next semester" tab: planned picks, unlock nothing
     const n = clone(sel), before = planTotal(n), blocked: Course[] = [];
     for (const id of ids) {
       const c = byId[id];
@@ -200,8 +200,8 @@ export default function Page() {
               <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode(mode === "enr" ? "plan" : "enr")}>Enrolled</button>
             </div>
             <p className="note">{mode === "plan"
-              ? "Nothing selected: clicks now mark courses green (planned). Green courses do not unlock anything."
-              : "Completed (pink) and Enrolled (orange) unlock the next courses. Press the active button again to switch to green planning."}</p>
+              ? "Nothing selected: clicks now mark courses as planned. Planned courses do not unlock anything."
+              : "Completed and Enrolled courses unlock the next courses. Press the active button again to switch to planning."}</p>
           </section>
           {crit && !hc && (
             <section>
@@ -228,7 +228,7 @@ export default function Page() {
             {hc ? (<>
               <h3>{hc.id}</h3><p>{hc.name}</p>
               <p className={"why " + info[hc.id].status}>{info[hc.id].why}</p>
-              {meta.placed[hc.id] && <p className="note">Filled by <b>{meta.placed[hc.id].code}</b> ({info[hc.id].status === "done" ? "completed" : "currently taking"}){meta.placed[hc.id].confirm ? " ⚠ confirm with your advisor" : ""}</p>}
+              {meta.placed[hc.id] && <p className="note">Filled by <b>{meta.placed[hc.id].code}</b> ({info[hc.id].status === "done" ? "completed" : "currently taking"}){meta.placed[hc.id].confirm ? ", confirm with your advisor" : ""}</p>}
               <dl>
                 <dt>Credits</dt><dd>{hc.cr}</dd>
                 <dt>Priority</dt><dd>{hc.priority ?? prio[hc.id]} / 10</dd>
@@ -250,14 +250,14 @@ export default function Page() {
                 <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
                 <div>{mjeLeft.map((c) => {
                   const warn = mjeInfo.confirm.includes(c);
-                  return <span key={c} className={"ec" + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
+                  return <span key={c} className={"ec" + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " (approval)" : ""}</span>;
                 })}</div>
-                <p className="note">⚠ special topic: needs advisor approval. Courses you already used are hidden.</p>
+                <p className="note">Marked “approval”: special topic, needs advisor approval. Courses you already used are hidden.</p>
               </>)}
             </>) : <p className="hint">Hover a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
           </section>
           <button className="theme" onClick={toggleTheme}>
-            {theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}
+            {theme === "dark" ? "Light mode" : "Dark mode"}
           </button>
         </aside>
         <div className="clist-wrap">
@@ -278,7 +278,7 @@ export default function Page() {
       {notice && (
         <div className="modal-back" onClick={() => setNotice(null)}>
           <div className={"modal " + notice.level} role="alertdialog" onClick={(e) => e.stopPropagation()}>
-            <h3>{notice.level === "error" ? "⛔ " : notice.level === "warn" ? "⚠ " : "✓ "}{notice.title}</h3>
+            <h3>{notice.title}</h3>
             <p>{notice.msg}</p>
             <button className="primary" onClick={() => setNotice(null)}>OK</button>
           </div>
