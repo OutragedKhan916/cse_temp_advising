@@ -64,8 +64,8 @@ export default function Flowchart({ program, byId, info, hover, onHover, onToggl
       </svg>
       {program.courses.map((c) => {
         const i = info[c.id], locked = i.status === "pre" || i.status === "cr";
-        // filled elective / GER boxes glow: outlined = already taken or currently taking
-        const glow = /^(GER|MJE|FRE)/.test(c.id) && (i.status === "done" || i.status === "enr") ? ` glow-${i.status}` : "";
+        // filled elective / GER boxes: pink like any completed course; orange glow while currently taking
+        const glow = /^(GER|MJE|FRE)/.test(c.id) && (i.status === "done" || i.status === "enr") ? (i.status === "enr" ? " glow-enr" : " filled") : "";
         const filledBy = glow ? placed?.[c.id]?.code : undefined;
         const rem = !!crit && crit.remaining.has(c.id), isCrit = rem && crit!.critical.has(c.id);
         const slackTxt = rem ? (isCrit ? " · critical" : crit!.slack[c.id] > 0 ? ` · +${crit!.slack[c.id]} sem` : "") : "";

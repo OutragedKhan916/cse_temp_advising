@@ -155,7 +155,9 @@ export default function Page() {
   const need = crit && hc ? [...crit.needed(hc.id)] : [];
   const mjeInfo = (mje as unknown as MjeData)[key];
   const takenCodes = new Set(Object.values(meta.placed).map((p) => p.code.replace(/\s/g, "")));
-  const mjeLeft = hc && /^MJE/.test(hc.id) && mjeInfo ? mjeInfo.eligible.filter((c) => !takenCodes.has(c)) : null;
+  const doneCodes = new Set(Object.entries(meta.placed).filter(([id]) => info[id]?.status === "done").map(([, p]) => p.code.replace(/\s/g, "")));
+  const mjeAll = hc && /^MJE/.test(hc.id) && mjeInfo ? mjeInfo.eligible.filter((c) => !takenCodes.has(c) || doneCodes.has(c)).sort((a, b) => Number(doneCodes.has(b)) - Number(doneCodes.has(a))) : null; // completed (from transcript) first
+  const mjeLeft = mjeAll ? mjeAll.filter((c) => !takenCodes.has(c)) : null;
   const enter = () => { try { localStorage.setItem("advising-started", "1"); } catch {} setScreen("app"); };
   const switchTo = (k: string) => { setReady(false); setHover(null); setKey(k); };
   const startManual = (k: string) => { if (k !== key) switchTo(k); enter(); };
@@ -179,9 +181,11 @@ export default function Page() {
           <span>{cr} / {program.total} credits completed{enrCr ? ` · ${enrCr} enrolled` : ""}{planCr ? ` · ${planCr} planned` : ""}</span>
           <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /><i className="p" style={{ width: Math.min(100, (planCr / program.total) * 100) + "%" }} /></div>
         </div>
+        <div className="acts">
         <button className="ghost" onClick={() => setScreen("welcome")}>Import transcript</button>
         <button className={"ghost" + (critical ? " on" : "")} onClick={() => { setCritical(!critical); if (!critical) setMenu(true); }} title="Show what is needed to graduate and how much delay is possible">Critical pathways</button>
         <button className="ghost" onClick={() => confirm("Clear all selections for this program?") && (setSel(empty()), setMeta(EMPTY))}>Clear progress</button>
+        </div>
       </header>
       <div className="mbar">
         <div className="seg">
@@ -212,7 +216,7 @@ export default function Page() {
                 {crit.chain.length > 0 && (<><p className="note">Critical chain (red arrows):</p>
                   <div>{crit.chain.map((c) => <span key={c} className="ec crit">{c}</span>)}</div></>)}
                 {crit.chain[0] && crit.gated.has(crit.chain[0]) && <p className="note">{crit.chain[0]} is held back by its {byId[crit.chain[0]].minCr}-credit requirement, not by prerequisites: you reach that many credits in semester {crit.L[crit.chain[0]] - (byId[crit.chain[0]].row === 7 ? 0 : 1)} at {PER_SEM} credits a semester.</p>}
-                <p className="note">Delaying a red course delays graduation by the same amount. Every other box shows how many semesters it can slip (+N). Hover a course to see what it still needs. Enrolled courses count as finished.</p>
+                <p className="note">Delaying a red course delays graduation by the same amount. Every other box shows how many semesters it can slip (+N). Hover or tap a course to see what it still needs. Enrolled courses count as finished.</p>
               </>)}
             </section>
           )}
@@ -248,13 +252,13 @@ export default function Page() {
               </>)}
               {mjeLeft && (<>
                 <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
-                <div>{mjeLeft.map((c) => {
+                <div>{mjeAll!.map((c) => {
                   const warn = mjeInfo.confirm.includes(c);
-                  return <span key={c} className={"ec" + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " (approval)" : ""}</span>;
+                  return <span key={c} className={"ec" + (doneCodes.has(c) ? " go" : "") + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " (approval)" : ""}</span>;
                 })}</div>
-                <p className="note">Marked “approval”: special topic, needs advisor approval. Courses you already used are hidden.</p>
+                <p className="note">Marked “approval”: special topic, needs advisor approval. Green = completed (from your transcript). Courses you are taking now are hidden.</p>
               </>)}
-            </>) : <p className="hint">Hover a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
+            </>) : <p className="hint">Hover or tap a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
           </section>
           <button className="theme" onClick={toggleTheme}>
             {theme === "dark" ? "Light mode" : "Dark mode"}
@@ -267,7 +271,7 @@ export default function Page() {
             <Tracker flow program={program} info={info} placed={meta.placed} extras={meta.extras} />
           </CourseList>
         </div>
-        <div className="scroll">
+        <div className="scroll" onClick={(e) => { if (!(e.target as HTMLElement).closest(".node")) setHover(null); }}>
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}
             yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"} crit={crit} placed={meta.placed}
             extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} />} />
