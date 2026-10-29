@@ -191,7 +191,6 @@ export default function Page() {
               <p className={"why " + info[hc.id].status}>{info[hc.id].why}</p>
               <dl>
                 <dt>Credits</dt><dd>{hc.cr}</dd>
-                <dt>Priority</dt><dd>{hc.priority ?? prio[hc.id]} / 10</dd>
                 <dt>Prerequisites</dt><dd>{hc.pre.join(", ") || "None"}</dd>
                 {hc.any && hc.any.length > 0 && <><dt>Prerequisite (any one)</dt><dd>{hc.any.join(" or ")}</dd></>}
                 {hc.co.length > 0 && <><dt>Prerequisite / concurrent</dt><dd>{hc.co.join(", ")}</dd></>}
