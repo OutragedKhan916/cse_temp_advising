@@ -1,0 +1,640 @@
+{
+ "name": "BS Intelligent Systems & Mechatronics Engineering (ISM)",
+ "total": 130,
+ "years": [
+  "First Year · 32 cr",
+  "Second Year · 34 cr",
+  "Third Year · 32 cr",
+  "Fourth Year · 32 cr"
+ ],
+ "courses": [
+  {
+   "id": "NGN110",
+   "name": "Intro to Engineering & Computing",
+   "cr": 2,
+   "cat": "G",
+   "col": 0,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHM101",
+   "name": "General Chemistry I / Biology I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH103",
+   "name": "Calculus I + Lab",
+   "cr": 3,
+   "cat": "M",
+   "col": 0,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY101",
+   "name": "General Physics I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "MTH103"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI101",
+   "name": "Academic Writing I",
+   "cr": 3,
+   "cat": "W",
+   "col": 0,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN112",
+   "name": "Intro to AI & Data Science",
+   "cr": 3,
+   "cat": "S",
+   "col": 1,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH104",
+   "name": "Calculus II",
+   "cr": 3,
+   "cat": "M",
+   "col": 1,
+   "row": 2,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY102",
+   "name": "General Physics II + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 1,
+   "row": 3,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [
+    "MTH104"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI102",
+   "name": "Academic Writing II",
+   "cr": 3,
+   "cat": "W",
+   "col": 1,
+   "row": 4,
+   "pre": [
+    "WRI101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE1",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 1,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM216L",
+   "name": "Computer Applications in ISM I (ISM216L/MCE226L)",
+   "cr": 1,
+   "cat": "S",
+   "col": 2,
+   "row": 0,
+   "pre": [
+    "NGN112"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE216L",
+   "name": "Intro to Engineering Drawing & Workshop",
+   "cr": 1,
+   "cat": "H",
+   "col": 2,
+   "row": 1,
+   "pre": [
+    "NGN110"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH225",
+   "name": "Differential Equations & Linear Algebra",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 2,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ELE211",
+   "name": "Electric Circuits I",
+   "cr": 3,
+   "cat": "H",
+   "col": 2,
+   "row": 3,
+   "pre": [
+    "PHY102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ENG204",
+   "name": "Advanced Academic Writing",
+   "cr": 3,
+   "cat": "W",
+   "col": 2,
+   "row": 4,
+   "pre": [
+    "WRI102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE224",
+   "name": "Engineering Mechanics: Statics & Dynamics",
+   "cr": 3,
+   "cat": "H",
+   "col": 2,
+   "row": 5,
+   "pre": [
+    "MTH104",
+    "PHY101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN211",
+   "name": "Intro to Engineering Probability & Statistics",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 6,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM210",
+   "name": "Digital Systems & Microcontroller Interfacing",
+   "cr": 4,
+   "cat": "H",
+   "col": 3,
+   "row": 0,
+   "pre": [
+    "ISM216L"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE236L",
+   "name": "Solid Modeling",
+   "cr": 1,
+   "cat": "H",
+   "col": 3,
+   "row": 1,
+   "pre": [
+    "MCE216L"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM231",
+   "name": "Thermal-Fluid Sciences",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 2,
+   "pre": [
+    "MCE224"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM243",
+   "name": "Electronic Circuits",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 3,
+   "pre": [
+    "ELE211"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GER221",
+   "name": "GER-Core History & Culture of Arab World",
+   "cr": 3,
+   "cat": "G",
+   "col": 3,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE223",
+   "name": "Mechanics of Materials",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 5,
+   "pre": [
+    "MCE224"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM316L",
+   "name": "Computer Applications in ISM II (ISM316L/MCE326L)",
+   "cr": 1,
+   "cat": "S",
+   "col": 4,
+   "row": 0,
+   "pre": [
+    "ISM216L"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM351",
+   "name": "Signal Processing in Intelligent Systems",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 1,
+   "pre": [
+    "ELE211",
+    "MTH225"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM361",
+   "name": "Mechatronic Systems & Instrumentation",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 2,
+   "pre": [
+    "MCE224",
+    "MTH225"
+   ],
+   "co": [
+    "ISM243",
+    "ISM316L"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE342L",
+   "name": "Analog Electronics Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 4,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "ISM243"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE360",
+   "name": "Probability & Stochastic Processes",
+   "cr": 3,
+   "cat": "M",
+   "col": 4,
+   "row": 4,
+   "pre": [
+    "NGN211"
+   ],
+   "co": [
+    "ISM351"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "IEN301",
+   "name": "Innovation & Entrepreneurship Mindset",
+   "cr": 3,
+   "cat": "G",
+   "col": 4,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 45
+  },
+  {
+   "id": "GERART",
+   "name": "GER-Core Arts & Literature",
+   "cr": 3,
+   "cat": "G",
+   "col": 4,
+   "row": 6,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM383",
+   "name": "Learning in Intelligent Systems",
+   "cr": 3,
+   "cat": "S",
+   "col": 5,
+   "row": 0,
+   "pre": [
+    "ISM351",
+    "ISM216L"
+   ],
+   "co": [
+    "ELE360"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ISM382",
+   "name": "Connectivity in Intelligent Systems",
+   "cr": 3,
+   "cat": "N",
+   "col": 5,
+   "row": 1,
+   "pre": [
+    "ISM351"
+   ],
+   "co": [
+    "ELE360"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "ELE353",
+   "name": "Control Systems I (ELE353/MCE410)",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 2,
+   "pre": [
+    "ISM361"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM371",
+   "name": "Electric Motors & Drives",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 3,
+   "pre": [
+    "ISM243"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MCE325",
+   "name": "Numerical Methods in Engineering",
+   "cr": 3,
+   "cat": "M",
+   "col": 5,
+   "row": 4,
+   "pre": [
+    "ISM316L",
+    "MTH225"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM364L",
+   "name": "Measurements & Control Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 0,
+   "pre": [
+    "ISM231",
+    "ELE353"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM490",
+   "name": "Design Project I",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 1,
+   "pre": [
+    "ENG204",
+    "ISM210",
+    "MCE223",
+    "MCE236L"
+   ],
+   "co": [
+    "IEN301",
+    "ISM383"
+   ],
+   "minCr": 90
+  },
+  {
+   "id": "MCE464",
+   "name": "Intro to Robotics",
+   "cr": 3,
+   "cat": "H",
+   "col": 6,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0,
+   "any": [
+    "ELE353",
+    "ISM361"
+   ]
+  },
+  {
+   "id": "MJE1",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE2",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE3",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERHIB",
+   "name": "GER-Core Human Interaction & Behavior",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 6,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN397",
+   "name": "Professional Training in Engineering & Computing (Summer)",
+   "cr": 0,
+   "cat": "G",
+   "col": 6,
+   "row": 7,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [],
+   "minCr": 90
+  },
+  {
+   "id": "ISM391L",
+   "name": "ISM Design Laboratory",
+   "cr": 1,
+   "cat": "H",
+   "col": 7,
+   "row": 0,
+   "pre": [
+    "ISM364L"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ISM491",
+   "name": "Design Project II",
+   "cr": 2,
+   "cat": "H",
+   "col": 7,
+   "row": 1,
+   "pre": [
+    "ISM490"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE4",
+   "name": "MJE Technical Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE2",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERCCP",
+   "name": "GER-Core Culture in a Critical Perspective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERSEL",
+   "name": "GER-Core Selected Course",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  }
+ ]
+}

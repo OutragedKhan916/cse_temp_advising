@@ -2,7 +2,16 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import cmp from "@/data/cmp.json";
 import coe from "@/data/coe.json";
+import che from "@/data/che.json";
+import cbe from "@/data/cbe.json";
+import cve from "@/data/cve.json";
+import cem from "@/data/cem.json";
+import ele from "@/data/ele.json";
+import ism from "@/data/ism.json";
+import ine from "@/data/ine.json";
+import mce from "@/data/mce.json";
 import mje from "@/data/mje.json";
+import CourseList from "@/components/CourseList";
 import Flowchart from "@/components/Flowchart";
 import Planner from "@/components/Planner";
 import Tracker from "@/components/Tracker";
@@ -24,7 +33,9 @@ function clean(p: Program): Program {
   };
   return { ...p, courses: p.courses.map((c) => ({ ...c, pre: c.pre.filter((x) => ok(x, c.id)), co: c.co.filter((x) => ok(x, c.id)), any: c.any?.filter((x) => ok(x, c.id)) })) };
 }
-const PROGRAMS: Record<string, Program> = { CMP: clean(cmp as unknown as Program), COE: clean(coe as unknown as Program) };
+// keys are the department course prefixes used by the catalog (CVE = Civil, ELE = Electrical, MCE = Mechanical ...)
+const RAW: Record<string, unknown> = { CMP: cmp, COE: coe, CHE: che, CBE: cbe, CVE: cve, CEM: cem, ELE: ele, ISM: ism, INE: ine, MCE: mce };
+const PROGRAMS: Record<string, Program> = Object.fromEntries(Object.entries(RAW).map(([k, p]) => [k, clean(p as Program)]));
 const LEGEND: [Status, string][] = [["done", "Completed"], ["enr", "Currently enrolled"], ["plan", "Planned · unlocks nothing"], ["ok", "Can register"], ["pre", "Locked · prerequisite 🔒"], ["cr", "Locked · credits ⏳"]];
 const CATS = [["H", "Hardware"], ["S", "Software"], ["N", "Networking"], ["M", "Mathematics"], ["C", "Sciences"], ["W", "Academic writing"], ["G", "General / electives"]];
 const clone = (s: Sets): Sets => ({ done: new Set(s.done), enr: new Set(s.enr), plan: new Set(s.plan) });
@@ -40,6 +51,7 @@ export default function Page() {
   const [theme, setTheme] = useState("dark");
   const [ready, setReady] = useState(false);
   const [critical, setCritical] = useState(false);
+  const [menu, setMenu] = useState(false); // legend / details panel on small screens
   const [notice, setNotice] = useState<Notice | null>(null);
   const [screen, setScreen] = useState<"loading" | "welcome" | "app">("loading");
   const pending = useRef<{ key: string; sel: Sets; meta: Meta } | null>(null);
@@ -160,19 +172,28 @@ export default function Page() {
     <div className="app">
       <header>
         <h1><button className="brand" onClick={() => { setHover(null); setScreen("welcome"); }}>Advising Portal</button></h1>
-        <nav>{Object.entries(PROGRAMS).map(([k, p]) => (
-          <button key={k} className={k === key ? "on" : ""} onClick={() => switchTo(k)}>{p.name}</button>))}</nav>
+        <select className="prog" value={key} aria-label="Program" onChange={(e) => switchTo(e.target.value)}>
+          {Object.entries(PROGRAMS).map(([k, p]) => <option key={k} value={k}>{p.name}</option>)}
+        </select>
         <div className="progress">
           <span>{cr} / {program.total} credits completed{enrCr ? ` · ${enrCr} enrolled` : ""}{planCr ? ` · ${planCr} planned` : ""}</span>
           <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /><i className="p" style={{ width: Math.min(100, (planCr / program.total) * 100) + "%" }} /></div>
         </div>
         <button className="ghost" onClick={() => setScreen("welcome")}>Import transcript</button>
-        <button className={"ghost" + (critical ? " on" : "")} onClick={() => setCritical(!critical)} title="Show what is needed to graduate and how much delay is possible">Critical pathways</button>
+        <button className={"ghost" + (critical ? " on" : "")} onClick={() => { setCritical(!critical); if (!critical) setMenu(true); }} title="Show what is needed to graduate and how much delay is possible">Critical pathways</button>
         <button className="ghost" onClick={() => confirm("Clear all selections for this program?") && (setSel(empty()), setMeta(EMPTY))}>Clear progress</button>
       </header>
+      <div className="mbar">
+        <div className="seg">
+          <button className={mode === "done" ? "on done" : ""} onClick={() => setMode("done")}>Completed</button>
+          <button className={mode === "enr" ? "on enr" : ""} onClick={() => setMode("enr")}>Enrolled</button>
+          <button className={mode === "plan" ? "on plan" : ""} onClick={() => setMode("plan")}>Plan</button>
+        </div>
+        <button className="ghost" aria-expanded={menu} onClick={() => { setMenu(!menu); setHover(null); }}>{menu ? "Close" : "Info"}</button>
+      </div>
       <div className="body">
-        <aside>
-          <section>
+        <aside className={menu ? "open" : ""}>
+          <section className="modesec">
             <h3>Clicking a course marks it as</h3>
             <div className="seg">
               <button className={mode === "done" ? "on done" : ""} onClick={() => setMode(mode === "done" ? "plan" : "done")}>Completed</button>
@@ -239,6 +260,13 @@ export default function Page() {
             {theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}
           </button>
         </aside>
+        <div className="clist-wrap">
+          <CourseList program={program} info={info} sel={sel} crit={crit} placed={meta.placed} onToggle={toggle}
+            onInfo={(id) => { setHover(id); setMenu(true); }}
+            yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"}>
+            <Tracker flow program={program} info={info} placed={meta.placed} extras={meta.extras} />
+          </CourseList>
+        </div>
         <div className="scroll">
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}
             yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"} crit={crit} placed={meta.placed}

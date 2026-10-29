@@ -2,7 +2,7 @@
 import type { Course, Extra, Info, Placement, Program } from "@/lib/types";
 import { GX, W, colX, rowY } from "@/lib/route";
 
-interface Props { program: Program; info: Record<string, Info>; placed: Record<string, Placement>; extras: Extra[]; }
+interface Props { flow?: boolean; program: Program; info: Record<string, Info>; placed: Record<string, Placement>; extras: Extra[]; }
 
 const label = (c: Course) =>
   /^MJE/.test(c.id) ? `Major elective ${c.id.slice(3)}` : /^FRE/.test(c.id) ? `Free elective ${c.id.slice(3)}`
@@ -10,10 +10,10 @@ const label = (c: Course) =>
   : c.name.replace(/^GER-Core /, "");
 
 /** Table in the free space of the plan: which transcript course sits in each GER / elective box. */
-export default function Tracker({ program, info, placed, extras }: Props) {
+export default function Tracker({ flow, program, info, placed, extras }: Props) {
   const groups: [string, RegExp][] = [["General education (GER)", /^GER/], ["Major electives", /^MJE/], ["Free electives", /^FRE/]];
   return (
-    <div className="tracker" style={{ left: colX(0), top: rowY(6) + 6, width: 5 * (W + GX) - GX }}>
+    <div className={"tracker" + (flow ? " flow" : "")} style={flow ? undefined : { left: colX(0), top: rowY(6) + 6, width: 5 * (W + GX) - GX }}>
       <div className="tr-grid">
         {groups.map(([title, re]) => (
           <table key={title}>

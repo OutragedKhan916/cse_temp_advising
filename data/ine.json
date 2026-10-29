@@ -1,0 +1,595 @@
+{
+ "name": "BS Industrial Engineering (INE)",
+ "total": 130,
+ "years": [
+  "First Year · 32 cr",
+  "Second Year · 31 cr",
+  "Third Year · 34 cr",
+  "Fourth Year · 33 cr"
+ ],
+ "courses": [
+  {
+   "id": "NGN110",
+   "name": "Intro to Engineering & Computing",
+   "cr": 2,
+   "cat": "G",
+   "col": 0,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "CHM101",
+   "name": "General Chemistry I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH103",
+   "name": "Calculus I + Lab",
+   "cr": 3,
+   "cat": "M",
+   "col": 0,
+   "row": 2,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY101",
+   "name": "General Physics I + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 0,
+   "row": 3,
+   "pre": [],
+   "co": [
+    "MTH103"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI101",
+   "name": "Academic Writing I",
+   "cr": 3,
+   "cat": "W",
+   "col": 0,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN112",
+   "name": "Intro to AI & Data Science",
+   "cr": 3,
+   "cat": "S",
+   "col": 1,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH104",
+   "name": "Calculus II",
+   "cr": 3,
+   "cat": "M",
+   "col": 1,
+   "row": 2,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "PHY102",
+   "name": "General Physics II + Lab",
+   "cr": 4,
+   "cat": "C",
+   "col": 1,
+   "row": 3,
+   "pre": [
+    "PHY101"
+   ],
+   "co": [
+    "MTH104"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "WRI102",
+   "name": "Academic Writing II",
+   "cr": 3,
+   "cat": "W",
+   "col": 1,
+   "row": 4,
+   "pre": [
+    "WRI101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "ENG204",
+   "name": "Advanced Academic Writing",
+   "cr": 3,
+   "cat": "W",
+   "col": 2,
+   "row": 4,
+   "pre": [
+    "WRI102"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN211",
+   "name": "Intro to Engineering Probability & Statistics",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 3,
+   "pre": [
+    "MTH103"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GER221",
+   "name": "GER-Core History & Culture of Arab World",
+   "cr": 3,
+   "cat": "G",
+   "col": 1,
+   "row": 0,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE202",
+   "name": "Fundamentals of Industrial Engineering",
+   "cr": 3,
+   "cat": "H",
+   "col": 2,
+   "row": 0,
+   "pre": [
+    "NGN110"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE216L",
+   "name": "Fundamentals of Engineering Design & Technology",
+   "cr": 1,
+   "cat": "H",
+   "col": 2,
+   "row": 1,
+   "pre": [
+    "NGN110"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH225",
+   "name": "Differential Equations & Linear Algebra",
+   "cr": 3,
+   "cat": "M",
+   "col": 2,
+   "row": 2,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERCCP",
+   "name": "GER-Core Culture in a Critical Perspective",
+   "cr": 3,
+   "cat": "G",
+   "col": 2,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE222",
+   "name": "Operations Research I",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 0,
+   "pre": [
+    "INE202"
+   ],
+   "co": [
+    "MTH225"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MCE230",
+   "name": "Materials Science",
+   "cr": 3,
+   "cat": "H",
+   "col": 3,
+   "row": 1,
+   "pre": [
+    "CHM101"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MTH203",
+   "name": "Calculus III",
+   "cr": 3,
+   "cat": "M",
+   "col": 3,
+   "row": 2,
+   "pre": [
+    "MTH104"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERART",
+   "name": "GER-Core Arts and Literature",
+   "cr": 3,
+   "cat": "G",
+   "col": 3,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "IEN301",
+   "name": "Innovation & Entrepreneurship Mindset",
+   "cr": 3,
+   "cat": "G",
+   "col": 3,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 45
+  },
+  {
+   "id": "INE310",
+   "name": "Data Management & Modeling for IE",
+   "cr": 3,
+   "cat": "S",
+   "col": 4,
+   "row": 0,
+   "pre": [
+    "INE202",
+    "NGN211"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE302",
+   "name": "Manufacturing Processes for IE",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 1,
+   "pre": [
+    "INE216L",
+    "MCE230"
+   ],
+   "co": [
+    "INE302L"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "INE302L",
+   "name": "Manufacturing Processes for IE Lab",
+   "cr": 1,
+   "cat": "H",
+   "col": 4,
+   "row": 2,
+   "pre": [],
+   "co": [
+    "INE302"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "INE322",
+   "name": "Operations Research II",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 3,
+   "pre": [
+    "INE222"
+   ],
+   "co": [
+    "MTH203"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "INE331",
+   "name": "Analysis of Production Systems",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 4,
+   "pre": [
+    "INE222",
+    "NGN211"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "EGM364",
+   "name": "Engineering Economy",
+   "cr": 3,
+   "cat": "H",
+   "col": 4,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 45
+  },
+  {
+   "id": "INE311",
+   "name": "Quality Engineering",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 0,
+   "pre": [
+    "NGN211"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE315",
+   "name": "Programming Applications for IE",
+   "cr": 3,
+   "cat": "S",
+   "col": 5,
+   "row": 1,
+   "pre": [
+    "INE222",
+    "NGN112"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE323",
+   "name": "Stochastic Processes & Simulation",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 2,
+   "pre": [
+    "INE202",
+    "NGN211"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE1",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 5,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE332",
+   "name": "Analysis of Supply Chains",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 4,
+   "pre": [
+    "INE331"
+   ],
+   "co": [
+    "INE322"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "INE333",
+   "name": "Facility Design & Operations",
+   "cr": 3,
+   "cat": "H",
+   "col": 5,
+   "row": 5,
+   "pre": [
+    "INE331"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE418",
+   "name": "Decision Science for Service & Manufacturing Systems",
+   "cr": 3,
+   "cat": "H",
+   "col": 6,
+   "row": 0,
+   "pre": [
+    "INE310",
+    "INE332"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE465",
+   "name": "Service Systems Engineering",
+   "cr": 3,
+   "cat": "H",
+   "col": 6,
+   "row": 1,
+   "pre": [],
+   "co": [
+    "INE332"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "INE490",
+   "name": "Senior Design Project I",
+   "cr": 1,
+   "cat": "H",
+   "col": 6,
+   "row": 2,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [
+    "IEN301",
+    "INE311",
+    "INE332"
+   ],
+   "minCr": 0
+  },
+  {
+   "id": "MJE1",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE2",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERHIB",
+   "name": "GER-Core Human Interaction & Behavior",
+   "cr": 3,
+   "cat": "G",
+   "col": 6,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "NGN397",
+   "name": "Professional Training in Engineering & Computing (Summer)",
+   "cr": 0,
+   "cat": "H",
+   "col": 6,
+   "row": 7,
+   "pre": [
+    "ENG204"
+   ],
+   "co": [],
+   "minCr": 75
+  },
+  {
+   "id": "INE439",
+   "name": "Fundamentals of Manufacturing Systems",
+   "cr": 3,
+   "cat": "H",
+   "col": 7,
+   "row": 0,
+   "pre": [
+    "INE302",
+    "INE302L"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "FRE2",
+   "name": "Free Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 1,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "INE491",
+   "name": "Senior Design Project II",
+   "cr": 2,
+   "cat": "H",
+   "col": 7,
+   "row": 2,
+   "pre": [
+    "INE490"
+   ],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE3",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 3,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "MJE4",
+   "name": "MJE Major Elective",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 4,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  },
+  {
+   "id": "GERSEL",
+   "name": "GER-Core Selected Course",
+   "cr": 3,
+   "cat": "G",
+   "col": 7,
+   "row": 5,
+   "pre": [],
+   "co": [],
+   "minCr": 0
+  }
+ ]
+}
