@@ -35,7 +35,6 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
   return (
     <div className="wl">
       <button className="theme wl-theme" onClick={onTheme}>{theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}</button>
-      <img className="logo" src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`} alt="" onError={(e) => (e.currentTarget.style.display = "none")} />
       <h1>Advising Portal</h1>
       <p className="sub">How would you like to fill in your courses?</p>
 
@@ -91,7 +90,7 @@ export default function Welcome({ programs, defaultKey, theme, onTheme, onManual
           </div>
         </div>
       )}
-      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @outraged</a>
+      <a className="by by-bottom" href="https://github.com/outragedkhan916" target="_blank" rel="noreferrer">by @OutragedKhan916</a>
     </div>
   );
 }

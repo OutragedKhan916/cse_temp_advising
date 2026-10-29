@@ -7,6 +7,7 @@ import Flowchart from "@/components/Flowchart";
 import Planner from "@/components/Planner";
 import Tracker from "@/components/Tracker";
 import Welcome, { type Applied } from "@/components/Welcome";
+import { analyze, PER_SEM, termLabel } from "@/lib/critical";
 import { LOAD, loadKind, noticeFor, type Notice } from "@/lib/load";
 import { basePriorities } from "@/lib/plan";
 import type { MjeData } from "@/lib/transcript";
@@ -38,6 +39,7 @@ export default function Page() {
   const [hover, setHover] = useState<string | null>(null);
   const [theme, setTheme] = useState("dark");
   const [ready, setReady] = useState(false);
+  const [critical, setCritical] = useState(false);
   const [notice, setNotice] = useState<Notice | null>(null);
   const [screen, setScreen] = useState<"loading" | "welcome" | "app">("loading");
   const pending = useRef<{ key: string; sel: Sets; meta: Meta } | null>(null);
@@ -76,6 +78,7 @@ export default function Page() {
   const cr = earned(program, sel.done);
   const st = standing(program, sel);
   const info = useMemo(() => Object.fromEntries(program.courses.map((c) => [c.id, infoFor(c, byId, sel, st)])), [program, byId, sel, st]);
+  const crit = useMemo(() => (critical ? analyze(program, byId, sel) : null), [critical, program, byId, sel]);
   const count = (s: Status) => program.courses.filter((c) => info[c.id].status === s).length;
   const enrCr = program.courses.reduce((t, c) => t + (sel.enr.has(c.id) ? c.cr : 0), 0);
   const planCr = program.courses.reduce((t, c) => t + (sel.plan.has(c.id) ? c.cr : 0), 0);
@@ -137,6 +140,7 @@ export default function Page() {
   };
 
   const hc = hover ? byId[hover] : null;
+  const need = crit && hc ? [...crit.needed(hc.id)] : [];
   const mjeInfo = (mje as unknown as MjeData)[key];
   const takenCodes = new Set(Object.values(meta.placed).map((p) => p.code.replace(/\s/g, "")));
   const mjeLeft = hc && /^MJE/.test(hc.id) && mjeInfo ? mjeInfo.eligible.filter((c) => !takenCodes.has(c)) : null;
@@ -163,6 +167,7 @@ export default function Page() {
           <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /><i className="p" style={{ width: Math.min(100, (planCr / program.total) * 100) + "%" }} /></div>
         </div>
         <button className="ghost" onClick={() => setScreen("welcome")}>Import transcript</button>
+        <button className={"ghost" + (critical ? " on" : "")} onClick={() => setCritical(!critical)} title="Show what is needed to graduate and how much delay is possible">Critical pathways</button>
         <button className="ghost" onClick={() => confirm("Clear all selections for this program?") && (setSel(empty()), setMeta(EMPTY))}>Clear progress</button>
       </header>
       <div className="body">
@@ -177,6 +182,19 @@ export default function Page() {
               ? "Nothing selected: clicks now mark courses green (planned). Green courses do not unlock anything."
               : "Completed (pink) and Enrolled (orange) unlock the next courses. Press the active button again to switch to green planning."}</p>
           </section>
+          {crit && !hc && (
+            <section>
+              <h3>Critical pathways</h3>
+              {crit.remaining.size === 0 ? <p className="note">Everything is completed or in progress.</p> : (<>
+                <p><b>{crit.grad}</b> semester{crit.grad === 1 ? "" : "s"} to finish · earliest graduation <b>{termLabel(crit.grad)}</b></p>
+                <p className="note">{crit.remainingCr} credits left. Prerequisites alone need {crit.finish} semester{crit.finish === 1 ? "" : "s"}; at {PER_SEM} credits a semester the credit load needs {crit.creditBound}. {crit.grad > crit.finish ? "Your credit load is the limit." : "Your prerequisite chain is the limit."}</p>
+                {crit.chain.length > 0 && (<><p className="note">Critical chain (red arrows):</p>
+                  <div>{crit.chain.map((c) => <span key={c} className="ec crit">{c}</span>)}</div></>)}
+                {crit.chain[0] && crit.gated.has(crit.chain[0]) && <p className="note">{crit.chain[0]} is held back by its {byId[crit.chain[0]].minCr}-credit requirement, not by prerequisites: you reach that many credits in semester {crit.L[crit.chain[0]] - (byId[crit.chain[0]].row === 7 ? 0 : 1)} at {PER_SEM} credits a semester.</p>}
+                <p className="note">Delaying a red course delays graduation by the same amount. Every other box shows how many semesters it can slip (+N). Hover a course to see what it still needs. Enrolled courses count as finished.</p>
+              </>)}
+            </section>
+          )}
           {!hc && (
           <section>
             <h3>Legend</h3>
@@ -189,13 +207,24 @@ export default function Page() {
             {hc ? (<>
               <h3>{hc.id}</h3><p>{hc.name}</p>
               <p className={"why " + info[hc.id].status}>{info[hc.id].why}</p>
+              {meta.placed[hc.id] && <p className="note">Filled by <b>{meta.placed[hc.id].code}</b> ({info[hc.id].status === "done" ? "completed" : "currently taking"}){meta.placed[hc.id].confirm ? " ⚠ confirm with your advisor" : ""}</p>}
               <dl>
                 <dt>Credits</dt><dd>{hc.cr}</dd>
+                <dt>Priority</dt><dd>{hc.priority ?? prio[hc.id]} / 10</dd>
                 <dt>Prerequisites</dt><dd>{hc.pre.join(", ") || "None"}</dd>
                 {hc.any && hc.any.length > 0 && <><dt>Prerequisite (any one)</dt><dd>{hc.any.join(" or ")}</dd></>}
                 {hc.co.length > 0 && <><dt>Prerequisite / concurrent</dt><dd>{hc.co.join(", ")}</dd></>}
                 {hc.minCr > 0 && <><dt>Standing</dt><dd>{hc.minCr} credits completed</dd></>}
               </dl>
+              {crit && hc && crit.remaining.has(hc.id) && (<>
+                <h4 className="avail">Critical pathway</h4>
+                <p className="note">Earliest semester: {termLabel(crit.L[hc.id])}. {crit.critical.has(hc.id)
+                  ? "Critical: any delay pushes graduation back by the same amount."
+                  : `Can slip up to ${crit.slack[hc.id]} semester${crit.slack[hc.id] === 1 ? "" : "s"} without delaying graduation.`}</p>
+                {need.length > 0
+                  ? <><p className="note">Still needed first ({need.length}):</p><div>{need.map((c) => <span key={c} className="ec crit">{c}</span>)}</div></>
+                  : <p className="note">No other course is needed first.</p>}
+              </>)}
               {mjeLeft && (<>
                 <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
                 <div>{mjeLeft.map((c) => {
@@ -212,7 +241,7 @@ export default function Page() {
         </aside>
         <div className="scroll">
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={setHover} onToggle={toggle}
-            yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"}
+            yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"} crit={crit} placed={meta.placed}
             extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} />} />
         </div>
         <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} chosen={chosen} onPlan={plan} onUnplan={unplan}
