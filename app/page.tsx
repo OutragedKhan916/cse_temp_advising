@@ -80,12 +80,11 @@ export default function Page() {
   const planTotal = (s: Sets) => program.courses.reduce((t, c) => t + (s.plan.has(c.id) ? c.cr : 0), 0);
   /** adds to the green plan unless that would pass the maximum load; false = blocked */
   const addPlan = (n: Sets, c: Course) => { if (planTotal(n) + c.cr > LOAD.max) return false; n.plan.add(c.id); return true; };
-  /** popups: over the maximum when adding, heavy load when adding, and "too little" ONLY when courses are removed */
+  /** popups: only when the plan reaches 18-19 credits (heavy) or an add would pass 19 (blocked). Everything else shows only in the planner meter. */
   const announce = (before: number, n: Sets, blocked: Course[]) => {
     const after = planTotal(n), k = loadKind(after);
     if (blocked.length) setNotice(noticeFor("over", after, blocked));
-    else if (after > before && k === "high" && loadKind(before) !== "high") setNotice(noticeFor("high", after));
-    else if (after < before && (k === "under" || k === "low")) setNotice(noticeFor(k, after));
+    else if (after > before && k === "high") setNotice(noticeFor("high", after)); // popups only at 18-19 credits (20+ is blocked above); light loads only show in the meter
   };
   const toggle = (id: string) => {
     const n = clone(sel), c = byId[id], before = planTotal(n);

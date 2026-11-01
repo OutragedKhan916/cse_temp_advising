@@ -4,7 +4,7 @@
  * One parser then reads those lines, so PDF and Word give the same result.
  */
 
-export type Row = { code: string; section: string; text: string; cr?: number };
+export type Row = { code: string; section: string; text: string; cr?: number; area?: string }; // area = the degree-evaluation area that counted the course
 export type Item = { s: string; x: number; y: number; h?: number };
 export const SEP = " | ";
 
@@ -30,15 +30,18 @@ export function detectProgram(lines: string[]): "CMP" | "COE" | null {
 /** Read the course rows of a degree evaluation. A course that is listed in several areas is kept once. */
 export function parseDegree(lines: string[]) {
   const best = new Map<string, Row>();
+  const SECOND = /upper|designated|sci\s*and\s*math|innovation/i; // areas that only repeat courses counted elsewhere
   const put = (r: Row) => {
     const old = best.get(r.code);
-    if (!old || (old.section !== "hist" && r.section === "hist")) best.set(r.code, r); // completed beats in progress
+    if (!old || (old.section !== "hist" && r.section === "hist")) best.set(r.code, { ...r, area: old?.area && !SECOND.test(old.area) && (!r.area || SECOND.test(r.area)) ? old.area : r.area }); // completed beats in progress
+    else if (old.area && SECOND.test(old.area) && r.area && !SECOND.test(r.area)) old.area = r.area; // keep the main area the evaluation used
   };
-  let section = "";
+  let section = "", area = "";
   for (const raw of lines) {
     const cells = raw.split(SEP).map((c) => c.trim()).filter(Boolean);
     if (!cells.length) continue;
     const head = cells[0].replace(/\s+/g, "");
+    if (cells.length >= 3 && cells[1].replace(/\s+/g, "") === "Required" && /Used/.test(cells.slice(2).join(""))) { area = cells[0]; continue; } // "Major Electives for COE | Required | Used | ..."
     if (/^InProgressCourses$/i.test(head)) { section = "ip"; continue; }
     if (/^RejectedCourses$/i.test(head)) { section = "rej"; continue; }
     if (/^DetailRequirements$/i.test(head)) { section = "detail"; continue; }
@@ -48,7 +51,7 @@ export function parseDegree(lines: string[]) {
       const i = cells.findIndex((c, k) => SUBJ.test(c) && COURSE.test(cells[k + 1] ?? ""));
       if (i < 0) continue;
       const cr = cells.slice(i + 2).find((c) => CRED.test(c));
-      put({ code: cells[i] + cells[i + 1], section: "progress", text: "IP", cr: cr ? parseFloat(cr) : undefined });
+      put({ code: cells[i] + cells[i + 1], section: "progress", text: "IP", cr: cr ? parseFloat(cr) : undefined, area: i > 0 ? cells[0] : "" });
       continue;
     }
 
@@ -62,8 +65,8 @@ export function parseDegree(lines: string[]) {
     const grade = tail.filter((c) => c !== source)[0] ?? "";
     const code = cells[i + 1] + cells[i + 2];
     const cr = ci >= 0 ? parseFloat(rest[ci]) : undefined;
-    if (grade === "IP" || (!grade && source === "R")) put({ code, section: "progress", text: "IP", cr }); // registered, no grade yet
-    else if (PASS.test(grade)) put({ code, section: "hist", text: grade, cr });
+    if (grade === "IP" || (!grade && source === "R")) put({ code, section: "progress", text: "IP", cr, area }); // registered, no grade yet
+    else if (PASS.test(grade)) put({ code, section: "hist", text: grade, cr, area });
     // F, W, NP, I ... do not count
   }
   return { program: detectProgram(lines), rows: [...best.values()] };
