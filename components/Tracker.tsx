@@ -1,8 +1,9 @@
 "use client";
 import type { Course, Extra, Info, Placement, Program } from "@/lib/types";
+import type { MjeEntry } from "@/lib/transcript";
 import { GX, W, colX, rowY } from "@/lib/route";
 
-interface Props { program: Program; info: Record<string, Info>; placed: Record<string, Placement>; extras: Extra[]; }
+interface Props { program: Program; info: Record<string, Info>; placed: Record<string, Placement>; extras: Extra[]; mje?: MjeEntry; }
 
 const label = (c: Course) =>
   /^MJE/.test(c.id) ? `Major elective ${c.id.slice(3)}` : /^FRE/.test(c.id) ? `Free elective ${c.id.slice(3)}`
@@ -10,7 +11,9 @@ const label = (c: Course) =>
   : c.name.replace(/^GER-Core /, "");
 
 /** Table in the free space of the plan: which transcript course sits in each GER / elective box. */
-export default function Tracker({ program, info, placed, extras }: Props) {
+export default function Tracker({ program, info, placed, extras, mje }: Props) {
+  const codes = Object.entries(placed).filter(([id]) => /^MJE/.test(id)).map(([, p]) => p.code.replace(/\s/g, ""));
+  const nCore = codes.filter((c) => mje?.core?.includes(c)).length, nBreadth = codes.filter((c) => mje?.breadth?.includes(c)).length;
   const groups: [string, RegExp][] = [["General education (GER)", /^GER/], ["Major electives", /^MJE/], ["Free electives", /^FRE/]];
   return (
     <div className="tracker" style={{ left: colX(0), top: rowY(6) + 6, width: 5 * (W + GX) - GX }}>
@@ -34,6 +37,9 @@ export default function Tracker({ program, info, placed, extras }: Props) {
       </div>
       {extras.length > 0 && (
         <p className="tr-extra"><b>Not placed:</b> {extras.map((e) => `${e.code} (${e.reason.toLowerCase()})`).join(" · ")}</p>
+      )}
+      {mje?.rule && (
+        <p className="tr-rule"><b>Major electives:</b> at least {mje.rule.minCore} core, at most {mje.rule.maxBreadth} breadth, {mje.rule.max} in total. {codes.length ? `From your transcript: ${nCore} core, ${nBreadth} breadth${codes.length - nCore - nBreadth ? `, ${codes.length - nCore - nBreadth} special topic (confirm)` : ""}.` : ""}</p>
       )}
       <p className="tr-rule">One GER course per category, then one more fills “Selected GER”. Anything beyond that, or not on the GER or major-elective lists, goes to a free elective. ⚠ = special topic, confirm with your advisor.</p>
     </div>

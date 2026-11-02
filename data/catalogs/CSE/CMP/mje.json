@@ -1,4 +1,38 @@
 {
+ "rule": {
+  "minCore": 2,
+  "maxBreadth": 2,
+  "max": 4
+ },
+ "core": [
+  "CMP320",
+  "CMP394",
+  "CMP494",
+  "CMP404",
+  "CMP416",
+  "CMP418",
+  "CMP430",
+  "CMP445",
+  "CMP450",
+  "CMP456",
+  "CMP461",
+  "CMP466",
+  "CMP469",
+  "COE444",
+  "COE476"
+ ],
+ "breadth": [
+  "COE312",
+  "COE341",
+  "COE375",
+  "COE394",
+  "COE494",
+  "COE414",
+  "COE434",
+  "COE457",
+  "COE486",
+  "COE487"
+ ],
  "eligible": [
   "CMP320",
   "CMP394",

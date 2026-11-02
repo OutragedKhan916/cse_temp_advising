@@ -59,6 +59,8 @@ function build(): Department[] {
 export const DEPARTMENTS: Department[] = build();
 
 export const yearLabel = (y: string) => y.replace("-", "–");
+/** title shown on screen: major name + catalog year, e.g. "BS Computer Engineering (COE) · 2026–2027 catalog" */
+export const programTitle = (p: Program, year: string) => `${p.name.split(" · ")[0]} · ${yearLabel(year)} catalog`;
 const allMajors = () => DEPARTMENTS.flatMap((d) => d.majors);
 export const findMajor = (code: string) => allMajors().find((m) => m.code === code);
 export const departmentOf = (code: string) => DEPARTMENTS.find((d) => d.majors.some((m) => m.code === code));

@@ -42,7 +42,9 @@ export function parseTranscript(lines: string[]) {
   return { program, rows };
 }
 
-export type MjeData = Record<string, { eligible: string[]; confirm: string[] }>;
+/** Major electives of one major. core / breadth classify the eligible courses; rule: at least minCore core, at most maxBreadth breadth, max in total. */
+export type MjeEntry = { eligible: string[]; confirm: string[]; core?: string[]; breadth?: string[]; rule?: { minCore: number; maxBreadth: number; max: number } };
+export type MjeData = Record<string, MjeEntry>;
 const SCI = ["BIO", "CHM", "PHY"]; // natural-science subjects -> GER-SCI slots (CMP)
 
 /**
@@ -60,6 +62,8 @@ export function matchTranscript(lines: string[], programs: Record<string, Progra
   const slots = (re: RegExp) => prog.courses.filter((c) => re.test(c.id)).map((c) => c.id);
   const mjeSlots = slots(/^MJE/), freSlots = slots(/^FRE/), sciSlots = slots(/^GERSCI/);
   const elig = new Set(mje[key]?.eligible ?? []), conf = new Set(mje[key]?.confirm ?? []);
+  const breadth = new Set(mje[key]?.breadth ?? []), maxBreadth = mje[key]?.rule?.maxBreadth ?? Infinity;
+  let nBreadth = 0; // breadth electives placed so far (the rule allows only maxBreadth of them)
   const done = new Set<string>(), enr = new Set<string>();
   const placed: Record<string, Placement> = {}, extras: Extra[] = [];
   const taken = (id: string) => done.has(id) || enr.has(id);
@@ -73,7 +77,7 @@ export function matchTranscript(lines: string[], programs: Record<string, Progra
     else { const g = r.text.match(GRADE)?.[1]; if (g && PASS.test(g)) kind = "done"; } // F / W / NP / I do not count
     if (kind) items.push({ code: r.code, kind, cr: r.cr ?? Number(r.text.match(/(\d+)\.\d{3}/)?.[1] ?? NaN), area: (r.area ?? "").toLowerCase().replace(/[^a-z]/g, "") });
   }
-  items.sort((a, b) => +(a.kind !== "done") - +(b.kind !== "done")); // completed courses claim slots first
+  items.sort((a, b) => (+(a.kind !== "done") - +(b.kind !== "done")) || (+breadth.has(a.code) - +breadth.has(b.code))); // completed courses claim slots first; core electives before breadth ones
   const all = new Set(items.map((i) => i.code));
 
   /** a GER course -> the slot of its category, then the "selected course" slot; undefined when both are full */
@@ -104,7 +108,10 @@ export function matchTranscript(lines: string[], programs: Record<string, Progra
       if (!slot) { extras.push({ code: label, reason: area ? "Not counted: that part of your degree is already full" : "Not counted in your degree evaluation" }); continue; }
     } else {
       if (SCI.includes(subj) && sciSlots.length) slot = free(sciSlots);
-      else if (elig.has(code)) { slot = free(mjeSlots); confirm = conf.has(code); }
+      else if (elig.has(code)) {
+        if (!breadth.has(code) || nBreadth < maxBreadth) { slot = free(mjeSlots); confirm = conf.has(code); if (slot && breadth.has(code)) nBreadth++; }
+        // a third breadth elective is not allowed as a major elective: it goes on to the free electives
+      }
       else slot = gerSlot(code);
       if (!slot) { slot = free(freSlots); confirm = false; } // not listed anywhere, or its slots are full -> free elective
       if (!slot) { extras.push({ code: label, reason: "No slot left (extra credit)" }); continue; } // free electives full too: not counted

@@ -1,4 +1,45 @@
 {
+ "rule": {
+  "minCore": 2,
+  "maxBreadth": 2,
+  "max": 4
+ },
+ "core": [
+  "COE312",
+  "COE375",
+  "COE394",
+  "COE494",
+  "COE414",
+  "COE425",
+  "COE428",
+  "COE431",
+  "COE434",
+  "COE457",
+  "COE487"
+ ],
+ "breadth": [
+  "COE420",
+  "COE444",
+  "COE476",
+  "COE486",
+  "CMP320",
+  "CMP333",
+  "CMP394",
+  "CMP494",
+  "CMP404",
+  "CMP416",
+  "CMP418",
+  "CMP430",
+  "CMP445",
+  "CMP450",
+  "CMP456",
+  "CMP461",
+  "CMP466",
+  "CMP469",
+  "ELE311",
+  "ELE432",
+  "ELE441"
+ ],
  "eligible": [
   "COE312",
   "COE375",

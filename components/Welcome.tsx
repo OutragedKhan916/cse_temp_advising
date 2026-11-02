@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { DEPARTMENTS, departmentOf, findMajor, getCatalog, yearLabel, yearsFor } from "@/data";
+import { DEPARTMENTS, departmentOf, getCatalog, programTitle, yearLabel, yearsFor } from "@/data";
 import { matchTranscript, pastedLines, readTranscriptLines } from "@/lib/transcript";
 import type { Extra, Placement } from "@/lib/types";
 
@@ -50,11 +50,11 @@ export default function Welcome({ defaultKey, defaultYear, theme, onTheme, onMan
       <button className="theme wl-theme" onClick={onTheme}>{theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}</button>
       <h1>Advising Portal</h1>
       <p className="sub">How would you like to fill in your courses?</p>
+      <p className="scope top">Only for <b>Computer Science (CMP)</b> and <b>Computer Engineering (COE)</b> majors. It does not count double majors, minors or other programs.</p>
 
       {res ? (
         <div className="card summary">
-          <h2>Transcript read: {programs[res.key].name}</h2>
-          <p className="note">Catalog {cat.label}</p>
+          <h2>Transcript read: {programTitle(programs[res.key], year)}</h2>
           {!res.detected && <p className="warn">Could not detect your program, so {programs[res.key].name} was used.</p>}
           <p><b className="c-done">{res.done.length} completed</b>: {res.done.join(", ") || "none"}</p>
           <p><b className="c-enr">{res.enr.length} in progress</b>: {res.enr.join(", ") || "none"}</p>

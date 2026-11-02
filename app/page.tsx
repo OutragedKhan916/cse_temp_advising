@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { DEFAULT_KEY, DEFAULT_YEAR, getCatalog } from "@/data";
+import { DEFAULT_KEY, DEFAULT_YEAR, getCatalog, programTitle } from "@/data";
 import Flowchart from "@/components/Flowchart";
 import Planner from "@/components/Planner";
 import Tracker from "@/components/Tracker";
@@ -155,7 +155,7 @@ export default function Page() {
     <div className="app">
       <header>
         <h1><button className="brand" onClick={() => { setHover(null); setScreen("welcome"); }}>Advising Portal</button></h1>
-        <span className="yr">{program.name}</span>
+        <span className="yr">{programTitle(program, year)}</span>
         <div className="progress">
           <span>{cr} / {program.total} credits completed{enrCr ? ` · ${enrCr} enrolled` : ""}{planCr ? ` · ${planCr} planned` : ""}</span>
           <div><i className="d" style={{ width: Math.min(100, (cr / program.total) * 100) + "%" }} /><i className="e" style={{ width: Math.min(100, (enrCr / program.total) * 100) + "%" }} /><i className="p" style={{ width: Math.min(100, (planCr / program.total) * 100) + "%" }} /></div>
@@ -214,10 +214,14 @@ export default function Page() {
               {meta.placed[hc.id] && <p className="note">Filled by <b>{meta.placed[hc.id].code}</b> ({info[hc.id].status === "done" ? "completed" : "currently taking"}){meta.placed[hc.id].confirm ? " ⚠ confirm with your advisor" : ""}</p>}
               {mjeLeft && (<>
                 <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
-                <div>{mjeAll!.map((c) => {
-                  const warn = mjeInfo.confirm.includes(c);
-                  return <span key={c} className={"ec" + (doneCodes.has(c) ? " go" : "") + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
-                })}</div>
+                {mjeInfo.rule && <p className="note"><b>Rule:</b> at least {mjeInfo.rule.minCore} core electives, at most {mjeInfo.rule.maxBreadth} breadth electives, {mjeInfo.rule.max} major electives in total.</p>}
+                {([["Core electives", (c: string) => !!mjeInfo.core?.includes(c)], ["Breadth electives", (c: string) => !!mjeInfo.breadth?.includes(c)], ["Special topics (confirm classification)", (c: string) => !mjeInfo.core?.includes(c) && !mjeInfo.breadth?.includes(c)]] as [string, (c: string) => boolean][]).map(([title, test]) => {
+                  const list = mjeAll!.filter(test);
+                  return list.length ? (<div key={title}><p className="mje-g">{title}</p>{list.map((c) => {
+                    const warn = mjeInfo.confirm.includes(c);
+                    return <span key={c} className={"ec" + (doneCodes.has(c) ? " go" : "") + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
+                  })}</div>) : null;
+                })}
                 <p className="note">⚠ special topic: needs advisor approval. Green glow = completed (from your transcript). Courses you are taking now are hidden.</p>
               </>)}
               <dl>
@@ -240,6 +244,7 @@ export default function Page() {
               </>)}
             </>) : <p className="hint">Hover or tap a course to trace its prerequisites. Locked courses cannot be selected. Progress saves in this browser.</p>}
           </section>
+          <p className="scope">Only for <b>Computer Science (CMP)</b> and <b>Computer Engineering (COE)</b> majors. It does not count double majors, minors or other programs.</p>
           <button className="theme" onClick={toggleTheme}>
             {theme === "dark" ? "☀ Light mode" : "🌙 Dark mode"}
           </button>
@@ -249,7 +254,7 @@ export default function Page() {
           <div style={{ zoom }}>
           <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={onHover} onToggle={toggle}
             yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"} crit={crit} placed={meta.placed}
-            extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} />} />
+            extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} mje={mjeInfo} />} />
           </div>
         </div>
         <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} chosen={chosen} onPlan={plan} onUnplan={unplan}
