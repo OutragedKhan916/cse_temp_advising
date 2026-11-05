@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { DEFAULT_KEY, DEFAULT_YEAR, getCatalog, programTitle } from "@/data";
+import CourseInfo from "@/components/CourseInfo";
 import Flowchart from "@/components/Flowchart";
 import Planner from "@/components/Planner";
 import Tracker from "@/components/Tracker";
@@ -29,6 +30,7 @@ export default function Page() {
   const [hover, setHover] = useState<string | null>(null);
   const [theme, setTheme] = useState("dark");
   const [zoom, setZoom] = useState(1);
+  const [pin, setPin] = useState<string | null>(null); // course selected with the tick: its description shows in the side panel
   const [sheet, setSheet] = useState(false); // phone: side panel as a bottom sheet
   useEffect(() => { if (window.innerWidth < 800) setZoom(0.8); }, []);
   const [ready, setReady] = useState(false);
@@ -132,8 +134,8 @@ export default function Page() {
 
   // hovering a major elective keeps its panel open (so the mouse can move to the sidebar); click empty space, press Esc or use Clear to close it
   const onHover = (id: string | null) => setHover((h) => (id === null && h && /^MJE/.test(h) ? h : id));
-  useEffect(() => { const f = (e: KeyboardEvent) => e.key === "Escape" && setHover(null); window.addEventListener("keydown", f); return () => window.removeEventListener("keydown", f); }, []);
-  const hc = hover ? byId[hover] : null;
+  useEffect(() => { const f = (e: KeyboardEvent) => e.key === "Escape" && (setHover(null), setPin(null)); window.addEventListener("keydown", f); return () => window.removeEventListener("keydown", f); }, []);
+  const hc = hover ? byId[hover] : pin ? byId[pin] : null; // hovering shows a course; otherwise the selected one stays
   const need = crit && hc ? [...crit.needed(hc.id)] : [];
   const mjeInfo = catalog.mje[key];
   const takenCodes = new Set(Object.values(meta.placed).map((p) => p.code.replace(/\s/g, "")));
@@ -141,7 +143,7 @@ export default function Page() {
   const mjeAll = hc && /^MJE/.test(hc.id) && mjeInfo ? mjeInfo.eligible.filter((c) => !takenCodes.has(c) || doneCodes.has(c)).sort((a, b) => Number(doneCodes.has(b)) - Number(doneCodes.has(a))) : null; // completed (from transcript) first
   const mjeLeft = mjeAll ? mjeAll.filter((c) => !takenCodes.has(c)) : null;
   const enter = () => setScreen("app");
-  const switchTo = (k: string, y = year) => { setReady(false); setHover(null); setKey(k); setYear(y); };
+  const switchTo = (k: string, y = year) => { setReady(false); setHover(null); setPin(null); setKey(k); setYear(y); };
   const startManual = (k: string, y: string) => { if (k !== key || y !== year) switchTo(k, y); enter(); };
   const applyImport = (r: Applied, y: string) => {
     const s: Sets = { done: new Set(r.done), enr: new Set(r.enr), plan: new Set() }, m = { placed: r.placed, extras: r.extras };
@@ -209,9 +211,10 @@ export default function Page() {
           )}
           <section className="detail">
             {hc ? (<>
-              <h3>{hc.id}{/^MJE/.test(hc.id) && <button className="clr" onClick={() => setHover(null)}>✕ Clear</button>}</h3><p>{hc.name}</p>
+              <h3>{hc.id}{(/^MJE/.test(hc.id) || pin === hc.id) && <button className="clr" onClick={() => { setHover(null); setPin(null); }}>✕ Close</button>}</h3><p>{hc.name}</p>
               <p className={"why " + info[hc.id].status}>{info[hc.id].why}</p>
               {meta.placed[hc.id] && <p className="note">Filled by <b>{meta.placed[hc.id].code}</b> ({info[hc.id].status === "done" ? "completed" : "currently taking"}){meta.placed[hc.id].confirm ? " ⚠ confirm with your advisor" : ""}</p>}
+              {pin === hc.id && <CourseInfo code={meta.placed[hc.id]?.code ?? hc.id} />}
               {mjeLeft && (<>
                 <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
                 {mjeInfo.rule && <p className="note"><b>Rule:</b> at least {mjeInfo.rule.minCore} core electives, at most {mjeInfo.rule.maxBreadth} breadth electives, {mjeInfo.rule.max} major electives in total.</p>}
@@ -252,7 +255,7 @@ export default function Page() {
         <button className="fab" onClick={() => setSheet(true)}>ⓘ {hc ? hc.id : "Info"}</button>
         <div className="scroll" onClick={(e) => { if (!(e.target as HTMLElement).closest(".node")) setHover(null); }}>
           <div style={{ zoom }}>
-          <Flowchart program={program} byId={byId} info={info} hover={hover} onHover={onHover} onToggle={toggle}
+          <Flowchart program={program} byId={byId} info={info} hover={hover} pin={pin} onPin={(id) => { if (pin !== id) setSheet(true); setPin(pin === id ? null : id); }} onHover={onHover} onToggle={toggle}
             yearAll={yearAll} yearOpen={yearOpen} onYear={pickYear} modeLabel={mode === "done" ? "completed" : mode === "enr" ? "enrolled" : "planned"} crit={crit} placed={meta.placed}
             extra={<Tracker program={program} info={info} placed={meta.placed} extras={meta.extras} mje={mjeInfo} />} />
           </div>

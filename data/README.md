@@ -10,3 +10,12 @@
 Everything is detected from the folder names. Add a year: add a folder like `2027-2028/` with a `catalog.json` under the major. Add a major or department: add the folders (with `mje.json` and a year). No code changes needed.
 
 Course fields: `pre`, `co` (concurrent), `any` (one of), `minCr` (required credits), `rec` (recommended credits, a note only), `priority`, `terms`.
+
+## Course descriptions: `data/aus_courses.json`
+One file for every AUS course (all majors). Keys are course codes; every field is optional and any extra field you add is shown too.
+
+    {
+      "CMP120": { "title": "Programming I", "credits": 3, "description": "…", "prerequisites": "NGN110", "offered": "Fall, Spring" }
+    }
+
+Click the small tick at the top right of a course on the chart to show its entry in the side panel.

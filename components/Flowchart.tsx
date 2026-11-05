@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import type { Course, Info, Placement, Program } from "@/lib/types";
 import type { Crit } from "@/lib/critical";
 import { chain, code, title } from "@/lib/status";
@@ -9,10 +9,11 @@ interface Props {
   program: Program; byId: Record<string, Course>; info: Record<string, Info>;
   hover: string | null; onHover: (id: string | null) => void; onToggle: (id: string) => void;
   yearAll: boolean[]; yearOpen: boolean[]; onYear: (y: number) => void; modeLabel: string; extra?: React.ReactNode; crit?: Crit | null; placed?: Record<string, Placement>;
+  pin?: string | null; onPin?: (id: string) => void; // the small tick at the top right of a course: select it to read its description
 }
 const ICON = { done: "✓", enr: "●", plan: "◆", ok: "", pre: "🔒", cr: "⏳" } as const;
 
-export default function Flowchart({ program, byId, info, hover, onHover, onToggle, yearAll, yearOpen, onYear, modeLabel, extra, crit, placed }: Props) {
+export default function Flowchart({ program, byId, info, hover, onHover, onToggle, yearAll, yearOpen, onYear, modeLabel, extra, crit, placed, pin, onPin }: Props) {
   const width = 8 * (W + GX), height = TOP + 8 * (H + GY) + 170; // extra room for the elective table
   const edges = useMemo(() => {
     const lanes: number[] = Array(8).fill(0);
@@ -70,7 +71,8 @@ export default function Flowchart({ program, byId, info, hover, onHover, onToggl
         const rem = !!crit && crit.remaining.has(c.id), isCrit = rem && crit!.critical.has(c.id);
         const slackTxt = rem ? (isCrit ? " · critical" : crit!.slack[c.id] > 0 ? ` · +${crit!.slack[c.id]} sem` : "") : "";
         return (
-          <button key={c.id} className={`node ${i.status}${isCrit ? " crit" : ""}${glow}`} data-cat={c.cat} aria-disabled={locked}
+          <Fragment key={c.id}>
+          <button className={`node ${i.status}${isCrit ? " crit" : ""}${glow}${pin === c.id ? " pinned" : ""}`} data-cat={c.cat} aria-disabled={locked}
             title={[locked ? i.why : "", c.rec ? `Recommended: +${c.rec} credits completed (not required)` : ""].filter(Boolean).join(" · ") || undefined}
             style={{ left: colX(c.col), top: rowY(c.row), width: W, height: H, opacity: focus && !focus.has(c.id) ? 0.3 : 1 }}
             onClick={() => !locked && onToggle(c.id)} onMouseEnter={() => onHover(c.id)} onMouseLeave={() => onHover(null)}
@@ -79,6 +81,12 @@ export default function Flowchart({ program, byId, info, hover, onHover, onToggl
             <span className="name">{title(c)}</span>
             <span className="cr">{c.cr} cr{c.minCr ? ` · ${c.minCr} cr standing` : ""}{c.rec ? ` · rec. +${c.rec} cr` : ""}<b className="slack">{slackTxt}</b></span>
           </button>
+          {onPin && (
+            <button className={"tick" + (pin === c.id ? " on" : "")} aria-pressed={pin === c.id} aria-label={`${pin === c.id ? "Hide" : "Show"} details of ${code(c)}`} title="Course description"
+              style={{ left: colX(c.col) + W - 13, top: rowY(c.row) - 11, opacity: focus && !focus.has(c.id) ? 0.3 : undefined }}
+              onClick={(e) => { e.stopPropagation(); onPin(c.id); }}>✓</button>
+          )}
+          </Fragment>
         );
       })}
       {extra}
