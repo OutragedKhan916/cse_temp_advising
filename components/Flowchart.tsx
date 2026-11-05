@@ -83,8 +83,8 @@ export default function Flowchart({ program, byId, info, hover, onHover, onToggl
           </button>
           {onPin && (
             <button className={"tick" + (pin === c.id ? " on" : "")} aria-pressed={pin === c.id} aria-label={`${pin === c.id ? "Hide" : "Show"} details of ${code(c)}`} title="Course description"
-              style={{ left: colX(c.col) + W - 13, top: rowY(c.row) - 11, opacity: focus && !focus.has(c.id) ? 0.3 : undefined }}
-              onClick={(e) => { e.stopPropagation(); onPin(c.id); }}>✓</button>
+              style={{ left: colX(c.col) + W - 8, top: rowY(c.row) - 7, opacity: focus && !focus.has(c.id) ? 0.3 : undefined }}
+              onClick={(e) => { e.stopPropagation(); onPin(c.id); }} />
           )}
           </Fragment>
         );
