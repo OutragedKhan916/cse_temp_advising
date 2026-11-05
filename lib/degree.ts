@@ -67,6 +67,7 @@ export function parseDegree(lines: string[]) {
     const cr = ci >= 0 ? parseFloat(rest[ci]) : undefined;
     if (grade === "IP" || (!grade && source === "R")) put({ code, section: "progress", text: "IP", cr, area }); // registered, no grade yet
     else if (PASS.test(grade)) put({ code, section: "hist", text: grade, cr, area });
+    else if (!grade && source === "T") put({ code, section: "hist", text: "TR", cr, area }); // transfer credit with no grade shown: counts as completed
     // F, W, NP, I ... do not count
   }
   return { program: detectProgram(lines), rows: [...best.values()] };

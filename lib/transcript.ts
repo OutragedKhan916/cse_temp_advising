@@ -7,6 +7,8 @@ const PASS = /^(A[+-]?|B[+-]?|C[+-]?|D[+-]?|P|TR|EX)$/;
 // "Academic History" (registrar) format: "[n] CMP 120 Programming I 3 NP 0.00 E"  (credits, grade, quality points)
 const HIST = /^(?:\d{1,2}\s+)?([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.+?)\s+(\d{1,2})\s+(A[+-]?|B[+-]?|C[+-]?|D[+-]?|F|P|NP|W|WP|WF|I|IP|TR|EX|AUD|ANP|N)\s+\d+\.\d{2}(?:\s|$)/; // anything after the quality points (repeat flag, stray box numbers) is ignored
 // transcript code -> catalog id, when they differ
+// a transfer row of the registrar format may carry no grade or quality points: "PHY 101 General Physics I 3" or "... 3 TR"
+const TRANS = /^(?:\d{1,2}\s+)?([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.+?)\s+(\d{1,2})(?:\s+(TR|P|A[+-]?|B[+-]?|C[+-]?|D[+-]?))?(?:\s+\d+\.\d{2})?\s*$/;
 const ALIAS: Record<string, string> = { MTH213: "CMP213", COE397: "NGN397", CMP397: "NGN397", COE497: "NGN397", CMP497: "NGN397" };
 // GER category (data/ger.json) -> the GER slot(s) on the chart; any extra core course falls into GERSEL
 const SLOT: Record<string, string[]> = { HCAW: ["GER221"], ART: ["GERART"], HIB: ["GERHIB", "GERHI"], CCP: ["GERCCP"] };
@@ -19,14 +21,15 @@ export function parseTranscript(lines: string[]) {
   const program = m ? (m[1] === "Science" ? "CMP" : "COE") : null;
   const rows: Row[] = [];
   const hist = lines.some((l) => l.trim() === "Institution Courses");
-  let section = "";
+  let section = "", transfer = false;
   for (const raw of lines) {
     const l = raw.trim().replace(/\s+/g, " ");
     if (hist) {
-      if (l === "Institution Courses" || l.startsWith("Transfer Courses")) { section = "hist"; continue; }
+      if (l === "Institution Courses" || l.startsWith("Transfer Courses")) { section = "hist"; transfer = l.startsWith("Transfer Courses"); continue; }
       if (l.includes("Transcript Level Totals")) { section = ""; continue; }
       const h = section === "hist" ? l.match(HIST) : null;
       if (h) rows.push({ code: h[1] + h[2], section: "hist", text: h[5], cr: Number(h[4]) }); // text = the grade
+      else if (section === "hist" && transfer) { const t = l.match(TRANS); if (t) rows.push({ code: t[1] + t[2], section: "hist", text: t[5] ?? "TR", cr: Number(t[4]) }); } // transfer credit counts as completed
       continue;
     }
     if (l.includes("TRANSFER CREDIT ACCEPTED")) { section = "transfer"; continue; }
@@ -74,8 +77,17 @@ export function matchTranscript(lines: string[], programs: Record<string, Progra
     let kind: "done" | "enr" | null = null;
     if (r.section === "progress") kind = "enr";
     else if (r.section === "hist") { if (r.text === "IP") kind = "enr"; else if (PASS.test(r.text)) kind = "done"; }
+    else if (r.section === "transfer") { if (!/\s(F|W|WP|WF|NP)\s+\d+\.\d{3}/.test(r.text)) kind = "done"; } // transfer credit counts as completed, with or without a grade (a title ending in "I" is not an Incomplete)
     else { const g = r.text.match(GRADE)?.[1]; if (g && PASS.test(g)) kind = "done"; } // F / W / NP / I do not count
     if (kind) items.push({ code: r.code, kind, cr: r.cr ?? Number(r.text.match(/(\d+)\.\d{3}/)?.[1] ?? NaN), area: (r.area ?? "").toLowerCase().replace(/[^a-z]/g, "") });
+  }
+  { // one entry per course (a course listed twice, e.g. transferred and taken again, is placed once; completed beats in progress)
+    const seen = new Map<string, number>();
+    for (let k = 0; k < items.length; k++) {
+      const j = seen.get(items[k].code);
+      if (j === undefined) seen.set(items[k].code, k);
+      else { if (items[j].kind !== "done" && items[k].kind === "done") items[j] = items[k]; items.splice(k--, 1); }
+    }
   }
   items.sort((a, b) => (+(a.kind !== "done") - +(b.kind !== "done")) || (+breadth.has(a.code) - +breadth.has(b.code))); // completed courses claim slots first; core electives before breadth ones
   const all = new Set(items.map((i) => i.code));
@@ -103,7 +115,7 @@ export function matchTranscript(lines: string[], programs: Record<string, Progra
     if (evalMode) { // follow the evaluation's own areas: no overflow into free electives, a full area means it is not counted
       if (area.includes("majorelectives")) { slot = free(mjeSlots); confirm = conf.has(code); }
       else if (area.includes("freeelec")) slot = free(freSlots);
-      else if (area.includes("noncore") && SCI.includes(subj)) slot = free(sciSlots);
+      else if (SCI.includes(subj) && sciSlots.length) slot = free(sciSlots); // biology, chemistry and physics are natural sciences wherever the evaluation lists them
       else if (area.includes("gercore")) slot = gerSlot(code);
       if (!slot) { extras.push({ code: label, reason: area ? "Not counted: that part of your degree is already full" : "Not counted in your degree evaluation" }); continue; }
     } else {
