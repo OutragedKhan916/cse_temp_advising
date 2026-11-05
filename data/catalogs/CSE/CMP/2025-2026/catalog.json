@@ -164,8 +164,8 @@
    "minCr": 0
   },
   {
-   "id": "CMP213",
-   "name": "Discrete Structures (CMP213/MTH213)",
+   "id": "MTH213",
+   "name": "Discrete Math (CMP213/MTH213)",
    "cr": 3,
    "cat": "M",
    "col": 2,
