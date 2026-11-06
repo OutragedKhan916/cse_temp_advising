@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type FocusEvent as ReactFocus, type KeyboardEvent as ReactKey, type MouseEvent as ReactMouse } from "react";
 import { DEFAULT_KEY, DEFAULT_YEAR, getCatalog, programTitle } from "@/data";
 import CourseInfo from "@/components/CourseInfo";
 import { GER_BOX, GER_TITLE } from "@/lib/transcript";
@@ -32,6 +32,8 @@ export default function Page() {
   const [theme, setTheme] = useState("dark");
   const [zoom, setZoom] = useState(1);
   const [pin, setPin] = useState<string | null>(null); // course selected with the tick: its description shows in the side panel
+  const [tip, setTip] = useState<{ code: string; pinned: boolean; x?: number; y?: number } | null>(null); // description popup of a course chip: centred on screen until it is dragged
+  const tipRef = useRef<HTMLDivElement>(null);
   const [sheet, setSheet] = useState(false); // phone: side panel as a bottom sheet
   useEffect(() => { if (window.innerWidth < 800) setZoom(0.8); }, []);
   const [ready, setReady] = useState(false);
@@ -136,7 +138,21 @@ export default function Page() {
   // hovering a major elective keeps its panel open (so the mouse can move to the sidebar); click empty space, press Esc or use Clear to close it
   const sticky = (id: string) => /^MJE|^GER(?!SCI)/.test(id); // elective and GER boxes keep their list open so the mouse can reach it
   const onHover = (id: string | null) => setHover((h) => (id === null && h && sticky(h) ? h : id));
-  useEffect(() => { const f = (e: KeyboardEvent) => e.key === "Escape" && (setHover(null), setPin(null)); window.addEventListener("keydown", f); return () => window.removeEventListener("keydown", f); }, []);
+  useEffect(() => { const f = (e: KeyboardEvent) => e.key === "Escape" && (setHover(null), setPin(null), setTip(null)); window.addEventListener("keydown", f); return () => window.removeEventListener("keydown", f); }, []);
+  // a click anywhere else lets go of a popup that was kept open
+  useEffect(() => { const f = (e: MouseEvent) => { if (!(e.target as HTMLElement).closest(".tip, .ec")) setTip((t) => (t?.pinned ? null : t)); }; document.addEventListener("mousedown", f); return () => document.removeEventListener("mousedown", f); }, []);
+  /** hover shows the popup, a click keeps it open (click again to close) */
+  const chipTip = (code: string) => {
+    const place = (_el: HTMLElement, pinned: boolean) => setTip((t) => ({ code, pinned, x: t?.pinned && pinned ? t.x : undefined, y: t?.pinned && pinned ? t.y : undefined })); // hover and a fresh click open in the middle of the screen; moving a kept popup keeps its place
+    return {
+      role: "button" as const, tabIndex: 0, "aria-label": `Description of ${code}`,
+      onMouseEnter: (e: ReactMouse<HTMLElement>) => { if (!tip?.pinned) place(e.currentTarget, false); },
+      onMouseLeave: () => setTip((t) => (t?.pinned ? t : null)),
+      onFocus: (e: ReactFocus<HTMLElement>) => { if (!tip?.pinned) place(e.currentTarget, false); },
+      onClick: (e: ReactMouse<HTMLElement>) => { if (tip?.pinned && tip.code === code) setTip(null); else place(e.currentTarget, true); },
+      onKeyDown: (e: ReactKey<HTMLElement>) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.currentTarget.click(); } },
+    };
+  };
   const hc = hover ? byId[hover] : pin ? byId[pin] : null; // hovering shows a course; otherwise the selected one stays
   const need = crit && hc ? [...crit.needed(hc.id)] : [];
   const mjeInfo = catalog.mje[key];
@@ -229,7 +245,7 @@ export default function Page() {
                 {gerLists.map(({ cat, list }) => (
                   <div key={cat}>
                     {gerLists.length > 1 && <p className="mje-g">{GER_TITLE[cat]}</p>}
-                    {bySubject(list).map((g) => <div key={g[0]} className="subj">{g.map((c) => <span key={c} className={"ec" + chip(c)}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}</span>)}</div>)}
+                    {bySubject(list).map((g) => <div key={g[0]} className="subj">{g.map((c) => <span key={c} {...chipTip(c)} className={"ec" + chip(c)}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}</span>)}</div>)}
                   </div>
                 ))}
                 <p className="note">Green glow = completed, orange glow = enrolled (from your transcript).</p>
@@ -242,7 +258,7 @@ export default function Page() {
                   const list = mjeAll!.filter(test);
                   return list.length ? (<div key={title}><p className="mje-g">{title}</p>{list.map((c) => {
                     const warn = mjeInfo.confirm.includes(c);
-                    return <span key={c} className={"ec" + chip(c) + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
+                    return <span key={c} {...chipTip(c)} className={"ec" + chip(c) + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
                   })}</div>) : null;
                 })}
                 <p className="note">⚠ special topic: needs advisor approval. Green glow = completed, orange glow = enrolled (from your transcript).</p>
@@ -283,6 +299,24 @@ export default function Page() {
         <Planner program={program} info={info} doneCr={cr} enrCr={enrCr} chosen={chosen} onPlan={plan} onUnplan={unplan}
           onCheck={() => setNotice(noticeFor(loadKind(planCr), planCr))} />
       </div>
+      {tip && (
+        <div ref={tipRef} className={"tip" + (tip.pinned ? " pinned" : "") + (tip.x === undefined ? " mid" : "")} style={tip.x === undefined ? undefined : { left: tip.x, top: tip.y }}>
+          {tip.pinned && (
+            <div className="tip-bar"
+              onPointerDown={(e) => {
+                if ((e.target as HTMLElement).closest("button")) return;
+                const box = tipRef.current!.getBoundingClientRect(), dx = e.clientX - box.left, dy = e.clientY - box.top;
+                const move = (m: PointerEvent) => setTip((t) => (t ? { ...t, x: Math.max(0, Math.min(m.clientX - dx, window.innerWidth - box.width)), y: Math.max(0, Math.min(m.clientY - dy, window.innerHeight - 40)) } : t));
+                const up = () => { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); };
+                window.addEventListener("pointermove", move); window.addEventListener("pointerup", up);
+                setTip((t) => (t ? { ...t, x: box.left, y: box.top } : t)); // leave the centred position
+              }}>
+              <span>⠿ Drag to move</span><button className="clr" onClick={() => setTip(null)}>✕ Close</button>
+            </div>
+          )}
+          <CourseInfo code={tip.code} />
+        </div>
+      )}
       {notice && (
         <div className="modal-back" onClick={() => setNotice(null)}>
           <div className={"modal " + notice.level} role="alertdialog" onClick={(e) => e.stopPropagation()}>
