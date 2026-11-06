@@ -359,6 +359,206 @@
   "description": "Focuses on developing and advancing knowledge and skills required to support artistic and curatorial projects. Addresses the roles at play in collaborations with artists and curators. Provides the opportunity to synthesize theory and practice in real-world projects.",
   "prerequisites": "junior standing and permission of the instructor",
   "repeatable": "Repeatable up to 6 credits."
+},
+"DES101": {
+  "title": "Design Foundations for Non-Majors",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces knowledge, skills and theories comprising design. Focuses on the learning process as a designer. Explores a variety of tools, media and design strategies through ideation, design process, design communication and presentation as an experience of generating designed artifacts. Includes workshops and demonstrations in the studio, the materials lab and the computer lab.",
+  "restrictions": "Not open to CAAD students and to students who have completed DES 131."
+},
+"DES111": {
+  "title": "Descriptive Drawing I",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles and practice of observational drawing. Explores various representational approaches. Encourages the development of skills needed to effectively communicate visual information. Explores a range of materials and tools.",
+  "restrictions": "Restricted to CAAD students. Not open to students who have completed ART 111.",
+  "repeatable": "Not repeatable."
+},
+"DES112": {
+  "title": "Descriptive Drawing II",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles of analytical drawing. Emphasizes the development of a critical approach to representing form, space and scale using a range of techniques, tools and materials. Covers various projective and perspective systems.",
+  "restrictions": "Restricted to CAAD students.",
+  "repeatable": "Not repeatable."
+},
+"DES121": {
+  "title": "Introduction to Architecture, Art and Design History",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores a global approach to art, architecture and design. Investigates the technological, religious and social forces that helped to reveal the universality of the human impulse to design. Examines ideas, techniques and design methods thematically within a chronological framework covering the time span from the Stone Age to the Industrial Revolution."
+},
+"DES122": {
+  "title": "Modern Developments in Architecture, Art and Design",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Examines ideas, techniques and design methods thematically from the Renaissance to the late 20th century and the contemporary world. Investigates the technological, religious and social forces that drive the universal human impulse to design. Explores a global view of art, architecture and design."
+},
+"DES131": {
+  "title": "Design Foundations I",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles and methods of design. Examines composition and visual order. Explores graphic and material methods of representation needed to experiment with concepts of shape, form and space. Includes the development of a visual and verbal design vocabulary. Introduces craft and making skills with a variety of materials and tools.",
+  "restrictions": "Restricted to CAAD students.",
+  "repeatable": "Not repeatable."
+},
+"DES132": {
+  "title": "Design Foundations II",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles and methods of design, with an emphasis on process and conceptual development. Explores organizational systems, space and form in the creation of two-and three-dimensional design concepts. Explores craft and making skills with a variety of materials and tools.",
+  "prerequisites": "DES 131",
+  "restrictions": "Restricted to CAAD students. Not open to students who have completed DES 200.",
+  "repeatable": "Not repeatable."
+},
+"DES160": {
+  "title": "Introduction to Photography",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Provides a hands-on introduction to photographic practice. Introduces photography basics and camera control across a variety of digital photography equipment as well as digital applications. Covers photographic language and considerations through the study of examples taken from the history of photography.",
+  "restrictions": "Not open to BSFMD and BSGRD students. Not open to students who have completed GRD 221.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES170": {
+  "title": "Introduction to Product Design",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Surveys the contemporary and historical developments in product design. Develops an understanding of the roles of the product designer and introduces fundamental environmental, cultural and economic issues relevant to the design of products. Introduces the scope and range of product design, including an awareness of product system service design. Explores various stages and processes of product design including design research, concept generation, scenario building, market evaluations, design development and production. Employs case studies, written and verbal presentations, and introduces basic skills through the development of small-scale exercises.",
+  "prerequisites": "DES 101 or DES 131",
+  "fees": "Lab/Tech fee rate B applies"
+},
+"DES200": {
+  "title": "Communication Design",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the materials and techniques most commonly used by designers in the field of communication and stresses the development of skills in these areas through the completion of class assignments and projects representative of the concepts discussed in class. Students develop a deeper understanding of visual communication and become well-versed in the capacities and restrictions inherent in the materials and techniques most commonly used by professional designers.",
+  "prerequisites": "DES 101 or DES 131 or MDC 101 or NGN 110 or BIS 101 or STA 201 or STA 202",
+  "restrictions": "Restricted to non-CAAD students.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES230": {
+  "title": "Visual Communication Design",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Engages in visual design as it applies to effectively communicating brands and constructing narratives. Establishes fundamental understanding and skills necessary for creating visual identity. Examines best practices, such as development of brand manuals, in producing online and print collateral. Addresses typography, grid systems, information hierarchy, color and composition.",
+  "prerequisites": "DES 111, DES 112 and DES 132",
+  "restrictions": "Restricted to students formally admitted to the DES major.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES231": {
+  "title": "History of Design",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores topics in the history of design and visual communication. Introduces recognized schools of design philosophy and/or practice. Explores the relationship between design and culture.",
+  "prerequisites": "WRI 102 and sophomore standing (prerequisite/concurrent)"
+},
+"DES232": {
+  "title": "Research Methodologies for Design",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Introduces research processes within design practice and theory. Explores diverse research methods and strategies that inform design decisions while improving process, efficiency and time management. Addresses research demands implicit to design disciplines through readings, discussions and practical assignments.",
+  "prerequisites": "DES 101 or DES 131, and ENG 203 or ENG 204"
+},
+"DES270": {
+  "title": "Design as Form",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Develops skills in three-dimensional design and form making. Explores relationships of form, perception and visual/sensory phenomenon with specific focus on the application of design principles to the creation of small-scaled objects through methods of modeling and development.",
+  "prerequisites": "DES 101 or DES 131, and sophomore standing",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES275": {
+  "title": "Fundamentals of Design Management",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Introduces the fundamentals of design management. Includes the implementation of design management at the corporate, process and project level in corporative, medium and small-sized enterprises. Stresses skills required in different organizations in the global economy.",
+  "prerequisites": "DES 101 or DES 131"
+},
+"DES300": {
+  "title": "User-Centered Design Project",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Engages in designing for a purpose with an emphasis on user-centered design. Introduces various stages and processes of design, including design research, problem finding, concept generation, scenario building, prototyping and design development. Introduces design of digital applications, user interface and user experience.",
+  "prerequisites": "DES 230",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES360": {
+  "title": "Critical Discourse in Design",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Examines the relationship between design intention and interpretation. Reviews the application of graphic language in visual media. Requires research on topics related to design communication. Complements studio-based design courses by exploring design considerations and practice from a theoretical perspective.",
+  "prerequisites": "DES 231"
+},
+"DES362": {
+  "title": "History of Photography: The Portrait",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores the history of photography as evidenced in the development of the photographic portrait. Covers examples of early photographic practice; the commercialism of photography; and documentary, fine art and contemporary approaches to the photographic portrait genre.",
+  "prerequisites": "ENG 203 or ENG 204"
+},
+"DES370": {
+  "title": "Introduction to Prototyping",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Examines the conceptual and technical skills that represent evolutionary steps in design process and production. Covers the use of hand drawing, digital rendering and fabrication techniques to develop ideas. Addresses concept generation skills, including ideation drawing and rapid prototyping activities. Focuses on the visual and verbal communication skills necessary for the projection and promotion of ideas and products.",
+  "prerequisites": "ARC 201 or DES 230 or DES 270 or IDE 201 or FMD 201 or GRD 201, or DES 101 and MCE 236L",
+  "fees": "Lab/Tech fee rate B applies"
+},
+"DES374": {
+  "title": "Package Design",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces principles of package design. Focuses on the integration and application of graphic and visual elements to three-dimensional objects through folding, creasing and simple die cutting. Examines packaging trends in the context of the needs of the region to develop economical, responsible and sustainable solutions. Covers environmental and social issues related to packaging.",
+  "prerequisites": "DES 101 or DES 131",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES397": {
+  "title": "Internship in Design Management",
+  "credits": 0,
+  "hours": "0-0-0",
+  "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+  "prerequisites": "Junior II standing and approval of internship coordinator",
+  "fees": "Registration fee applies",
+  "notes": "Graded as Pass/Fail."
+},
+"DES462": {
+  "title": "Design Management",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Introduces the principles and practices of the economic and commercial aspects of design practice in a global economy. Includes microeconomics theory as it applies to private enterprise: basic business economics, planning and management. Gives attention to the processes and skills required in establishing an independent design office.",
+  "prerequisites": "DES 300"
+},
+"DES475": {
+  "title": "Service Design",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces the core activities of service design including the planning and organizing of people, infrastructure, communication and material components of a service in order to improve its quality and the interaction between service providers and customers. Emphasizes tools, techniques and methods of service design.",
+  "prerequisites": "DES 300"
+},
+"DES480": {
+  "title": "Systems and Strategic Design Thinking",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Engages in developing design-led strategies for social and business systems with an emphasis on stakeholders and innovation using design thinking. Addresses platforms for products and services. Involves exploring, creating and choosing among multiple options within strategic goals and constraints.",
+  "prerequisites": "DES 462 and DES 475",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES497": {
+  "title": "Design Practicum",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Focuses on the development and advancement of knowledge and skills required to deliver professional design services. Addresses the roles that collaboration and client demands play in design practice. Provides the opportunity to synthesize theory and practice in real-world projects.",
+  "prerequisites": "DES 300 or ARC 202 or IDE 202 or FMD 202 or GRD 202 (prerequisite/concurrent)",
+  "repeatable": "Repeatable up to 6 credits."
+},
+"DES498": {
+  "title": "Studio Abroad",
+  "credits": "3 to 6",
+  "hours": null,
+  "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+  "prerequisites": "studio specific",
+  "repeatable": "Repeatable only once."
 }
 }
 
