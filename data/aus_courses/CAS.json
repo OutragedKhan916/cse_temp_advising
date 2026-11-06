@@ -892,7 +892,134 @@
     "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
     "prerequisites": "GRD 202 and consent of the department",
     "repeatable": "Repeatable only once."
+  },
+  
+  "IDE201": {
+    "title": "Interior Design Studio I",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Investigates the fundamentals of interior space with a focus on design inquiry, process and representation. Introduces components that shape interior space and analyzes their relationships with a given context. Develops the basic skills of spatial organization by addressing issues of size, scale, hierarchy, distribution and circulation. Introduces software applications and graphic techniques integral to the development and presentation of studio projects.",
+    "prerequisites": "DES 112, DES 121, DES 122, DES 132, and MTH 001 or MTH 003 or MTH 103 or MTH 111, and WRI 101",
+    "restrictions": "Restricted to students formally admitted to the ID major.",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "IDE202": {
+    "title": "Interior Design Studio II",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Continues the investigation of the IDE 201 studio content with additional emphasis on the application of natural and artificial light, colors and materials. Technical resolutions and anthropometric requirements in the context of space making are broadly investigated. Further develops the use of software applications and graphic techniques integral to the development and presentation of studio projects.",
+    "prerequisites": "IDE 201",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "IDE225": {
+    "title": "History and Theory of Interior Design: Global and Regional Issues",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Examines the historical and social movements that established the foundation for the contemporary practice of interior design. Reviews historical origins of design in the Middle East and its influence in Eastern civilization from the 18th century onwards. Emphasizes design history from the industrial revolution to the present, with an in-depth revision from the avant-garde artistic and aesthetic streams of the 20th century to the most important contemporary designs.",
+    "prerequisites": "DES 101 or DES 131, and WRI 101"
+  },
+  "IDE239": {
+    "title": "Interior Materials and Methods",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Introduces interior architectural finish and construction materials, available products, performance characteristics, technical attributes and considerations, and methods of application. Explores basic structural systems, interior finish materials and applications, technical evaluation methods, detail documentation and specification requirements using standard construction methodology.",
+    "restrictions": "Restricted to students formally admitted to the ID major."
+  },
+  "IDE251": {
+    "title": "Color and Light",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces the fundamentals, principles and art of lighting and color, and their visual and physical effects in interior design. Explores light and color as important elements in interior space through the study of related perceptual and physical factors. Introduces relevant terminology to define light and color as attributes of architectural and interior space, including illumination levels, color temperatures, light sources and light fixtures.",
+    "prerequisites": "DES 101 or DES 131, and WRI 101"
+  },
+  "IDE301": {
+    "title": "Interior Design Studio III",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Focuses on advanced spatial concepts relevant to contemporary practices in the field. Investigates the role of precedents and analogue spaces in generating conceptual ideas. Examines the expressive potential of interior elements (floor, wall, stairs, openings, etc.) and materials. Develops an understanding of the relationship between interior elements, materials and the architectural shell. Explores various design scales with a specific focus on how resolved technical details can express formal ideas.",
+    "prerequisites": "IDE 202 or ARC 202, and PHY 104",
+    "repeatable": "Repeatable only once."
+  },
+  "IDE302": {
+    "title": "Interior Design Studio IV",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Continues the intent and purpose of IDE 301. Emphasizes the development of programming strategies within a defined cultural context. Concentrates on the phenomenological aspects of interior environments and explores the spatial and perceptual implications of artificial lighting and materials. Explores the conceptual and spatial implications of furniture layout, selection and design.",
+    "prerequisites": "IDE 301",
+    "repeatable": "Repeatable only once."
+  },
+  "IDE334": {
+    "title": "Furniture and Furnishings",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Addresses furniture designers, typologies, principles of anthropometrics and ergonomics related to work processes/seating and the human body, materiality, construction and fabrication/production technologies. Explores the form, function, aesthetics and cultural influences through lectures, class discussions, case studies and various media. Culminates in assignments, presentations, and research, and the development of scale models of furniture design projects.",
+    "prerequisites": "DES 132, and ENG 203 or ENG 204"
+  },
+  "IDE335": {
+    "title": "Furniture Design Basics",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores the basic function and design of furniture as it relates to human factors, such as anthropometrics and ergonomics. Provides a link between historical, theoretical and practical experience. Defines the elements of form, function and aesthetic by exploring experimental concepts and adopting alternative ways of thinking about the objects that surround us. Applies furniture models built to scale, or other presentation techniques, to effectively support the evolution of new concepts.",
+    "prerequisites": "IDE 201 or ARC 201 (prerequisite/concurrent)"
+  },
+  "IDE352": {
+    "title": "Environmental Control Systems in Interior Design",
+    "credits": 3,
+    "hours": "2-3-3",
+    "description": "Provides an integrated presentation of environmental control systems (lighting, heating, ventilating, air conditioning, sanitary and acoustics) with special attention to the needs of interior designers. Presents systems as they influence one another and as they constrain interior space planning and design.",
+    "prerequisites": "PHY 104; IDE 201 or ARC 201 (prerequisite/concurrent)"
+  },
+  "IDE397": {
+    "title": "Internship in Interior Design",
+    "credits": 0,
+    "hours": "0-0-0",
+    "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+    "prerequisites": "Junior II standing and approval of internship coordinator",
+    "fees": "Registration fee applies",
+    "notes": "Graded as Pass/Fail."
+  },
+  "IDE401": {
+    "title": "Interior Design Studio V",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Addresses a large-scale interior design project within a specific cultural context. Integrates advanced topics with conventional design development strategies. Addresses issues of sustainability, life safety, accessibility, human behavior and spatial experience.",
+    "prerequisites": "IDE 302",
+    "repeatable": "Repeatable only once."
+  },
+  "IDE402": {
+    "title": "Interior Design Studio VI",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Explores a comprehensive large-scale interior design project with an emphasis on the production of a full set of construction drawings and specifications, including an understanding of building systems, code compliance, sustainability and health, safety and welfare (HSW).",
+    "prerequisites": "IDE 302",
+    "repeatable": "Repeatable only once."
+  },
+  "IDE434": {
+    "title": "Construction, Detailing and Structures",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Builds upon IDE 239 Materials and Methods, examining interior structures and construction. Addresses the content, vocabulary and process involved in design, detailing and fabrication of interior spaces. Emphasizes the development of technical drawings and language to effectively communicate with allied design practitioners.",
+    "prerequisites": "IDE 239 or ARC 232"
+  },
+  "IDE463": {
+    "title": "Professional Practice",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Introduces the professional practice of architecture and interior design. Covers the fundamental knowledge of project management, client and consultant relationships, construction administration and the operations of a design business. Introduces the implications of time, budget and economic parameters in relation to the design process, professional ethics, social and political culture, and business management.",
+    "prerequisites": "junior standing",
+    "equivalent": "ARC 463"
+  },
+  "IDE498": {
+    "title": "Studio Abroad",
+    "credits": "3 to 6",
+    "hours": null,
+    "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+    "prerequisites": "IDE 302 or ARC 302, and consent of department",
+    "repeatable": "Repeatable only once."
   }
+
 }
 
 
