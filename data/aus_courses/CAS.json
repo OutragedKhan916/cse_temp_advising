@@ -727,7 +727,173 @@
   "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
   "prerequisites": "studio specific",
   "repeatable": "Repeatable only once."
+},
+
+  "GRD201": {
+    "title": "Graphic Design Studio I",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Introduces principles of graphic composition and organization through systems-based approaches to design. Explores formal relationships of varying complexity, from simple abstractions to the articulation of multiple categories of text and image-based information. Presents strategies to manage content. Examines denotation and connotation in graphic design. Addresses the integration of digital media within design projects.",
+    "prerequisites": "DES 111, DES 112, DES 121 or DES 122, DES 132, MTH XXX and WRI 101",
+    "restrictions": "Restricted to students formally admitted to the GRD major.",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD202": {
+    "title": "Graphic Design Studio II",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Covers essential typographic, compositional and imaging techniques. Examines strategies of creating, manipulating and combining text and images to facilitate communication. Explores varied means of visualization for print-or time-based media. Introduces the role of sequencing and transformation in communicating visual and textual information.",
+    "prerequisites": "GRD 201",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD213": {
+    "title": "Illustration Drawing",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Builds on skills introduced in foundation drawing and encourages students to utilize a variety of illustration media and techniques. Class projects focus on photo reference gathering techniques, visualizing concepts and ideas, graphic reductions and other areas of commercial illustration.",
+    "prerequisites": "ART 111 or DES 111 (prerequisite/concurrent)",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD221": {
+    "title": "Photography Basics",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces basic photographic skills of camera control and photographic practice through the use of digital technology. Introduces and explores topics relating to the history and theory of photographic practice.",
+    "prerequisites": "DES 101 or DES 131",
+    "restrictions": "Not open to students who have completed DES 160.",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD231": {
+    "title": "Typography I: Normative Typographic Principles",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces the fundamental conventions and vocabulary associated with typography. Addresses information hierarchy through the study of visual form and structure. Explores the editorial and expressive potentials of typography. Engages traditional and digital technologies within coursework.",
+    "prerequisites": "ARC 201 or DES 230 or IDE 201 or FMD 201 or GRD 201 (prerequisite/concurrent)",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD301": {
+    "title": "Graphic Design Studio III",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Examines the relationship between graphic form and content. Addresses the role of semiotics in graphical communication. Emphasizes the application of methods and strategies used in the design of print-based publications for general and/or specific audiences.",
+    "prerequisites": "GRD 202 and GRD 331",
+    "repeatable": "Repeatable only once."
+  },
+  "GRD302": {
+    "title": "Graphic Design Studio IV",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Explores representations of abstract ideas in the form of symbols and logotypes. Covers research methods and design strategies associated with the development of graphic identity systems. Addresses the role of branding, the development of project briefs, logo design, and the development and application of graphical identity standards.",
+    "prerequisites": "GRD 301",
+    "repeatable": "Repeatable only once."
+  },
+  "GRD312": {
+    "title": "Illustration Genres",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores the potential of 19th and 20th century illustration genres as a means of visual communication. Investigates use of historical illustration styles in a contemporary context.",
+    "prerequisites": "GRD 213 or ART 211"
+  },
+  "GRD313": {
+    "title": "Visual Narrative",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores narrative and storytelling structures in design including storyboarding and sequential drawing. Examines history and current practice in sequential visual arts. Emphasizes research, drawing and rendering skills needed to develop characters in sequential formats such as animation, film, illustration, children's and juvenile books, and graphic novels.",
+    "prerequisites": "GRD 213 or ART 211, and ENG 203 or ENG 204",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD320": {
+    "title": "Printmaking: Lithography and Screen Printing Methods",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces basic concepts and skills in traditional and contemporary lithography, screen printing and alternative printmaking methods while developing a firm skills base. Investigates traditional mechanical and digital experimental reproductive processes across a range of disciplines.",
+    "prerequisites": "GRD 201 or ARC 201 or ART 211 or DES 230 or IDE 201 or FMD 201",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "GRD326": {
+    "title": "Screen Printing: Methods and Techniques",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Develops skills in screen printing and its potential applications for both paper and alternate surfaces. Explores the different techniques for developing screen print initially using paper and hand-painted stencils and then moving onto photographic stencils and combinations of the two.",
+    "prerequisites": "GRD 202 or ARC 202 or DES 300 or IDE 202 or FMD 202",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "GRD327": {
+    "title": "Analog Photography Processes",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Covers the practice of 35mm analog photography. Explores darkroom printing techniques and processes central to effective visual communication. Focuses on theme work and the development of a portfolio.",
+    "prerequisites": "GRD 221 or ARC 316, or DES 160 and DES 362",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD328": {
+    "title": "Arabic Type Design",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces relevant theories and histories of Arabic type design from calligraphy to more contemporary typographic practices. Presents vocabulary and tools related to Arabic typography/type design. Explores print based media in the creation of typographic compositions.",
+    "prerequisites": "GRD 202 or ARC 202 or DES 202 or DES 230 or FMD 202",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD331": {
+    "title": "Typography II: Complex Typographic Systems",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores the relationship between content and form in typographic design. Examines the normative and expressive aspects of typography and how they function in micro publications, complex multi-page and or multilingual publications, wayfinding and information systems, and text for exhibitions supported by reference and analysis of contemporary case studies. Focuses on analyzing content, its meaning, and the intended goals and needs of both the information provider and the information user.",
+    "prerequisites": "GRD 201 and GRD 213",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "GRD342": {
+    "title": "Environment, Experience and Interaction Design",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores the intersection of visual communication and the built environment through lectures, case-study analysis and studio projects. Covers wayfinding systems, architectural graphics, signage, dynamic environments and mapping.",
+    "prerequisites": "GRD 301",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "GRD361": {
+    "title": "The Design Profession",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Deals with issues of working in design-related fields, including professional practice, intellectual property, employability, freelancing and working within a cultural context. Imparts knowledge of the region's design industry, through research and field trip documentation. Prepares students for their summer internships.",
+    "prerequisites": "DES 360 or FMD 360 (prerequisite/concurrent)",
+    "restrictions": "Open to Department of Art and Design students only."
+  },
+  "GRD397": {
+    "title": "Internship in Graphic Design",
+    "credits": 0,
+    "hours": "0-0-0",
+    "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+    "prerequisites": "GRD 302 and approval of internship coordinator",
+    "fees": "Registration fee applies",
+    "notes": "Graded as Pass/Fail."
+  },
+  "GRD401": {
+    "title": "Graphic Design Studio V",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Focuses on the development of topical discipline-specific or inter-/transdisciplinary design projects. Explores local, regional and/or global themes through individual and/or collaborative projects.",
+    "prerequisites": "GRD 302",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD406": {
+    "title": "Graphic Design Studio VI",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Focuses on the development of a comprehensive communication design project. Addresses the role of research, analysis and synthesis in professional design practice. Covers aspects of planning, management and production. Requires an approved student-initiated or faculty-directed capstone/topical project.",
+    "prerequisites": "GRD 401",
+    "repeatable": "Repeatable only once."
+  },
+  "GRD498": {
+    "title": "Studio Abroad",
+    "credits": "1 to 6",
+    "hours": null,
+    "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+    "prerequisites": "GRD 202 and consent of the department",
+    "repeatable": "Repeatable only once."
+  }
 }
-}
+
 
 
