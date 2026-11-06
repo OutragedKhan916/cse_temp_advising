@@ -12,6 +12,9 @@ const TRANS = /^(?:\d{1,2}\s+)?([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.+?)\s+(\d{1,2}
 const ALIAS: Record<string, string> = { MTH213: "CMP213", COE397: "NGN397", CMP397: "NGN397", COE497: "NGN397", CMP497: "NGN397" };
 // GER category (data/ger.json) -> the GER slot(s) on the chart; any extra core course falls into GERSEL
 const SLOT: Record<string, string[]> = { HCAW: ["GER221"], ART: ["GERART"], HIB: ["GERHIB", "GERHI"], CCP: ["GERCCP"] };
+/** which GER lists a chart box takes its courses from: its own category; the "selected course" box takes any of the four */
+export const GER_BOX: Record<string, string[]> = { ...Object.fromEntries(Object.entries(SLOT).flatMap(([cat, boxes]) => boxes.map((b) => [b, [cat]]))), GERSEL: Object.keys(SLOT) };
+export const GER_TITLE: Record<string, string> = { HCAW: "History & Culture of the Arab World", ART: "Arts & Literature", HIB: "Human Interaction & Behavior", CCP: "Culture in a Critical Perspective" };
 export type GerData = Record<string, string[]>;
 
 /** Turn the text lines of an AUS unofficial transcript into course rows. */

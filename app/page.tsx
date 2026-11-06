@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { DEFAULT_KEY, DEFAULT_YEAR, getCatalog, programTitle } from "@/data";
 import CourseInfo from "@/components/CourseInfo";
+import { GER_BOX, GER_TITLE } from "@/lib/transcript";
 import Flowchart from "@/components/Flowchart";
 import Planner from "@/components/Planner";
 import Tracker from "@/components/Tracker";
@@ -133,14 +134,22 @@ export default function Page() {
   };
 
   // hovering a major elective keeps its panel open (so the mouse can move to the sidebar); click empty space, press Esc or use Clear to close it
-  const onHover = (id: string | null) => setHover((h) => (id === null && h && /^MJE/.test(h) ? h : id));
+  const sticky = (id: string) => /^MJE|^GER(?!SCI)/.test(id); // elective and GER boxes keep their list open so the mouse can reach it
+  const onHover = (id: string | null) => setHover((h) => (id === null && h && sticky(h) ? h : id));
   useEffect(() => { const f = (e: KeyboardEvent) => e.key === "Escape" && (setHover(null), setPin(null)); window.addEventListener("keydown", f); return () => window.removeEventListener("keydown", f); }, []);
   const hc = hover ? byId[hover] : pin ? byId[pin] : null; // hovering shows a course; otherwise the selected one stays
   const need = crit && hc ? [...crit.needed(hc.id)] : [];
   const mjeInfo = catalog.mje[key];
   const takenCodes = new Set(Object.values(meta.placed).map((p) => p.code.replace(/\s/g, "")));
   const doneCodes = new Set(Object.entries(meta.placed).filter(([id]) => info[id]?.status === "done").map(([, p]) => p.code.replace(/\s/g, "")));
-  const mjeAll = hc && /^MJE/.test(hc.id) && mjeInfo ? mjeInfo.eligible.filter((c) => !takenCodes.has(c) || doneCodes.has(c)).sort((a, b) => Number(doneCodes.has(b)) - Number(doneCodes.has(a))) : null; // completed (from transcript) first
+  const enrCodes = new Set(Object.entries(meta.placed).filter(([id]) => info[id]?.status === "enr").map(([, p]) => p.code.replace(/\s/g, "")));
+  const chip = (c: string) => (doneCodes.has(c) ? " go" : enrCodes.has(c) ? " en" : ""); // green glow = completed, orange glow = enrolled
+  const mjeAll = hc && /^MJE/.test(hc.id) && mjeInfo ? [...mjeInfo.eligible].sort((a, b) => Number(doneCodes.has(b)) * 2 + Number(enrCodes.has(b)) - (Number(doneCodes.has(a)) * 2 + Number(enrCodes.has(a)))) : null; // completed (from transcript) first
+  /** "ARA101 ARA102 ANT205 ..." -> one group per subject, so the lists can be split by a thin line */
+  const bySubject = (l: string[]) => Object.entries(l.reduce<Record<string, string[]>>((m, c) => { (m[c.match(/^[A-Z]+/)![0]] ||= []).push(c); return m; }, {})).sort(([a], [b]) => a.localeCompare(b)).map(([, g]) => g);
+  // GER boxes: the course list of their category (completed ones glow green, ones you are taking now are hidden)
+  const gerCats = hc ? GER_BOX[hc.id] : undefined;
+  const gerLists = gerCats ? gerCats.map((cat) => ({ cat, list: [...(catalog.ger[cat] ?? [])].sort() })) : null;
   const mjeLeft = mjeAll ? mjeAll.filter((c) => !takenCodes.has(c)) : null;
   const enter = () => setScreen("app");
   const switchTo = (k: string, y = year) => { setReady(false); setHover(null); setPin(null); setKey(k); setYear(y); };
@@ -211,10 +220,21 @@ export default function Page() {
           )}
           <section className="detail">
             {hc ? (<>
-              <h3>{hc.id}{(/^MJE/.test(hc.id) || pin === hc.id) && <button className="clr" onClick={() => { setHover(null); setPin(null); }}>✕ Close</button>}</h3><p>{hc.name}</p>
+              <h3>{hc.id}{(sticky(hc.id) || pin === hc.id) && <button className="clr" onClick={() => { setHover(null); setPin(null); }}>✕ Close</button>}</h3><p>{hc.name}</p>
               <p className={"why " + info[hc.id].status}>{info[hc.id].why}</p>
               {meta.placed[hc.id] && <p className="note">Filled by <b>{meta.placed[hc.id].code}</b> ({info[hc.id].status === "done" ? "completed" : "currently taking"}){meta.placed[hc.id].confirm ? " ⚠ confirm with your advisor" : ""}</p>}
               {pin === hc.id && <CourseInfo code={meta.placed[hc.id]?.code ?? hc.id} />}
+              {gerLists && (<>
+                <h4 className="avail">{hc.id === "GERSEL" ? "Courses that count (any of the four core areas)" : "Courses that count here"}</h4>
+                {gerLists.map(({ cat, list }) => (
+                  <div key={cat}>
+                    {gerLists.length > 1 && <p className="mje-g">{GER_TITLE[cat]}</p>}
+                    {bySubject(list).map((g) => <div key={g[0]} className="subj">{g.map((c) => <span key={c} className={"ec" + chip(c)}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}</span>)}</div>)}
+                  </div>
+                ))}
+                <p className="note">Green glow = completed, orange glow = enrolled (from your transcript).</p>
+              </>)}
+              {hc.id.startsWith("GERSCI") && <p className="note">Natural science: any biology (BIO), chemistry (CHM) or physics (PHY) course counts.</p>}
               {mjeLeft && (<>
                 <h4 className="avail">Available major electives ({mjeLeft.length})</h4>
                 {mjeInfo.rule && <p className="note"><b>Rule:</b> at least {mjeInfo.rule.minCore} core electives, at most {mjeInfo.rule.maxBreadth} breadth electives, {mjeInfo.rule.max} major electives in total.</p>}
@@ -222,10 +242,10 @@ export default function Page() {
                   const list = mjeAll!.filter(test);
                   return list.length ? (<div key={title}><p className="mje-g">{title}</p>{list.map((c) => {
                     const warn = mjeInfo.confirm.includes(c);
-                    return <span key={c} className={"ec" + (doneCodes.has(c) ? " go" : "") + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
+                    return <span key={c} className={"ec" + chip(c) + (warn ? " warn" : "")}>{c.replace(/^([A-Z]+)(\d)/, "$1 $2")}{warn ? " ⚠" : ""}</span>;
                   })}</div>) : null;
                 })}
-                <p className="note">⚠ special topic: needs advisor approval. Green glow = completed (from your transcript). Courses you are taking now are hidden.</p>
+                <p className="note">⚠ special topic: needs advisor approval. Green glow = completed, orange glow = enrolled (from your transcript).</p>
               </>)}
               <dl>
                 <dt>Credits</dt><dd>{hc.cr}</dd>

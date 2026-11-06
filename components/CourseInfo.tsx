@@ -1,10 +1,10 @@
 "use client";
 import { courseDoc } from "@/lib/courses";
 
-const LABELS: Record<string, string> = { credits: "Credits", prerequisites: "Prerequisites", corequisites: "Corequisites", offered: "Offered" };
+const LABELS: Record<string, string> = { college: "College", credits: "Credits", prerequisites: "Prerequisites", corequisites: "Corequisites", offered: "Offered" };
 const SKIP = new Set(["title", "description"]);
 
-/** Description and information of the selected course (from data/aus_courses.json). */
+/** Description and information of the selected course (from data/aus_courses/). */
 export default function CourseInfo({ code }: { code: string }) {
   const doc = courseDoc(code);
   const pretty = code.replace(/^([A-Z]+)(\d)/, "$1 $2");

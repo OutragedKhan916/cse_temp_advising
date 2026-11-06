@@ -11,11 +11,9 @@ Everything is detected from the folder names. Add a year: add a folder like `202
 
 Course fields: `pre`, `co` (concurrent), `any` (one of), `minCr` (required credits), `rec` (recommended credits, a note only), `priority`, `terms`.
 
-## Course descriptions: `data/aus_courses.json`
-One file for every AUS course (all majors). Keys are course codes; every field is optional and any extra field you add is shown too.
+## Course descriptions: `data/aus_courses/`
+One file per college: `CAS.json`, `SBA.json`, `CEN.json`, `CAAD.json`. Each is keyed by course code and holds the courses of that college (any major can use any course). Every `.json` in the folder is picked up automatically, so a new college is just a new file. Every field is optional and any extra field you add is shown too.
 
-    {
-      "CMP120": { "title": "Programming I", "credits": 3, "description": "…", "prerequisites": "NGN110", "offered": "Fall, Spring" }
-    }
+    { "CMP120": { "title": "Programming I", "credits": 3, "description": "…", "prerequisites": "NGN110", "offered": "Fall, Spring" } }
 
-Click the small tick at the top right of a course on the chart to show its entry in the side panel.
+Click the small dot at the top right of a course on the chart to show its entry (with its college) in the side panel.

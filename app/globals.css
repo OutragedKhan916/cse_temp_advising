@@ -157,3 +157,5 @@ details{color:var(--mut)}summary{cursor:pointer;color:var(--hot);margin-bottom:8
 .cinfo{border-top:1px solid var(--line);padding-top:6px}.ci-title{margin:0 0 6px}.ci-desc{margin:0 0 8px;line-height:1.5;color:var(--ink)!important}
 .cinfo dl{margin:0}.cinfo dl>div{margin-top:6px}
 @media (max-width:800px){.tick{width:16px;height:16px}.tick:before{inset:-10px}}
+.subj{padding:5px 0}.subj+.subj{border-top:1px solid var(--line)}
+.ec.en{border-color:var(--enr);box-shadow:0 0 0 1px var(--enr),0 0 10px 2px color-mix(in srgb,var(--enr) 60%,transparent)}
