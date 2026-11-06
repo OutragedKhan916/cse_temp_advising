@@ -559,6 +559,59 @@
   "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
   "prerequisites": "studio specific",
   "repeatable": "Repeatable only once."
+},
+"FLM100": {
+  "title": "The Art of Film",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces the central issues of film aesthetics, including formal and stylistic elements: color, lighting, editing, sound, movement, mise-en-scene, etc. Develops analytical and interpretive skills by providing critical tools required for discussing and writing about film as well as examining relationships between a film and its technological and cultural impact on society. Subjects are treated topically rather than historically, and emphasis is placed on mastering key concepts of film grammar and art.",
+  "prerequisites": "WRI 102 (prerequisite/concurrent)"
+},
+"FLM206": {
+  "title": "Cities and Cinema",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Explores the role cities play in movies, and how images of cities and urban life are constructed in cinema. Considers the ways cities are portrayed as both real and imagined backdrops to film narratives. Studies the visual means by which movies, through lighting, photography, special effects and editing, mediate and condition our perception and understanding of the city. Considers the reasons why filmmakers choose to depict cities and the urban environment in the ways that they do.",
+  "prerequisites": "WRI 102, and DES 101 or DES 121 or DES 122 or MDC 101"
+},
+"FLM210": {
+  "title": "Narrative Structure in Film",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces digital narrative storytelling, focusing on developing basic technical and conceptual skills in pre-production, production, post-production and distribution. Examines production and post-production techniques related to the specific conventions of narrative genres and the aesthetic of a frame. Projects emphasize the development of story structure and characters, screenwriting and storyboarding. Introduces technical skills required to develop and market a short film.",
+  "prerequisites": "FLM 100, and ENG 203 or ENG 204",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FLM310": {
+  "title": "Film Production",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces advanced ideas and practices in narrative filmmaking required for conceptual development, production, post-production and distribution of short films. Explores significant historical references that provide a critical understanding of film genres. Provides students with skills required to create sophisticated, compelling, professional-quality short narrative or immersive films.",
+  "prerequisites": "FLM 210 or FMD 201 or MDC 277",
+  "fees": "Lab/Tech fee rate B applies"
+},
+"FLM332": {
+  "title": "Experimental Film and Video",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Examines basic to intermediate concepts as they relate to the aesthetics of short non-narrative format. All three stages of production are represented through a series of practical projects that enable students to investigate the relationship between image and sound as they relate to overall aesthetic value. Different approaches are examined through screening of case studies focusing on style conventions.",
+  "prerequisites": "DES 230 or FLM 210 or MDC 101 or FMD 201 or GRD 201",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FLM360": {
+  "title": "Screenwriting",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Focuses on the craft of writing for film and television. Covers research methods, interviewing techniques, subject treatment, dialogue writing and the development of basic script formats. Explores the process of transforming story ideas into film or television scripts.",
+  "prerequisites": "FLM 100, and ENG 203 or ENG 204"
+},
+"FLM410": {
+  "title": "Advanced Film Production",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces complex production techniques within three stages of the filmmaking process. Exposes students to film practice through pre-production planning, budgeting, scheduling, directing actors and leading a production team. Provides students with the advanced filmmaking skills and knowledge necessary to confidently take on leadership roles in film production as a director, editor, producer or cinematographer.",
+  "prerequisites": "FLM 310 or FLM 332",
+  "fees": "Lab/Tech fee rate A applies"
 }
 }
 
