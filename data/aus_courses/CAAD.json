@@ -8,5 +8,1026 @@
     "restrictions": "Restricted to students formally admitted to the architecture major.",
     "repeatable": "Repeatable only once.",
     "fees": "Lab/Tech fee rate B applies"
-  }
+  },
+  "ARC202": {
+    "title": "Architectural Design Studio II",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Continues the content and purpose of ARC 201 with increased emphasis on design development and physical and technical resolution. Digital media are integral to the studio.",
+    "prerequisites": "ARC 201",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "ARC221": {
+    "title": "Pre-Modern Architecture and Urban Form",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Covers factors influencing the production of architecture and urban form through the study of select buildings and cities within the context of world history from the ancient world to 1850 CE. Focuses on ways in which theoretical knowledge and practical design principles were applied across cultures. Addresses interrelationships between diverse architectural and urban traditions through comparative analyses of historical buildings and cities.",
+    "prerequisites": "DES 122"
+  },
+  "ARC222": {
+    "title": "Modern Architecture and Urban Form",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Introduces knowledge and design principles fundamental to an understanding of the architecture and urban form from 1850 to 1960. Integrates history and theory focusing on a selection of significant issues proceeding topically rather than chronologically. Considers technological changes and regional influences and contributions, concludes with the debates that gave rise to Postmodern Architecture.",
+    "prerequisites": "DES 122"
+  },
+  "ARC225": {
+    "title": "Islamic Art and Architecture",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Concentrates on common and regional elements of Arab and Islamic material culture. Follows developments from formation of an architectural language to diverse regional expressions in calligraphy, ceramics, metals, carpets and other media of artistic work. Relates stylistic phenomena to underlying spiritual and intellectual intent.",
+    "prerequisites": "WRI 102"
+  },
+  "ARC232": {
+    "title": "Materials and Methods I",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Offers an in-depth review of building materials and their properties as they relate to methods of construction and contemporary construction practices used to prepare sites and to erect the building's basic structure. Covers site preparation, foundations, concrete, steel and timber structures, and masonry work. Discusses the basics of producing construction drawings.",
+    "prerequisites": "ARC 201 or IDE 201"
+  },
+  "ARC233": {
+    "title": "Introductory Techniques in Digital Fabrication",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces the concepts, tools and methods used in digital fabrication practices. Covers the fundamental skills necessary for exploring the role of digital fabrication tools in architecture.",
+    "prerequisites": "DES 132",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "ARC237": {
+    "title": "Introductory Techniques in Material Fabrication",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces the concepts, tools and methods used in material fabrication practices. Explores the relationship between material properties, material processes and design through hands-on fabrication exercises.",
+    "prerequisites": "DES 131",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "ARC245": {
+    "title": "Introduction to Building Construction and Systems",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Provides a general understanding of the process through which a building is put together. Introduces the basics of constructing a building, from site preparation to surface finishing. Covers the main characteristics of plumbing, heating, ventilation, air-conditioning, electric and fire protection systems in buildings.",
+    "prerequisites": "sophomore I standing",
+    "restrictions": "Not open to BArch and BID students."
+  },
+  "ARC265": {
+    "title": "Fundamentals of Digital Design",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces the fundamental concepts, tools and methods of digital design. Covers software, file management and output strategies related to 2D drafting, 3D modeling and rendering.",
+    "prerequisites": "DES 132",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "ARC271": {
+    "title": "Introduction to Landscape",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Introduces the fundamental cultural, ecological, spatial and technical aspects of landscape design and construction. Includes a range of scales, from the urban and infrastructural to the tactile and botanical, most relevant to the discipline of architecture. Investigates the environmental and climatic forces that impose pragmatic challenges to site construction and occupation. Emphasizes the cultural and vernacular traditions that influence regional and historical land-use patterns and the spatial integration of interior and exterior inhabitation.",
+    "prerequisites": "DES 101 or DES 131"
+  },
+  "ARC281": {
+    "title": "Architectural Principles",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Provides an overview of the fundamental formal, cultural and environmental issues specific to the discipline of architecture and interior design. Emphasizes two- and three-dimensional composition, organizational strategies, and the basic syntax of spatial configuration. Examines the effect of light, air, weather and orientation on spatial experience in the built environment with a focus on building forms and interiors that incorporate a passive and site-specific response to environmental conditions.",
+    "prerequisites": "ARC 201 or IDE 201 (prerequisite/concurrent)"
+  },
+  "ARC301": {
+    "title": "Architectural Design Studio III",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Advances the fundamentals of the making of architectural form based on concepts derived from space, structure and building construction. Studio-based projects emphasize design strategies for small, multilevel, infill buildings with conventional, short-span structural systems.",
+    "prerequisites": "ARC 202 or IDE 202, and PHY 104",
+    "repeatable": "Repeatable only once."
+  },
+  "ARC302": {
+    "title": "Architectural Design Studio IV",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Includes studio-based projects with emphasis on the tectonics of building structure and envelope. Building case studies and design projects explore a range of material and construction system types including steel, wood, masonry and reinforced concrete.",
+    "prerequisites": "ARC 301",
+    "repeatable": "Repeatable only once."
+  },
+  "ARC311": {
+    "title": "Illustration and Rendering",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Covers illustration and rendering techniques that enable students to express their ideas faster with more precise results. Covers freehand color drawing techniques using markers, color pencils and watercolors.",
+    "prerequisites": "ARC 201 or IDE 201 (prerequisite/concurrent)"
+  },
+  "ARC316": {
+    "title": "Photography and Visual Representation",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces a broad range of photographic techniques and processes intended to facilitate the representation of architectural concepts. Explores the history, theory and practices related to various techniques. Investigates the roles of narrative and sequence in photography. Experiments with combined, montaged and repeated images.",
+    "prerequisites": "ARC 201 or IDE 201 or GRD 221, or DES 160 and DES 362",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "ARC331": {
+    "title": "Materials and Methods II",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Offers an in-depth examination of the materials and processes involved in finishing a building. Uses a case study approach to demonstrate the evolution of the building process of the major components that are built following the erection of the building's basic structure. Covers stairs, doors, windows, partitions, ceilings, floors, claddings and joints. Investigates design considerations and construction methods with hands-on experience in producing detailed drawings.",
+    "prerequisites": "ARC 232"
+  },
+  "ARC342": {
+    "title": "Structures for Architects",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Explores the dynamic relationship between architecture and structure, examining how structural choices can impact aspects like building facades, function and interiors. Covers fundamental structural concepts such as stability, strength, loads and stresses. Introduces the calculation of reactive forces, shear and bending. Provides insight into material structural properties. Explains the structural behavior of diverse structural systems such as trusses, arches, cables, frames and shells. Develops skills in the location and sizing of structural elements for simple trabeated structures as well as in configuring an appropriate structure to cover a long-span architectural space.",
+    "prerequisites": "ARC 201 or IDE 201, and PHY 104"
+  },
+  "ARC354": {
+    "title": "Environmental Energies and Building Form",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Studies the physical phenomena that make climate (rain, humidity, temperature, wind, sun, etc.) influence buildings. Covers heat transfer methods, solar radiation, vapor in air, air leakage and water condensation and wind movement. Studies indoor thermal environment and thermal comfort of building occupants. Discusses examples of how these phenomena are used in building design.",
+    "prerequisites": "PHY 100 or PHY 101 or PHY 104"
+  },
+  "ARC366": {
+    "title": "Applied Computer-Aided Design",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces two-dimensional drafting and three-dimensional Building Information Modeling (BIM) CAD applications. Identifies components and capabilities of each application. Emphasizes the use of 2D CAD applications in the management of a drafting task to produce quality drawings. Emphasizes the use of BIM applications to assist in design decisions.",
+    "prerequisites": "ARC 201 or IDE 201",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "ARC382": {
+    "title": "Architectural Detailing",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Explores the relationship between the design and production of architectural details and the conceptual underpinnings of a project. Introduces technical drawing, construction drawings and industry standards for graphic and written communication. Emphasizes the role of tectonics and material integration beyond pragmatic applications.",
+    "prerequisites": "ARC 202"
+  },
+  "ARC397": {
+    "title": "Internship in Architecture",
+    "credits": 0,
+    "hours": "0-0-0",
+    "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+    "prerequisites": "ARC 302 and approval of internship coordinator",
+    "fees": "Registration fee applies",
+    "notes": "Graded as Pass/Fail."
+  },
+  "ARC401": {
+    "title": "Architectural Design Studio V",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Employs advanced design tools to respond to complex architectural projects in a topic or collaborative setting. Allows for disciplinary research and experimentation involving specialized techniques and in-depth investigation beyond the scope of schematic building design. Projects address the discipline of architecture at various scales, ranging from details and full-scale fabrication to urban design.",
+    "prerequisites": "ARC 232 and ARC 302",
+    "repeatable": "Repeatable only once."
+  },
+  "ARC402": {
+    "title": "Architectural Design Studio VI",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Comprises a capstone and focuses on the development of a comprehensive building design project integrating building technologies with other non-technical design issues. Addresses data collection, analysis and programming along with a detailed design development of building technology components.",
+    "prerequisites": "ARC 401",
+    "repeatable": "Repeatable only once."
+  },
+  "ARC421": {
+    "title": "Architectural Theory",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Engages the conceptual basis of the work of specific architects, historical and contemporary architectural historians and theoreticians from the 1960s to the present. Examines schools of thought in architecture with an emphasis on the understanding of both written and visual analysis of built form and design.",
+    "prerequisites": "ARC 221, ARC 222, and ENG 203 or ENG 204"
+  },
+  "ARC424": {
+    "title": "Evolution of Cities",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Introduces the origin, growth and development of cities throughout the history. Examines the various socioeconomic, historic, political and environmental forces that help explain city form. Explores case studies of sites from ancient times to the present with particular emphasis on cities in Islamic and Middle Eastern cultures.",
+    "prerequisites": "ENG 203 or ENG 204"
+  },
+  "ARC433": {
+    "title": "Advanced Topics in Digital Fabrication",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores advanced concepts, tools and methods used in digital fabrication practices. Investigates the relationship between technology and design through the development of advanced skills related to digital fabrication techniques in architecture.",
+    "prerequisites": "ARC 202 or ARC 233 or IDE 202",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "ARC437": {
+    "title": "Advanced Topics in Material Fabrication",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores advanced concepts, tools and methods used in material fabrication practices. Investigates the relationship between material properties, material processes and design through hands-on fabrication exercises.",
+    "prerequisites": "ARC 202 or ARC 237 or IDE 202",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "ARC451": {
+    "title": "Environmental Control Systems",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Presents the basic principles for the selection and the design of the main environmental control systems in buildings, including plumbing, heating, ventilation, air conditioning, electric, lighting, and fire suppression and protection systems.",
+    "prerequisites": "ARC 401 (prerequisite/concurrent)"
+  },
+  "ARC463": {
+    "title": "Professional Practice",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Introduces the professional practice of architecture and interior design. Covers the fundamental knowledge of project management, client and consultant relationships, construction administration and the operations of a design business. Introduces the implications of time, budget and economic parameters in relation to the design process, professional ethics, social and political culture, and business management.",
+    "prerequisites": "junior standing",
+    "equivalent": "IDE 463"
+  },
+  "ARC465": {
+    "title": "Advanced Computer-Aided Design",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Concentrates on the specific demands on CAD systems by the architecture and building professions. Applies CAD systems to the different phases of planning: preliminary design, design, construction documents, extraction of volumetric data and transfer to spreadsheet and/or database software, rendering software, post-rendering work in pixel-editing software, technical drawing layout software, etc.",
+    "prerequisites": "ARC 301 or IDE 301",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "ARC474": {
+    "title": "Issues in Contemporary Urban Design",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Examines major concepts, principles and theories of urban design. Reviews the historic development of urban design as a professional field and surveys current urban design issues, trends and practices in both the Western and non-Western/Islamic contexts.",
+    "prerequisites": "ARC 301 (prerequisite/concurrent)"
+  },
+  "ARC497": {
+    "title": "Architectural Design Practicum",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Focuses on the development of advanced knowledge and skills required to deliver professional architectural design services. Provides the opportunity to explore the role of project architect and liaise between the various stakeholders involved in commissioning and producing a work of architecture.",
+    "prerequisites": "ARC 202",
+    "repeatable": "Repeatable up to 6 credit hours.",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "ARC498": {
+    "title": "Studio Abroad",
+    "credits": "3 to 6",
+    "hours": null,
+    "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+    "prerequisites": "studio specific",
+    "repeatable": "Repeatable only once."
+  },
+  "ARC501": {
+    "title": "Architectural Design Studio VII",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Employs advanced design tools to respond to complex architectural projects in a topic or collaborative studio setting. Focuses on research, experimentation, and/or specialized techniques leading to solutions that address issues of program, context, building technology and/or fabrication. Addresses the discipline of architecture at various scales ranging from conceptual investigations to full-scale fabrication and urban design.",
+    "prerequisites": "ARC 402",
+    "repeatable": "Repeatable only once."
+  },
+  "ARC502": {
+    "title": "Architectural Design Studio VIII",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Continues the employment of advanced design tools to respond to complex architectural projects in a topic or collaborative studio setting. Employs research, experimentation and/or specialized techniques leading to solutions that address issues of program, context, building technology and/or fabrication. Addresses the discipline of architecture at various scales ranging from conceptual investigations to full-scale fabrication and urban design.",
+    "prerequisites": "ARC 501",
+    "repeatable": "Repeatable only once."
+  },
+  "ARC561": {
+    "title": "Construction Management",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Studies in-depth the interrelationships among the various professional disciplines in the building and construction industry as they pertain to issues of management and planning of complex construction projects. Reviews standard practices of tendering, contracting, quantity surveying, cost estimation, supervision, quality control and economy.",
+    "prerequisites": "ARC 301 or IDE 301"
+  },
+  "ARC581": {
+    "title": "Critical Practice and Contemporary Discourse",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Examines the role and application of research methodology and critical thinking in the work of leading practitioners and academics. Investigates a current topic in contemporary discourse with a focus on the articulate application of theory and research in architectural production. Foregrounds the history of ideas that frame and influence contemporary trends in the discipline. Focuses on applying critical thinking skills to the analysis and production of architecture as a mode of inquiry.",
+    "prerequisites": "ARC 401 (prerequisite/concurrent)"
+  },
+  "ARC591": {
+    "title": "Directed Architectural Design Research",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Focuses on the development of an architectural design research project under the guidance of a faculty advisor.",
+    "prerequisites": "consent of the department"
+  },
+  "ARC592": {
+    "title": "Directed Architectural Design Studio",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Focuses on the resolution of an independent architectural design project developed under the guidance of a faculty advisor and presented and defended in a formal public critique.",
+    "prerequisites": "consent of the department",
+    "repeatable": "Repeatable only once.",
+    "notes": "May substitute for ARC 502."
+  },
+  "ART101": {
+  "title": "Survey of Art",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores art from a historical perspective and in a global context, including Euro-America, Asia and the Global South, from the fourteenth to the twenty-first century. Examines changing conceptions of the artist, the work of art, and the discipline of art history, considering the roles images and objects have played over time, how they functioned in various contexts, and whose interests they served or sought to disrupt.",
+  "prerequisites": "WRI 101 (prerequisite/concurrent)",
+  "restrictions": "Not open to students who have completed DES 121 or DES 122."
+},
+"ART111": {
+  "title": "Freehand Drawing",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces the basic drawing skills required for freehand drawing and includes freehand perspective, projection systems and design visualization.",
+  "restrictions": "Not open to CAAD students and to students who have completed DES 111."
+},
+"ART211": {
+  "title": "Intermediate Drawing",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Explores drawing approaches, attitudes, processes and materials as a means of personal visual exploration and expression. Focuses on current drawing practices through gallery visits, critiques and lectures on materials and methods.",
+  "prerequisites": "ART 111 or DES 111, and WRI 102",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"ART241": {
+  "title": "Introductory Painting",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the fundamentals and principles of observational painting. Explores various representational strategies, methods, materials and techniques with exercises and assignments designed to develop skills needed to communicate visual information in a painterly context.",
+  "prerequisites": "ART 111 or DES 111"
+},
+"ART280": {
+  "title": "Introduction to Pottery",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces traditional techniques and production processes using clay. Explores the concept and application of centering and form making using the potter's wheel with a variety of conventional hand-building methods including pinching, slabs, coils and hybrids. Emphasizes a reliance on tools in the manipulation of material.",
+  "prerequisites": "DES 101 or DES 131, and sophomore standing",
+  "fees": "Lab/Tech fee rate B applies"
+},
+"ART365": {
+  "title": "Sharjah Biennial: Art and Curatorial Practice",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores the history and theory of exhibitions, art fairs, curation and their design through readings and discussion. Establishes a fundamental understanding of how the city of Sharjah becomes a dynamic exhibition space and critical platform for contemporary artmaking. Examines best curation practices and exhibition of creative work. Features guest lectures and hands-on workshops with the Biennial's curators, organizers and visiting artists at the Biennial's 16 locations across the emirate of Sharjah.",
+  "prerequisites": "DES 121 or DES 122"
+},
+"ART497": {
+  "title": "Arts Practicum",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Focuses on developing and advancing knowledge and skills required to support artistic and curatorial projects. Addresses the roles at play in collaborations with artists and curators. Provides the opportunity to synthesize theory and practice in real-world projects.",
+  "prerequisites": "junior standing and permission of the instructor",
+  "repeatable": "Repeatable up to 6 credits."
+},
+"DES101": {
+  "title": "Design Foundations for Non-Majors",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces knowledge, skills and theories comprising design. Focuses on the learning process as a designer. Explores a variety of tools, media and design strategies through ideation, design process, design communication and presentation as an experience of generating designed artifacts. Includes workshops and demonstrations in the studio, the materials lab and the computer lab.",
+  "restrictions": "Not open to CAAD students and to students who have completed DES 131."
+},
+"DES111": {
+  "title": "Descriptive Drawing I",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles and practice of observational drawing. Explores various representational approaches. Encourages the development of skills needed to effectively communicate visual information. Explores a range of materials and tools.",
+  "restrictions": "Restricted to CAAD students. Not open to students who have completed ART 111.",
+  "repeatable": "Not repeatable."
+},
+"DES112": {
+  "title": "Descriptive Drawing II",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles of analytical drawing. Emphasizes the development of a critical approach to representing form, space and scale using a range of techniques, tools and materials. Covers various projective and perspective systems.",
+  "restrictions": "Restricted to CAAD students.",
+  "repeatable": "Not repeatable."
+},
+"DES121": {
+  "title": "Introduction to Architecture, Art and Design History",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores a global approach to art, architecture and design. Investigates the technological, religious and social forces that helped to reveal the universality of the human impulse to design. Examines ideas, techniques and design methods thematically within a chronological framework covering the time span from the Stone Age to the Industrial Revolution."
+},
+"DES122": {
+  "title": "Modern Developments in Architecture, Art and Design",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Examines ideas, techniques and design methods thematically from the Renaissance to the late 20th century and the contemporary world. Investigates the technological, religious and social forces that drive the universal human impulse to design. Explores a global view of art, architecture and design."
+},
+"DES131": {
+  "title": "Design Foundations I",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles and methods of design. Examines composition and visual order. Explores graphic and material methods of representation needed to experiment with concepts of shape, form and space. Includes the development of a visual and verbal design vocabulary. Introduces craft and making skills with a variety of materials and tools.",
+  "restrictions": "Restricted to CAAD students.",
+  "repeatable": "Not repeatable."
+},
+"DES132": {
+  "title": "Design Foundations II",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles and methods of design, with an emphasis on process and conceptual development. Explores organizational systems, space and form in the creation of two-and three-dimensional design concepts. Explores craft and making skills with a variety of materials and tools.",
+  "prerequisites": "DES 131",
+  "restrictions": "Restricted to CAAD students. Not open to students who have completed DES 200.",
+  "repeatable": "Not repeatable."
+},
+"DES160": {
+  "title": "Introduction to Photography",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Provides a hands-on introduction to photographic practice. Introduces photography basics and camera control across a variety of digital photography equipment as well as digital applications. Covers photographic language and considerations through the study of examples taken from the history of photography.",
+  "restrictions": "Not open to BSFMD and BSGRD students. Not open to students who have completed GRD 221.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES170": {
+  "title": "Introduction to Product Design",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Surveys the contemporary and historical developments in product design. Develops an understanding of the roles of the product designer and introduces fundamental environmental, cultural and economic issues relevant to the design of products. Introduces the scope and range of product design, including an awareness of product system service design. Explores various stages and processes of product design including design research, concept generation, scenario building, market evaluations, design development and production. Employs case studies, written and verbal presentations, and introduces basic skills through the development of small-scale exercises.",
+  "prerequisites": "DES 101 or DES 131",
+  "fees": "Lab/Tech fee rate B applies"
+},
+"DES200": {
+  "title": "Communication Design",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the materials and techniques most commonly used by designers in the field of communication and stresses the development of skills in these areas through the completion of class assignments and projects representative of the concepts discussed in class. Students develop a deeper understanding of visual communication and become well-versed in the capacities and restrictions inherent in the materials and techniques most commonly used by professional designers.",
+  "prerequisites": "DES 101 or DES 131 or MDC 101 or NGN 110 or BIS 101 or STA 201 or STA 202",
+  "restrictions": "Restricted to non-CAAD students.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES230": {
+  "title": "Visual Communication Design",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Engages in visual design as it applies to effectively communicating brands and constructing narratives. Establishes fundamental understanding and skills necessary for creating visual identity. Examines best practices, such as development of brand manuals, in producing online and print collateral. Addresses typography, grid systems, information hierarchy, color and composition.",
+  "prerequisites": "DES 111, DES 112 and DES 132",
+  "restrictions": "Restricted to students formally admitted to the DES major.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES231": {
+  "title": "History of Design",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores topics in the history of design and visual communication. Introduces recognized schools of design philosophy and/or practice. Explores the relationship between design and culture.",
+  "prerequisites": "WRI 102 and sophomore standing (prerequisite/concurrent)"
+},
+"DES232": {
+  "title": "Research Methodologies for Design",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Introduces research processes within design practice and theory. Explores diverse research methods and strategies that inform design decisions while improving process, efficiency and time management. Addresses research demands implicit to design disciplines through readings, discussions and practical assignments.",
+  "prerequisites": "DES 101 or DES 131, and ENG 203 or ENG 204"
+},
+"DES270": {
+  "title": "Design as Form",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Develops skills in three-dimensional design and form making. Explores relationships of form, perception and visual/sensory phenomenon with specific focus on the application of design principles to the creation of small-scaled objects through methods of modeling and development.",
+  "prerequisites": "DES 101 or DES 131, and sophomore standing",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES275": {
+  "title": "Fundamentals of Design Management",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Introduces the fundamentals of design management. Includes the implementation of design management at the corporate, process and project level in corporative, medium and small-sized enterprises. Stresses skills required in different organizations in the global economy.",
+  "prerequisites": "DES 101 or DES 131"
+},
+"DES300": {
+  "title": "User-Centered Design Project",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Engages in designing for a purpose with an emphasis on user-centered design. Introduces various stages and processes of design, including design research, problem finding, concept generation, scenario building, prototyping and design development. Introduces design of digital applications, user interface and user experience.",
+  "prerequisites": "DES 230",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES360": {
+  "title": "Critical Discourse in Design",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Examines the relationship between design intention and interpretation. Reviews the application of graphic language in visual media. Requires research on topics related to design communication. Complements studio-based design courses by exploring design considerations and practice from a theoretical perspective.",
+  "prerequisites": "DES 231"
+},
+"DES362": {
+  "title": "History of Photography: The Portrait",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores the history of photography as evidenced in the development of the photographic portrait. Covers examples of early photographic practice; the commercialism of photography; and documentary, fine art and contemporary approaches to the photographic portrait genre.",
+  "prerequisites": "ENG 203 or ENG 204"
+},
+"DES370": {
+  "title": "Introduction to Prototyping",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Examines the conceptual and technical skills that represent evolutionary steps in design process and production. Covers the use of hand drawing, digital rendering and fabrication techniques to develop ideas. Addresses concept generation skills, including ideation drawing and rapid prototyping activities. Focuses on the visual and verbal communication skills necessary for the projection and promotion of ideas and products.",
+  "prerequisites": "ARC 201 or DES 230 or DES 270 or IDE 201 or FMD 201 or GRD 201, or DES 101 and MCE 236L",
+  "fees": "Lab/Tech fee rate B applies"
+},
+"DES374": {
+  "title": "Package Design",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces principles of package design. Focuses on the integration and application of graphic and visual elements to three-dimensional objects through folding, creasing and simple die cutting. Examines packaging trends in the context of the needs of the region to develop economical, responsible and sustainable solutions. Covers environmental and social issues related to packaging.",
+  "prerequisites": "DES 101 or DES 131",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES397": {
+  "title": "Internship in Design Management",
+  "credits": 0,
+  "hours": "0-0-0",
+  "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+  "prerequisites": "Junior II standing and approval of internship coordinator",
+  "fees": "Registration fee applies",
+  "notes": "Graded as Pass/Fail."
+},
+"DES462": {
+  "title": "Design Management",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Introduces the principles and practices of the economic and commercial aspects of design practice in a global economy. Includes microeconomics theory as it applies to private enterprise: basic business economics, planning and management. Gives attention to the processes and skills required in establishing an independent design office.",
+  "prerequisites": "DES 300"
+},
+"DES475": {
+  "title": "Service Design",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces the core activities of service design including the planning and organizing of people, infrastructure, communication and material components of a service in order to improve its quality and the interaction between service providers and customers. Emphasizes tools, techniques and methods of service design.",
+  "prerequisites": "DES 300"
+},
+"DES480": {
+  "title": "Systems and Strategic Design Thinking",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Engages in developing design-led strategies for social and business systems with an emphasis on stakeholders and innovation using design thinking. Addresses platforms for products and services. Involves exploring, creating and choosing among multiple options within strategic goals and constraints.",
+  "prerequisites": "DES 462 and DES 475",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"DES497": {
+  "title": "Design Practicum",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Focuses on the development and advancement of knowledge and skills required to deliver professional design services. Addresses the roles that collaboration and client demands play in design practice. Provides the opportunity to synthesize theory and practice in real-world projects.",
+  "prerequisites": "DES 300 or ARC 202 or IDE 202 or FMD 202 or GRD 202 (prerequisite/concurrent)",
+  "repeatable": "Repeatable up to 6 credits."
+},
+"DES498": {
+  "title": "Studio Abroad",
+  "credits": "3 to 6",
+  "hours": null,
+  "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+  "prerequisites": "studio specific",
+  "repeatable": "Repeatable only once."
+},
+"FLM100": {
+  "title": "The Art of Film",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces the central issues of film aesthetics, including formal and stylistic elements: color, lighting, editing, sound, movement, mise-en-scene, etc. Develops analytical and interpretive skills by providing critical tools required for discussing and writing about film as well as examining relationships between a film and its technological and cultural impact on society. Subjects are treated topically rather than historically, and emphasis is placed on mastering key concepts of film grammar and art.",
+  "prerequisites": "WRI 102 (prerequisite/concurrent)"
+},
+"FLM206": {
+  "title": "Cities and Cinema",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Explores the role cities play in movies, and how images of cities and urban life are constructed in cinema. Considers the ways cities are portrayed as both real and imagined backdrops to film narratives. Studies the visual means by which movies, through lighting, photography, special effects and editing, mediate and condition our perception and understanding of the city. Considers the reasons why filmmakers choose to depict cities and the urban environment in the ways that they do.",
+  "prerequisites": "WRI 102, and DES 101 or DES 121 or DES 122 or MDC 101"
+},
+"FLM210": {
+  "title": "Narrative Structure in Film",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces digital narrative storytelling, focusing on developing basic technical and conceptual skills in pre-production, production, post-production and distribution. Examines production and post-production techniques related to the specific conventions of narrative genres and the aesthetic of a frame. Projects emphasize the development of story structure and characters, screenwriting and storyboarding. Introduces technical skills required to develop and market a short film.",
+  "prerequisites": "FLM 100, and ENG 203 or ENG 204",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FLM310": {
+  "title": "Film Production",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces advanced ideas and practices in narrative filmmaking required for conceptual development, production, post-production and distribution of short films. Explores significant historical references that provide a critical understanding of film genres. Provides students with skills required to create sophisticated, compelling, professional-quality short narrative or immersive films.",
+  "prerequisites": "FLM 210 or FMD 201 or MDC 277",
+  "fees": "Lab/Tech fee rate B applies"
+},
+"FLM332": {
+  "title": "Experimental Film and Video",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Examines basic to intermediate concepts as they relate to the aesthetics of short non-narrative format. All three stages of production are represented through a series of practical projects that enable students to investigate the relationship between image and sound as they relate to overall aesthetic value. Different approaches are examined through screening of case studies focusing on style conventions.",
+  "prerequisites": "DES 230 or FLM 210 or MDC 101 or FMD 201 or GRD 201",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FLM360": {
+  "title": "Screenwriting",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Focuses on the craft of writing for film and television. Covers research methods, interviewing techniques, subject treatment, dialogue writing and the development of basic script formats. Explores the process of transforming story ideas into film or television scripts.",
+  "prerequisites": "FLM 100, and ENG 203 or ENG 204"
+},
+"FLM410": {
+  "title": "Advanced Film Production",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces complex production techniques within three stages of the filmmaking process. Exposes students to film practice through pre-production planning, budgeting, scheduling, directing actors and leading a production team. Provides students with the advanced filmmaking skills and knowledge necessary to confidently take on leadership roles in film production as a director, editor, producer or cinematographer.",
+  "prerequisites": "FLM 310 or FLM 332",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD201": {
+  "title": "Film and New Media Design Studio I",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces fundamental skills in the creation of digital sound and image content. Explores the interrelationship of image, text and sound through formal investigations and basic narrative sequencing.",
+  "prerequisites": "DES 111, DES 112, DES 121 or DES 122, DES 132, MTH XXX and WRI 101",
+  "restrictions": "Restricted to students formally admitted to the FMD major.",
+  "repeatable": "Repeatable only once.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD202": {
+  "title": "Film and New Media Design Studio II",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles of interaction design by analyzing and creating objects, interfaces and patterns. Emphasizes the creation of functional prototypes using industry standard practices.",
+  "prerequisites": "FMD 201",
+  "repeatable": "Repeatable only once.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD221": {
+  "title": "Motion Graphics and Video",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces compositing strategies using video, sound and image content. Provides historical overview and conceptual context through case studies and screenings of significant work.",
+  "prerequisites": "FMD 201",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD301": {
+  "title": "Film and New Media Design Studio III",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Explores sequential narrative design in linear and interactive media. Emphasizes analysis and deconstruction of significant narrative structures in relationship to form, content and meaning.",
+  "prerequisites": "FMD 202",
+  "repeatable": "Repeatable only once."
+},
+"FMD302": {
+  "title": "Film and New Media Design Studio IV",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Examines user experience design through the integration of research, prototyping, content creation and media delivery. Emphasizes the development and presentation of functioning prototypes.",
+  "prerequisites": "FMD 301",
+  "repeatable": "Repeatable only once."
+},
+"FMD304": {
+  "title": "Media Systems and Publishing",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Explores various methods of distribution through current and future platforms and provides comprehensive understanding of media as a system. Examines the relationship between commerce, design and communication.",
+  "prerequisites": "FMD 301",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD311": {
+  "title": "Animation",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces the principles of animation through exploration of traditional animation techniques, concepts and storyboarding. Emphasizes the production of images in motion and expression utilizing traditional or digitally aided processes.",
+  "prerequisites": "ARC 201 or DES 230 or IDE 201 or FMD 201 or GRD 201 or MDC 200",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD331": {
+  "title": "3D Animation",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Addresses strategies and production pipeline in 3D modeling and animation: non-linear animation strategies, texture mapping, dynamics, lighting and rendering for contemporary professional output.",
+  "prerequisites": "FMD 201 or FMD 311",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD360": {
+  "title": "Film and New Media Design History and Theory",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Examines the origins and history of film and new media and its technologies. Surveys critical media culture readings from both the theoretical field of media studies and the creative works of artists, designers, filmmakers and writers.",
+  "prerequisites": "DES 231"
+},
+"FMD397": {
+  "title": "Internship in Film and New Media Design",
+  "credits": 0,
+  "hours": "0-0-0",
+  "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+  "prerequisites": "FMD 302 and approval of internship coordinator",
+  "fees": "Registration fee applies",
+  "notes": "Graded as Pass/Fail."
+},
+"FMD404": {
+  "title": "Film and New Media Design Studio V",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Focuses on the development of advanced discipline-specific film and new media design projects through the use of time base and interactive media. Provides insight into real-world challenges while emphasizing conceptualization, ideation, creative problem solving, critical thinking, communication and presentation skills. Explores local, regional or global themes through individual and industry-collaborative projects.",
+  "prerequisites": "FMD 302",
+  "repeatable": "Repeatable only once.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD406": {
+  "title": "Film and New Media Design Studio VI",
+  "credits": 6,
+  "hours": "12-0-6",
+  "description": "Focuses on the development of a compressive film and new media design project. Addresses the role of research, analyses and synthesis in professional design practice. Covers aspects of planning, management and production. Requires and approved student-initiated or faculty-directed capstone/topical project.",
+  "prerequisites": "FMD 404 and FMD 450",
+  "repeatable": "Repeatable only once."
+},
+"FMD450": {
+  "title": "Advanced Techniques in Film and Media Design",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces strategies and techniques for developing and executing technically advanced work in a digital media environment. Focuses on creating conceptually advanced, technically perfected projects that supplement students' portfolios. Requires students to pitch, present and critically evaluate their work within the context of industry standards and professional practice.",
+  "prerequisites": "FMD 302"
+},
+"FMD498": {
+  "title": "Studio Abroad",
+  "credits": "3 to 6",
+  "hours": null,
+  "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+  "prerequisites": "studio specific",
+  "repeatable": "Repeatable only once."
+},
+
+  "GRD201": {
+    "title": "Graphic Design Studio I",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Introduces principles of graphic composition and organization through systems-based approaches to design. Explores formal relationships of varying complexity, from simple abstractions to the articulation of multiple categories of text and image-based information. Presents strategies to manage content. Examines denotation and connotation in graphic design. Addresses the integration of digital media within design projects.",
+    "prerequisites": "DES 111, DES 112, DES 121 or DES 122, DES 132, MTH XXX and WRI 101",
+    "restrictions": "Restricted to students formally admitted to the GRD major.",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD202": {
+    "title": "Graphic Design Studio II",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Covers essential typographic, compositional and imaging techniques. Examines strategies of creating, manipulating and combining text and images to facilitate communication. Explores varied means of visualization for print-or time-based media. Introduces the role of sequencing and transformation in communicating visual and textual information.",
+    "prerequisites": "GRD 201",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD213": {
+    "title": "Illustration Drawing",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Builds on skills introduced in foundation drawing and encourages students to utilize a variety of illustration media and techniques. Class projects focus on photo reference gathering techniques, visualizing concepts and ideas, graphic reductions and other areas of commercial illustration.",
+    "prerequisites": "ART 111 or DES 111 (prerequisite/concurrent)",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD221": {
+    "title": "Photography Basics",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces basic photographic skills of camera control and photographic practice through the use of digital technology. Introduces and explores topics relating to the history and theory of photographic practice.",
+    "prerequisites": "DES 101 or DES 131",
+    "restrictions": "Not open to students who have completed DES 160.",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD231": {
+    "title": "Typography I: Normative Typographic Principles",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces the fundamental conventions and vocabulary associated with typography. Addresses information hierarchy through the study of visual form and structure. Explores the editorial and expressive potentials of typography. Engages traditional and digital technologies within coursework.",
+    "prerequisites": "ARC 201 or DES 230 or IDE 201 or FMD 201 or GRD 201 (prerequisite/concurrent)",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD301": {
+    "title": "Graphic Design Studio III",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Examines the relationship between graphic form and content. Addresses the role of semiotics in graphical communication. Emphasizes the application of methods and strategies used in the design of print-based publications for general and/or specific audiences.",
+    "prerequisites": "GRD 202 and GRD 331",
+    "repeatable": "Repeatable only once."
+  },
+  "GRD302": {
+    "title": "Graphic Design Studio IV",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Explores representations of abstract ideas in the form of symbols and logotypes. Covers research methods and design strategies associated with the development of graphic identity systems. Addresses the role of branding, the development of project briefs, logo design, and the development and application of graphical identity standards.",
+    "prerequisites": "GRD 301",
+    "repeatable": "Repeatable only once."
+  },
+  "GRD312": {
+    "title": "Illustration Genres",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores the potential of 19th and 20th century illustration genres as a means of visual communication. Investigates use of historical illustration styles in a contemporary context.",
+    "prerequisites": "GRD 213 or ART 211"
+  },
+  "GRD313": {
+    "title": "Visual Narrative",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores narrative and storytelling structures in design including storyboarding and sequential drawing. Examines history and current practice in sequential visual arts. Emphasizes research, drawing and rendering skills needed to develop characters in sequential formats such as animation, film, illustration, children's and juvenile books, and graphic novels.",
+    "prerequisites": "GRD 213 or ART 211, and ENG 203 or ENG 204",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD320": {
+    "title": "Printmaking: Lithography and Screen Printing Methods",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces basic concepts and skills in traditional and contemporary lithography, screen printing and alternative printmaking methods while developing a firm skills base. Investigates traditional mechanical and digital experimental reproductive processes across a range of disciplines.",
+    "prerequisites": "GRD 201 or ARC 201 or ART 211 or DES 230 or IDE 201 or FMD 201",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "GRD326": {
+    "title": "Screen Printing: Methods and Techniques",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Develops skills in screen printing and its potential applications for both paper and alternate surfaces. Explores the different techniques for developing screen print initially using paper and hand-painted stencils and then moving onto photographic stencils and combinations of the two.",
+    "prerequisites": "GRD 202 or ARC 202 or DES 300 or IDE 202 or FMD 202",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "GRD327": {
+    "title": "Analog Photography Processes",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Covers the practice of 35mm analog photography. Explores darkroom printing techniques and processes central to effective visual communication. Focuses on theme work and the development of a portfolio.",
+    "prerequisites": "GRD 221 or ARC 316, or DES 160 and DES 362",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD328": {
+    "title": "Arabic Type Design",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces relevant theories and histories of Arabic type design from calligraphy to more contemporary typographic practices. Presents vocabulary and tools related to Arabic typography/type design. Explores print based media in the creation of typographic compositions.",
+    "prerequisites": "GRD 202 or ARC 202 or DES 202 or DES 230 or FMD 202",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD331": {
+    "title": "Typography II: Complex Typographic Systems",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores the relationship between content and form in typographic design. Examines the normative and expressive aspects of typography and how they function in micro publications, complex multi-page and or multilingual publications, wayfinding and information systems, and text for exhibitions supported by reference and analysis of contemporary case studies. Focuses on analyzing content, its meaning, and the intended goals and needs of both the information provider and the information user.",
+    "prerequisites": "GRD 201 and GRD 213",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "GRD342": {
+    "title": "Environment, Experience and Interaction Design",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores the intersection of visual communication and the built environment through lectures, case-study analysis and studio projects. Covers wayfinding systems, architectural graphics, signage, dynamic environments and mapping.",
+    "prerequisites": "GRD 301",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "GRD361": {
+    "title": "The Design Profession",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Deals with issues of working in design-related fields, including professional practice, intellectual property, employability, freelancing and working within a cultural context. Imparts knowledge of the region's design industry, through research and field trip documentation. Prepares students for their summer internships.",
+    "prerequisites": "DES 360 or FMD 360 (prerequisite/concurrent)",
+    "restrictions": "Open to Department of Art and Design students only."
+  },
+  "GRD397": {
+    "title": "Internship in Graphic Design",
+    "credits": 0,
+    "hours": "0-0-0",
+    "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+    "prerequisites": "GRD 302 and approval of internship coordinator",
+    "fees": "Registration fee applies",
+    "notes": "Graded as Pass/Fail."
+  },
+  "GRD401": {
+    "title": "Graphic Design Studio V",
+    "credits": 3,
+    "hours": "6-0-3",
+    "description": "Focuses on the development of topical discipline-specific or inter-/transdisciplinary design projects. Explores local, regional and/or global themes through individual and/or collaborative projects.",
+    "prerequisites": "GRD 302",
+    "fees": "Lab/Tech fee rate A applies"
+  },
+  "GRD406": {
+    "title": "Graphic Design Studio VI",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Focuses on the development of a comprehensive communication design project. Addresses the role of research, analysis and synthesis in professional design practice. Covers aspects of planning, management and production. Requires an approved student-initiated or faculty-directed capstone/topical project.",
+    "prerequisites": "GRD 401",
+    "repeatable": "Repeatable only once."
+  },
+  "GRD498": {
+    "title": "Studio Abroad",
+    "credits": "1 to 6",
+    "hours": null,
+    "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+    "prerequisites": "GRD 202 and consent of the department",
+    "repeatable": "Repeatable only once."
+  },
+  
+  "IDE201": {
+    "title": "Interior Design Studio I",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Investigates the fundamentals of interior space with a focus on design inquiry, process and representation. Introduces components that shape interior space and analyzes their relationships with a given context. Develops the basic skills of spatial organization by addressing issues of size, scale, hierarchy, distribution and circulation. Introduces software applications and graphic techniques integral to the development and presentation of studio projects.",
+    "prerequisites": "DES 112, DES 121, DES 122, DES 132, and MTH 001 or MTH 003 or MTH 103 or MTH 111, and WRI 101",
+    "restrictions": "Restricted to students formally admitted to the ID major.",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "IDE202": {
+    "title": "Interior Design Studio II",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Continues the investigation of the IDE 201 studio content with additional emphasis on the application of natural and artificial light, colors and materials. Technical resolutions and anthropometric requirements in the context of space making are broadly investigated. Further develops the use of software applications and graphic techniques integral to the development and presentation of studio projects.",
+    "prerequisites": "IDE 201",
+    "repeatable": "Repeatable only once.",
+    "fees": "Lab/Tech fee rate B applies"
+  },
+  "IDE225": {
+    "title": "History and Theory of Interior Design: Global and Regional Issues",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Examines the historical and social movements that established the foundation for the contemporary practice of interior design. Reviews historical origins of design in the Middle East and its influence in Eastern civilization from the 18th century onwards. Emphasizes design history from the industrial revolution to the present, with an in-depth revision from the avant-garde artistic and aesthetic streams of the 20th century to the most important contemporary designs.",
+    "prerequisites": "DES 101 or DES 131, and WRI 101"
+  },
+  "IDE239": {
+    "title": "Interior Materials and Methods",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Introduces interior architectural finish and construction materials, available products, performance characteristics, technical attributes and considerations, and methods of application. Explores basic structural systems, interior finish materials and applications, technical evaluation methods, detail documentation and specification requirements using standard construction methodology.",
+    "restrictions": "Restricted to students formally admitted to the ID major."
+  },
+  "IDE251": {
+    "title": "Color and Light",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Introduces the fundamentals, principles and art of lighting and color, and their visual and physical effects in interior design. Explores light and color as important elements in interior space through the study of related perceptual and physical factors. Introduces relevant terminology to define light and color as attributes of architectural and interior space, including illumination levels, color temperatures, light sources and light fixtures.",
+    "prerequisites": "DES 101 or DES 131, and WRI 101"
+  },
+  "IDE301": {
+    "title": "Interior Design Studio III",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Focuses on advanced spatial concepts relevant to contemporary practices in the field. Investigates the role of precedents and analogue spaces in generating conceptual ideas. Examines the expressive potential of interior elements (floor, wall, stairs, openings, etc.) and materials. Develops an understanding of the relationship between interior elements, materials and the architectural shell. Explores various design scales with a specific focus on how resolved technical details can express formal ideas.",
+    "prerequisites": "IDE 202 or ARC 202, and PHY 104",
+    "repeatable": "Repeatable only once."
+  },
+  "IDE302": {
+    "title": "Interior Design Studio IV",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Continues the intent and purpose of IDE 301. Emphasizes the development of programming strategies within a defined cultural context. Concentrates on the phenomenological aspects of interior environments and explores the spatial and perceptual implications of artificial lighting and materials. Explores the conceptual and spatial implications of furniture layout, selection and design.",
+    "prerequisites": "IDE 301",
+    "repeatable": "Repeatable only once."
+  },
+  "IDE334": {
+    "title": "Furniture and Furnishings",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Addresses furniture designers, typologies, principles of anthropometrics and ergonomics related to work processes/seating and the human body, materiality, construction and fabrication/production technologies. Explores the form, function, aesthetics and cultural influences through lectures, class discussions, case studies and various media. Culminates in assignments, presentations, and research, and the development of scale models of furniture design projects.",
+    "prerequisites": "DES 132, and ENG 203 or ENG 204"
+  },
+  "IDE335": {
+    "title": "Furniture Design Basics",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Explores the basic function and design of furniture as it relates to human factors, such as anthropometrics and ergonomics. Provides a link between historical, theoretical and practical experience. Defines the elements of form, function and aesthetic by exploring experimental concepts and adopting alternative ways of thinking about the objects that surround us. Applies furniture models built to scale, or other presentation techniques, to effectively support the evolution of new concepts.",
+    "prerequisites": "IDE 201 or ARC 201 (prerequisite/concurrent)"
+  },
+  "IDE352": {
+    "title": "Environmental Control Systems in Interior Design",
+    "credits": 3,
+    "hours": "2-3-3",
+    "description": "Provides an integrated presentation of environmental control systems (lighting, heating, ventilating, air conditioning, sanitary and acoustics) with special attention to the needs of interior designers. Presents systems as they influence one another and as they constrain interior space planning and design.",
+    "prerequisites": "PHY 104; IDE 201 or ARC 201 (prerequisite/concurrent)"
+  },
+  "IDE397": {
+    "title": "Internship in Interior Design",
+    "credits": 0,
+    "hours": "0-0-0",
+    "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+    "prerequisites": "Junior II standing and approval of internship coordinator",
+    "fees": "Registration fee applies",
+    "notes": "Graded as Pass/Fail."
+  },
+  "IDE401": {
+    "title": "Interior Design Studio V",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Addresses a large-scale interior design project within a specific cultural context. Integrates advanced topics with conventional design development strategies. Addresses issues of sustainability, life safety, accessibility, human behavior and spatial experience.",
+    "prerequisites": "IDE 302",
+    "repeatable": "Repeatable only once."
+  },
+  "IDE402": {
+    "title": "Interior Design Studio VI",
+    "credits": 6,
+    "hours": "12-0-6",
+    "description": "Explores a comprehensive large-scale interior design project with an emphasis on the production of a full set of construction drawings and specifications, including an understanding of building systems, code compliance, sustainability and health, safety and welfare (HSW).",
+    "prerequisites": "IDE 302",
+    "repeatable": "Repeatable only once."
+  },
+  "IDE434": {
+    "title": "Construction, Detailing and Structures",
+    "credits": 3,
+    "hours": "4-0-3",
+    "description": "Builds upon IDE 239 Materials and Methods, examining interior structures and construction. Addresses the content, vocabulary and process involved in design, detailing and fabrication of interior spaces. Emphasizes the development of technical drawings and language to effectively communicate with allied design practitioners.",
+    "prerequisites": "IDE 239 or ARC 232"
+  },
+  "IDE463": {
+    "title": "Professional Practice",
+    "credits": 3,
+    "hours": "3-0-3",
+    "description": "Introduces the professional practice of architecture and interior design. Covers the fundamental knowledge of project management, client and consultant relationships, construction administration and the operations of a design business. Introduces the implications of time, budget and economic parameters in relation to the design process, professional ethics, social and political culture, and business management.",
+    "prerequisites": "junior standing",
+    "equivalent": "ARC 463"
+  },
+  "IDE498": {
+    "title": "Studio Abroad",
+    "credits": "3 to 6",
+    "hours": null,
+    "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+    "prerequisites": "IDE 302 or ARC 302, and consent of department",
+    "repeatable": "Repeatable only once."
+  },
+"UPL302": {
+  "title": "Analysis of Spatial Phenomena",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Addresses key concepts and technical skills involved in analyzing spatial phenomena. Covers topics such as spatial inferences, cartographic quality, geospatial data, exploratory spatial data analysis, and analytical concepts and methods. Emphasizes a working knowledge of geographic information systems and related software applications.",
+  "prerequisites": "junior standing, any 100-level MTH course, and WRI 101",
+  "fees": "Lab/Tech fee rate A applies"
 }
+}
+
+
+
