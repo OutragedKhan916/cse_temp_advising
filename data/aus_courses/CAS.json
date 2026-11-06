@@ -306,5 +306,60 @@
     "prerequisites": "consent of the department",
     "repeatable": "Repeatable only once.",
     "notes": "May substitute for ARC 502."
-  }
+  },
+  "ART101": {
+  "title": "Survey of Art",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores art from a historical perspective and in a global context, including Euro-America, Asia and the Global South, from the fourteenth to the twenty-first century. Examines changing conceptions of the artist, the work of art, and the discipline of art history, considering the roles images and objects have played over time, how they functioned in various contexts, and whose interests they served or sought to disrupt.",
+  "prerequisites": "WRI 101 (prerequisite/concurrent)",
+  "restrictions": "Not open to students who have completed DES 121 or DES 122."
+},
+"ART111": {
+  "title": "Freehand Drawing",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces the basic drawing skills required for freehand drawing and includes freehand perspective, projection systems and design visualization.",
+  "restrictions": "Not open to CAAD students and to students who have completed DES 111."
+},
+"ART211": {
+  "title": "Intermediate Drawing",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Explores drawing approaches, attitudes, processes and materials as a means of personal visual exploration and expression. Focuses on current drawing practices through gallery visits, critiques and lectures on materials and methods.",
+  "prerequisites": "ART 111 or DES 111, and WRI 102",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"ART241": {
+  "title": "Introductory Painting",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the fundamentals and principles of observational painting. Explores various representational strategies, methods, materials and techniques with exercises and assignments designed to develop skills needed to communicate visual information in a painterly context.",
+  "prerequisites": "ART 111 or DES 111"
+},
+"ART280": {
+  "title": "Introduction to Pottery",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces traditional techniques and production processes using clay. Explores the concept and application of centering and form making using the potter's wheel with a variety of conventional hand-building methods including pinching, slabs, coils and hybrids. Emphasizes a reliance on tools in the manipulation of material.",
+  "prerequisites": "DES 101 or DES 131, and sophomore standing",
+  "fees": "Lab/Tech fee rate B applies"
+},
+"ART365": {
+  "title": "Sharjah Biennial: Art and Curatorial Practice",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Explores the history and theory of exhibitions, art fairs, curation and their design through readings and discussion. Establishes a fundamental understanding of how the city of Sharjah becomes a dynamic exhibition space and critical platform for contemporary artmaking. Examines best curation practices and exhibition of creative work. Features guest lectures and hands-on workshops with the Biennial's curators, organizers and visiting artists at the Biennial's 16 locations across the emirate of Sharjah.",
+  "prerequisites": "DES 121 or DES 122"
+},
+"ART497": {
+  "title": "Arts Practicum",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Focuses on developing and advancing knowledge and skills required to support artistic and curatorial projects. Addresses the roles at play in collaborations with artists and curators. Provides the opportunity to synthesize theory and practice in real-world projects.",
+  "prerequisites": "junior standing and permission of the instructor",
+  "repeatable": "Repeatable up to 6 credits."
 }
+}
+
+
