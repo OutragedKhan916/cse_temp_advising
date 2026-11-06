@@ -612,6 +612,121 @@
   "description": "Introduces complex production techniques within three stages of the filmmaking process. Exposes students to film practice through pre-production planning, budgeting, scheduling, directing actors and leading a production team. Provides students with the advanced filmmaking skills and knowledge necessary to confidently take on leadership roles in film production as a director, editor, producer or cinematographer.",
   "prerequisites": "FLM 310 or FLM 332",
   "fees": "Lab/Tech fee rate A applies"
+},
+"FMD201": {
+  "title": "Film and New Media Design Studio I",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces fundamental skills in the creation of digital sound and image content. Explores the interrelationship of image, text and sound through formal investigations and basic narrative sequencing.",
+  "prerequisites": "DES 111, DES 112, DES 121 or DES 122, DES 132, MTH XXX and WRI 101",
+  "restrictions": "Restricted to students formally admitted to the FMD major.",
+  "repeatable": "Repeatable only once.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD202": {
+  "title": "Film and New Media Design Studio II",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces the principles of interaction design by analyzing and creating objects, interfaces and patterns. Emphasizes the creation of functional prototypes using industry standard practices.",
+  "prerequisites": "FMD 201",
+  "repeatable": "Repeatable only once.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD221": {
+  "title": "Motion Graphics and Video",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces compositing strategies using video, sound and image content. Provides historical overview and conceptual context through case studies and screenings of significant work.",
+  "prerequisites": "FMD 201",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD301": {
+  "title": "Film and New Media Design Studio III",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Explores sequential narrative design in linear and interactive media. Emphasizes analysis and deconstruction of significant narrative structures in relationship to form, content and meaning.",
+  "prerequisites": "FMD 202",
+  "repeatable": "Repeatable only once."
+},
+"FMD302": {
+  "title": "Film and New Media Design Studio IV",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Examines user experience design through the integration of research, prototyping, content creation and media delivery. Emphasizes the development and presentation of functioning prototypes.",
+  "prerequisites": "FMD 301",
+  "repeatable": "Repeatable only once."
+},
+"FMD304": {
+  "title": "Media Systems and Publishing",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Explores various methods of distribution through current and future platforms and provides comprehensive understanding of media as a system. Examines the relationship between commerce, design and communication.",
+  "prerequisites": "FMD 301",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD311": {
+  "title": "Animation",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Introduces the principles of animation through exploration of traditional animation techniques, concepts and storyboarding. Emphasizes the production of images in motion and expression utilizing traditional or digitally aided processes.",
+  "prerequisites": "ARC 201 or DES 230 or IDE 201 or FMD 201 or GRD 201 or MDC 200",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD331": {
+  "title": "3D Animation",
+  "credits": 3,
+  "hours": "4-0-3",
+  "description": "Addresses strategies and production pipeline in 3D modeling and animation: non-linear animation strategies, texture mapping, dynamics, lighting and rendering for contemporary professional output.",
+  "prerequisites": "FMD 201 or FMD 311",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD360": {
+  "title": "Film and New Media Design History and Theory",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Examines the origins and history of film and new media and its technologies. Surveys critical media culture readings from both the theoretical field of media studies and the creative works of artists, designers, filmmakers and writers.",
+  "prerequisites": "DES 231"
+},
+"FMD397": {
+  "title": "Internship in Film and New Media Design",
+  "credits": 0,
+  "hours": "0-0-0",
+  "description": "Requires a minimum of five weeks (normally 200 hours) of approved professional experience. Requires the work undertaken to be documented in a formal report submitted to the department by the beginning of the following term.",
+  "prerequisites": "FMD 302 and approval of internship coordinator",
+  "fees": "Registration fee applies",
+  "notes": "Graded as Pass/Fail."
+},
+"FMD404": {
+  "title": "Film and New Media Design Studio V",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Focuses on the development of advanced discipline-specific film and new media design projects through the use of time base and interactive media. Provides insight into real-world challenges while emphasizing conceptualization, ideation, creative problem solving, critical thinking, communication and presentation skills. Explores local, regional or global themes through individual and industry-collaborative projects.",
+  "prerequisites": "FMD 302",
+  "repeatable": "Repeatable only once.",
+  "fees": "Lab/Tech fee rate A applies"
+},
+"FMD406": {
+  "title": "Film and New Media Design Studio VI",
+  "credits": 6,
+  "hours": "12-0-6",
+  "description": "Focuses on the development of a compressive film and new media design project. Addresses the role of research, analyses and synthesis in professional design practice. Covers aspects of planning, management and production. Requires and approved student-initiated or faculty-directed capstone/topical project.",
+  "prerequisites": "FMD 404 and FMD 450",
+  "repeatable": "Repeatable only once."
+},
+"FMD450": {
+  "title": "Advanced Techniques in Film and Media Design",
+  "credits": 3,
+  "hours": "6-0-3",
+  "description": "Introduces strategies and techniques for developing and executing technically advanced work in a digital media environment. Focuses on creating conceptually advanced, technically perfected projects that supplement students' portfolios. Requires students to pitch, present and critically evaluate their work within the context of industry standards and professional practice.",
+  "prerequisites": "FMD 302"
+},
+"FMD498": {
+  "title": "Studio Abroad",
+  "credits": "3 to 6",
+  "hours": null,
+  "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
+  "prerequisites": "studio specific",
+  "repeatable": "Repeatable only once."
 }
 }
 
