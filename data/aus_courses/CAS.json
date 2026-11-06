@@ -1018,8 +1018,15 @@
     "description": "Provides studio activities conducted in regional and international sites promoting a global-oriented approach to design.",
     "prerequisites": "IDE 302 or ARC 302, and consent of department",
     "repeatable": "Repeatable only once."
-  }
-
+  },
+"UPL302": {
+  "title": "Analysis of Spatial Phenomena",
+  "credits": 3,
+  "hours": "3-0-3",
+  "description": "Addresses key concepts and technical skills involved in analyzing spatial phenomena. Covers topics such as spatial inferences, cartographic quality, geospatial data, exploratory spatial data analysis, and analytical concepts and methods. Emphasizes a working knowledge of geographic information systems and related software applications.",
+  "prerequisites": "junior standing, any 100-level MTH course, and WRI 101",
+  "fees": "Lab/Tech fee rate A applies"
+}
 }
 
 
