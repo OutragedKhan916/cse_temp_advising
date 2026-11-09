@@ -9,7 +9,6 @@ import Tracker from "@/components/Tracker";
 import Welcome, { type Applied } from "@/components/Welcome";
 import { analyze, PER_SEM, termLabel } from "@/lib/critical";
 import { LOAD, loadKind, noticeFor, type Notice } from "@/lib/load";
-import { basePriorities } from "@/lib/plan";
 import { earned, infoFor, lockInfo, normalize, standing } from "@/lib/status";
 import type { Course, Meta, Program, Sets, Status } from "@/lib/types";
 
@@ -43,7 +42,6 @@ export default function Page() {
   const pending = useRef<{ key: string; year: string; sel: Sets; meta: Meta } | null>(null);
   const program = PROGRAMS[key];
   const byId = useMemo(() => Object.fromEntries(program.courses.map((c) => [c.id, c])) as Record<string, Course>, [program]);
-  const prio = useMemo(() => basePriorities(program), [program]);
 
   useEffect(() => { try { setTheme(localStorage.getItem("advising-theme") || "dark"); } catch {} }, []);
   useEffect(() => {
@@ -55,9 +53,11 @@ export default function Page() {
     if (p && p.key === key && p.year === year) { setSel(p.sel); setMeta(p.meta); pending.current = null; setReady(true); return; }
     try {
       const raw = JSON.parse(localStorage.getItem(skey(year, key)) || "{}");
+      const mig = (a: string[]) => a.map((x) => (x === "CMP213" ? "MTH213" : x)); // CMP213 was renamed MTH213: keep old saved progress
       const d = Array.isArray(raw) ? raw : raw.done || [];
-      setSel({ done: new Set(d), enr: new Set(Array.isArray(raw) ? [] : raw.enr || []), plan: new Set(Array.isArray(raw) ? [] : raw.plan || []) });
-      setMeta({ placed: Array.isArray(raw) ? {} : raw.placed || {}, extras: Array.isArray(raw) ? [] : raw.extras || [] });
+      const placed = Array.isArray(raw) ? {} : Object.fromEntries(Object.entries(raw.placed || {}).map(([k, v]) => [k === "CMP213" ? "MTH213" : k, v]));
+      setSel({ done: new Set(mig(d)), enr: new Set(mig(Array.isArray(raw) ? [] : raw.enr || [])), plan: new Set(mig(Array.isArray(raw) ? [] : raw.plan || [])) });
+      setMeta({ placed: placed as Meta["placed"], extras: Array.isArray(raw) ? [] : raw.extras || [] });
     } catch { setSel(empty()); setMeta(EMPTY); }
     setReady(true);
   }, [key, year]);
@@ -265,7 +265,7 @@ export default function Page() {
               </>)}
               <dl>
                 <dt>Credits</dt><dd>{hc.cr}</dd>
-                {pin !== hc.id && <><dt>Priority</dt><dd>{hc.priority ?? prio[hc.id]} / 10</dd></>}
+                
                 <dt>Prerequisites</dt><dd>{hc.pre.join(", ") || "None"}</dd>
                 {hc.any && hc.any.length > 0 && <><dt>Prerequisite (any one)</dt><dd>{hc.any.join(" or ")}</dd></>}
                 {hc.co.length > 0 && <><dt>Prerequisite / concurrent</dt><dd>{hc.co.join(", ")}</dd></>}

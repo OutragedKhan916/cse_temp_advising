@@ -32,7 +32,7 @@
   },
   {
    "id": "MTH103",
-   "name": "Calculus I ",
+   "name": "Calculus I",
    "cr": 3,
    "cat": "M",
    "col": 0,
@@ -170,8 +170,8 @@
    "minCr": 0
   },
   {
-   "id": "CMP213",
-   "name": "Discrete Structures (CMP213/MTH213)",
+   "id": "MTH213",
+   "name": "Discrete Mathematics",
    "cr": 3,
    "cat": "M",
    "col": 2,
@@ -313,7 +313,7 @@
     "CMP220"
    ],
    "co": [
-    "CMP213"
+    "MTH213"
    ],
    "minCr": 0
   },

@@ -9,7 +9,7 @@ const HIST = /^(?:\d{1,2}\s+)?([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.+?)\s+(\d{1,2})
 // transcript code -> catalog id, when they differ
 // a transfer row of the registrar format may carry no grade or quality points: "PHY 101 General Physics I 3" or "... 3 TR"
 const TRANS = /^(?:\d{1,2}\s+)?([A-Z]{3,4})\s+(\d{3,5}[A-Z]?)\s+(.+?)\s+(\d{1,2})(?:\s+(TR|P|A[+-]?|B[+-]?|C[+-]?|D[+-]?))?(?:\s+\d+\.\d{2})?\s*$/;
-const ALIAS: Record<string, string> = { MTH213: "CMP213", COE397: "NGN397", CMP397: "NGN397", COE497: "NGN397", CMP497: "NGN397" };
+const ALIAS: Record<string, string> = { CMP213: "MTH213", COE397: "NGN397", CMP397: "NGN397", COE497: "NGN397", CMP497: "NGN397" };
 // GER category (data/ger.json) -> the GER slot(s) on the chart; any extra core course falls into GERSEL
 const SLOT: Record<string, string[]> = { HCAW: ["GER221"], ART: ["GERART"], HIB: ["GERHIB", "GERHI"], CCP: ["GERCCP"] };
 /** which GER lists a chart box takes its courses from: its own category; the "selected course" box takes any of the four */
